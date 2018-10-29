@@ -4,6 +4,8 @@
 #page-wrapper{
     width: 100%;
 }
+
+/* header */
 header{
     position: fixed;
     z-index: 1;
@@ -17,6 +19,8 @@ header .container{
     padding-right: 0px;
     padding-left: 0px;
 }
+
+/* banner */
 .title_layer{
     width: 100%;
 }
@@ -63,10 +67,12 @@ header .container{
     left: 0;
     z-index: 1;
 }
+
+/* menu */
 #menu{
-    background-color: #26bec9;
+    background-color: white;
     height: 80px;
-    color: white;
+    color: #cccc;
 }
 .fix-menu{
     width: 100%;
@@ -81,7 +87,6 @@ header .container{
 #menu .container{
     width: 100%;
     height: 100%;
-    background-color: rgba(38, 190, 201, 0.9);
 }
 #menu ul{
     padding: 10px 100px;
@@ -102,9 +107,26 @@ header .container{
 .area:not(#menu){
     padding-bottom: 100px;
 }
+
+/* basic-info */
+#basic-info{
+    position: relative;
+}
+#basic-info .half-bg{
+    width: 100%;
+    height: 58vh;
+    background-color: #26bec9;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
 #basic-info .container{
     width: 100%;
-    color: white;
+    color: #565656;
+}
+#basic-info h2{
+    color: #26bec9;
 }
 .intro{
     margin-bottom: 100px;
@@ -122,15 +144,15 @@ header .container{
 .intro-text{
     float: left;
     width: 50%;
-    padding: 100px 125px;
+    padding: 60px 125px;
     letter-spacing: 3px;
 }
 .intro-text p{
     line-height: 2.5;
-    font-weight: 200;
 }
 #basic-info ul{
     padding: 0px 100px;
+    color: white;
 }
 #basic-info ul li{
     list-style: none;
@@ -148,9 +170,10 @@ header .container{
     font-weight: 200;
     letter-spacing: 3px;
 }
+
+/* top5 */
 #top5{
     position: relative;
-    height: 1000px;
 }
 #top5 .half-bg{
     width: 100%;
@@ -160,7 +183,7 @@ header .container{
     top: 0;
     left: 0;
 }
-.title-img{
+#top5 .title-img{
     width: 35%;
     position: absolute;
     top: 0;
@@ -174,13 +197,16 @@ header .container{
 .category{
     width: 7%;
     height: 500px;
-    background-position: right center;
+    background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
     float: left;
     transition: all .5s;
     position: relative;
+}
+.category.active{
+    width: 79%;
 }
 .category::before{
     content: '';
@@ -190,6 +216,9 @@ header .container{
     position: absolute;
     top: 0;
     left: 0;
+}
+.category.active::before{
+    display: none;
 }
 .category::after{
     content: '';
@@ -205,17 +234,8 @@ header .container{
     transform: rotate(225deg);
     display: none;
 }
-.category:hover{
-    width: 79%;
-}
-.category:hover:before{
-    display: none;
-}
-.category:hover:after{
+.category.active::after{
     display: block;
-}
-.layer{
-    height: 100%;
 }
 .tab-title{
     writing-mode: vertical-rl;
@@ -227,6 +247,107 @@ header .container{
     top: 50px;
     left: 22px;
 }
+.tab-title.active{
+    writing-mode: horizontal-tb;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    top: 35px;
+    left: 40px;
+}
 .tab-content{
+    margin-top: 260px;
+    padding: 0px 50px 30px 30px;
     display: none;
+}
+.tab-content.active{
+    display: block;
+}
+.tab-content::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tab-content h3, .tab-content p{
+    position: relative;
+}
+h3{
+    letter-spacing: 2px;
+}
+.cascading-tab-content{
+    margin-top: 20px;
+    color: white;
+    width: 100%;
+}
+.ctg-content-area{
+    display: none;
+}
+.ctg-content-area.active{
+    display: block;
+}
+.ctg-content{
+    width: 49.5%;
+    height: 350px;
+    float: left;
+    padding: 25.5% 20px 10px 20px;
+    margin: 5px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.ctg-content::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.ctg-content.active::before{
+    display: block;
+}
+.ctg-content h3, .ctg-content p{
+    position: relative;
+}
+
+/* transport */
+#transport{
+    position: relative;
+    color: white;
+}
+#transport .container{
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+#transport .title-img{
+    width: 90%;
+    position: absolute;
+    top: 0;
+    left: -1%;
+    z-index: -1;
+}
+.slide-up-window{
+    margin-top: 125px;
+}
+.slide-up-window .button{
+    width: 33.3%;
+    float: left;
+    padding: 10% 0px;
+    text-align: center;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide-up-window .button img{
+    width: 25%;
 }

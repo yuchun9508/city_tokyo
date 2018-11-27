@@ -17,7 +17,7 @@ header{
 }
 .absolute-header{
     position: absolute;
-    top: 372px;
+    top: 358px;
 }
 header .container{
     width: 100%;
@@ -34,7 +34,7 @@ header .container{
     height: 100vh;
     overflow: hidden;
     position: relative;
-    background: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_699/20180925083422_LvfRs/jpg);
+    background: url(banner.jpg);
     background-size: cover;
     background-position: 15% 100%;
 }
@@ -168,13 +168,11 @@ header .container{
     float: left;
     width: 15%;
     text-align: center;
-    margin: 0px 30px;
+    margin: 0px 29px;
 }
 #basic-info ul li img{
     width: 30%;
     margin-bottom: 10px;
-}
-#basic-info ul li h5{
 }
 #basic-info ul li p{
     line-height: 1.5;
@@ -586,6 +584,10 @@ h3{
 #transport .modal-header .close {
     color: white !important;
 }
+.close {
+    font-size: 36px !important;
+    opacity: .8 !important;
+}
 #transport .modal-body{
     padding: 50px 0px;
     text-align: center;
@@ -882,6 +884,7 @@ iframe.trans-vid-iframe {
     border-radius: 4px !important;
     padding: 45% 0 !important;
     color: white !important;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
     text-align: center;
     letter-spacing: 3px;
     font-size: 18px;
@@ -892,7 +895,7 @@ iframe.trans-vid-iframe {
     content: '';
     width: 100%;
     height: 100%;
-    background-color: transparent;
+    background-color: rgba(16, 26, 38, 0.3);
     border-radius: 4px;
     position: absolute;
     top: 0;
@@ -1200,7 +1203,7 @@ iframe.trans-vid-iframe {
     position: relative;
     overflow: hidden;
     margin: 15px 0px;
-    box-shadow: 3px 2px 2px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }
 #expert .slide-window .button .content{
     width: 65%;
@@ -1254,15 +1257,14 @@ iframe.trans-vid-iframe {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     transition: all .5s;
-    display: none;
 }
 #expert .slide-window .button:hover:before{
     transform: scale(1.2);
 }
 #expert .slide-window .button:hover:after{
-    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 #expert h4{
     line-height: 1.5;
@@ -1294,8 +1296,21 @@ iframe.trans-vid-iframe {
     background-repeat: no-repeat;
     position: relative;
 }
+#expert .modal-header::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
 #expert .modal-header .content{
     margin: 15% 0 20px 30px;
+    position: relative;
+    z-index: 1;
 }
 #expert .modal-header h4{
     margin:  2px 0px 0px 10px;
@@ -1394,9 +1409,19 @@ iframe.trans-vid-iframe {
     color: #e6e6e6;
     font-size: 28px;
     margin-bottom: 30px;
+    transition: all .5s;
 }
-#season .nav-tabs > li > a:hover h3, #season .nav-tabs > li.active > a > h3{
-    color: #26bec9;
+#season .nav-tabs > #tab1_btn > a:hover h3, #season .nav-tabs > #tab1_btn.active > a > h3{
+    color: #f6c8b4;
+}
+#season .nav-tabs > #tab2_btn > a:hover h3, #season .nav-tabs > #tab2_btn.active > a > h3{
+    color: #ffce33;
+}
+#season .nav-tabs > #tab3_btn > a:hover h3, #season .nav-tabs > #tab3_btn.active > a > h3{
+    color: #c25238;
+}
+#season .nav-tabs > #tab4_btn > a:hover h3, #season .nav-tabs > #tab4_btn.active > a > h3{
+    color: #b0b5c8;
 }
 #season .nav-tabs > li > a > p{
     color: #808080;
@@ -1404,6 +1429,7 @@ iframe.trans-vid-iframe {
 }
 #season .tab-content{
     margin-top: 30px;
+    background-color: #26bec9; 
 }
 #season .tab-content .event{
     float: left;
@@ -1420,7 +1446,6 @@ iframe.trans-vid-iframe {
     height: 300px;
     margin: auto;
     margin-top: 60%;
-    background-color: rgba(29,188,188,0.5);
     color: white;
     letter-spacing: 3px;
     text-align: center;
@@ -1429,13 +1454,36 @@ iframe.trans-vid-iframe {
     transition: all .5s;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
 }
+#season .tab-content #tab2-1 .event .content{
+    background-color: rgba(246,200,180,0.5);
+}
+#season .tab-content #tab2-2 .event .content{
+    background-color: rgba(255,206,51,0.5);
+}
+#season .tab-content #tab2-3 .event .content{
+    background-color: rgba(194,82,56,0.5);
+}
+#season .tab-content #tab2-4 .event .content{
+    background-color: rgba(176,181,200,0.5);
+}
 #season .tab-content .event:hover .content{
     width: 600px;
     height: 600px;
     padding: 150px 50px 0px 50px;
     transform: translate(-20%, -60%);
-    background-color: rgba(29,188,188,0.8);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+}
+#season .tab-content #tab2-1 .event:hover .content{
+    background-color: rgba(246,200,180,0.8);
+}
+#season .tab-content #tab2-2 .event:hover .content{
+    background-color: rgba(255,206,51,0.8);
+}
+#season .tab-content #tab2-3 .event:hover .content{
+    background-color: rgba(194,82,56,0.8);
+}
+#season .tab-content #tab2-4 .event:hover .content{
+    background-color: rgba(176,181,200,0.8);
 }
 #season .tab-content .event .content h4{
     line-height: 1.5 !important;

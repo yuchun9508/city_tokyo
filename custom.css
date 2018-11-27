@@ -345,7 +345,7 @@ h3{
 #transport .title-img{
     width: 100%;
     position: absolute;
-    top: 3.5%;
+    top: 5%;
     left: 0;
     z-index: -1;
 }
@@ -1257,14 +1257,11 @@ iframe.trans-vid-iframe {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(40, 96, 127, 0.3);
     transition: all .5s;
 }
 #expert .slide-window .button:hover:before{
     transform: scale(1.2);
-}
-#expert .slide-window .button:hover:after{
-    background-color: rgba(0, 0, 0, 0.7);
 }
 #expert h4{
     line-height: 1.5;

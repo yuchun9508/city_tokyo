@@ -123,28 +123,85 @@
 
     $(document).ready(function(){
 
-      // Add smooth scrolling to links
-      $('#menu a, #theme .choose-more').on('click', function(event) {
+      /* scroll-link */
+      $('.scroll').on('click',function(e) {
+        e.preventDefault();
+        var offset = 0;
+        var target = this.hash;
+        if ($(this).data('offset') != undefined) offset = $(this).data('offset');
+        $('html, body').stop().animate({
+          'scrollTop': $(target).offset().top - offset
+        }, 3000, 'swing', function() {
+          // window.location.hash = target;
+        });
+      })
 
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
+      // cache the navigation links 
+      var $navigationLinks = $('#menu > ul > li > a');
+      // cache (in reversed order) the sections
+      var $sections = $($(".area").get().reverse());
 
-          // Store hash
-          var hash = this.hash;
-
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 2000, function(){
-
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
+      // map each section id to their corresponding navigation link
+      var sectionIdTonavigationLink = {};
+      $sections.each(function() {
+          var id = $(this).attr('id');
+          sectionIdTonavigationLink[id] = $('#menu > ul > li > a[href=\\#' + id + ']');
       });
+
+      // throttle function, enforces a minimum time interval
+      function throttle(fn, interval) {
+          var lastCall, timeoutId;
+          return function () {
+              var now = new Date().getTime();
+              if (lastCall && now < (lastCall + interval) ) {
+                  // if we are inside the interval we wait
+                  clearTimeout(timeoutId);
+                  timeoutId = setTimeout(function () {
+                      lastCall = now;
+                      fn.call();
+                  }, interval - (now - lastCall) );
+              } else {
+                  // otherwise, we directly call the function 
+                  lastCall = now;
+                  fn.call();
+              }
+          };
+      }
+
+      function highlightNavigation() {
+        // get the current vertical position of the scroll bar
+        var scrollPosition = $(window).scrollTop();
+
+        // iterate the sections
+        $sections.each(function() {
+            var currentSection = $(this);
+            // get the position of the section
+            var sectionTop = currentSection.offset().top;
+
+            // if the user has scrolled over the top of the section  
+            if (scrollPosition >= sectionTop) {
+                // get the section id
+                var id = currentSection.attr('id');
+                // get the corresponding navigation link
+                var $navigationLink = sectionIdTonavigationLink[id];
+                // if the link is not active
+                if (!$navigationLink.hasClass('active')) {
+                    // remove .active class from all the links
+                    $navigationLinks.removeClass('active');
+                    // add .active class to the current link
+                    $navigationLink.addClass('active');
+                }
+                // we have found our section, so we return false to exit the each loop
+                return false;
+            }
+        });
+    }
+
+    $(window).scroll( throttle(highlightNavigation,100) );
+
+    // if you don't want to throttle the function use this instead:
+    // $(window).scroll( highlightNavigation );
+
 
       /* cascading-tab */
       $('.ctg01').addClass('active').children().addClass('active');
@@ -201,135 +258,6 @@
 
       //picture-gallery
       $("#myCarousel01-1, #myCarousel01-2, #myCarousel01-3, #myCarousel01-4").carousel({interval: false});
-
-      //custom-youtube-player
-      //直接內嵌iframe 播放器另外做 點即可控制播放的影片
-      //api設定
-      var channels_id='UC0WrywZgsEaZRZ2VOG0TpVg', //channel ID
-      apikey='AIzaSyBUXp1QIOpmQE6pJ5VBTFydLCuOz3zpQ5o'; //YOUR GOOGLE API KEY
-
-      //抓取頻道資料
-      $.ajax({
-          url: 'https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=' + channels_id + '&key=' + apikey,
-          crossDomain: true,
-          dataType: 'json'
-      }).done(function(a) {
-          var chid = a.items[0].id,
-              nekpag = '';
-          youtube_video_list(apikey, nekpag, chid, channels_id)
-      });
-
-      //抓取播放清單資料
-      function youtube_video_list(g, h, k, l) {
-          $.ajax({
-              url: 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL8w0sj9ipwEtIoEyAjr6bSG4TliLt_m8p'+ '&key=' + g + '&pageToken=' + h,
-              dataType: 'json'
-          }).done(function(c) {
-              var d = '';
-              $.each(c.items, function(i, a) {
-                  var b = c.items[i].snippet.resourceId.videoId;
-                  getwaktu(b, i, g);
-                  d += '<div class="trans-play" data-vvv="' + b + '"><div class="youtube-thumb">' + c.items[i].snippet.title + '</div>';
-                  d += '<div class="play-btn"><i class="far fa-play-circle fa-2x"></i></div><div class="clearfix"></div></div>'
-              });
-              d += '</div>';
-              $('.yt-channels').html(d);
-              if (c.prevPageToken == null) {
-                  var e = $(".trans-play").attr("data-vvv");
-                  youtube_det(e, k, l, g)
-              }
-              $(".trans-play").each(function() {
-                  $(this).click(function() {
-                      var a = $(this).attr("data-vvv");
-                      $('div').removeClass('trans-vid-active');
-                      $(this).addClass('trans-vid-active');
-                      youtube_det(a, k, l, g);
-                      return false
-                  })
-              })
-          })
-      }
-
-      //將播放清單影片嵌入至iframe
-      function youtube_det(c, d, e, g) {
-          $.ajax({
-              url: 'https://www.googleapis.com/youtube/v3/videos?id=' + c + '&key=' + g + '&part=snippet,statistics',
-              dataType: 'json'
-          }).done(function(a) {
-              var b = '',
-                  category = '',
-                  judul = a.items[0].snippet.localized.title,
-                  desc = a.items[0].snippet.localized.description;
-              b += '<iframe src="https://www.youtube.com/embed/' + c + '?autoplay=1&loop=1" allowfullscreen="" frameborder="0" class="trans-vid-iframe"></iframe>';
-              gplus(e, g);
-              $('.vid-play').html(b)
-          })
-      }
-
-      function getwaktu(c, i, g) {
-          $.ajax({
-              url: 'https://www.googleapis.com/youtube/v3/videos?id=' + c + '&key=' + g + '&part=contentDetails',
-              dataType: 'json'
-          }).done(function(a) {
-              var b = a.items[0].contentDetails.duration,
-                  dataw = '',
-                  menit = '',
-                  detik = '';
-          if(b.match(/M/g)){
-                  dataw = b.split('M');
-                  menit = dataw[0].replace('PT','');
-            if(dataw[1] != ''){
-              detik = dataw[1].replace('S','');
-            }else{
-              detik = '00';
-            }
-          }else{
-                  dataw = b.split('PT');
-            menit = '00';
-            detik = dataw[1].replace('S','');
-          }
-              $('.trans-vid-tm' + i).html(menit + ':' + detik)
-          })
-      }
-      
-      //訂閱資訊
-      function urlify(b) {
-          var c = /(https?:\/\/[^\s]+)/g;
-          return b.replace(c, function(a) {
-              return '<a href="' + a + '" rel="nofollow" target="_BLANK">' + a + '</a>'
-          })
-      }
-
-      function gplus(c, g) {
-          var d = 'https://www.googleapis.com/plus/v1/people/',
-              apiend = '/activities/public',
-              fields = 'items(actor(image(url)))';
-          $.ajax({
-              url: d + '+' + c + apiend + '?key=' + g + '&fields=' + fields + '&maxResults=1',
-              crossDomain: true,
-              dataType: 'jsonp'
-          }).done(function(a) {
-              var b = a.items,
-                  i = 0,
-                  html = '';
-              for (i = 0; i < b.length; i += 1) {
-                  html += '<img src="' + b[i].actor.image.url + '" alt="" />'
-              }
-              $('#trans-user-img').html(html)
-          })
-      }
-
-      function addCommas(nStr){
-        nStr += '';
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-          x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
-      }
 
       /* collapse article */
       $('.panel-heading .content').on('mouseenter',function(){
@@ -404,13 +332,13 @@
     <section class="area" id="menu">
       <div class="container">
         <ul>
-          <li><a href="#basic-info">基本資訊</a></li>
-          <li><a href="#top5">精選推薦</a></li>
-          <li><a href="#transport">交通攻略</a></li>
+          <li><a href="#basic-info" class="scroll" data-offset="50">基本資訊</a></li>
+          <li><a href="#top5" class="scroll" data-offset="50">精選推薦</a></li>
+          <li><a href="#transport" class="scroll" data-offset="50">交通攻略</a></li>
           <li><a href="https://www.kkday.com/zh-tw" data-check-cid="1"><img src="logo_blue.png" class="logo"></a></li>
-          <li><a href="#theme">主題玩法</a></li>
-          <li><a href="#expert">達人帶路</a></li>
-          <li><a href="#season">四季玩法</a></li>
+          <li><a href="#theme" class="scroll" data-offset="178">主題玩法</a></li>
+          <li><a href="#expert" class="scroll" data-offset="100">達人帶路</a></li>
+          <li><a href="#season" class="scroll" data-offset="178">四季玩法</a></li>
           <div class="clearfix"></div>
         </ul>
       </div>
@@ -2516,7 +2444,7 @@
             </div>
           </div>
         </div>
-        <a href="#theme" class="choose-more">更多主題</a>
+        <a href="#theme" class="choose-more scroll">更多主題</a>
       </div>
     </section>
 

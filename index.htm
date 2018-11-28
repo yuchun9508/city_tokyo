@@ -192,6 +192,39 @@
       //picture-gallery
       $("#myCarousel01-1, #myCarousel01-2, #myCarousel01-3, #myCarousel01-4").carousel({interval: false});
 
+      //video-playlist
+      $("#video01").show();
+      $("#video01").siblings().hide();
+      $('#playlist01').css('opacity','1');
+      $('#playlist01').on('click',function(){
+        var vi = $("#video01");
+        vi.attr("src", vi.data("autoplay-src") );
+        $("#video01").show();
+        $("#video01").siblings().hide();
+      })
+      $('#playlist02').on('click',function(){
+        var vi = $("#video02");
+        vi.attr("src", vi.data("autoplay-src") );
+        $("#video02").show();
+        $("#video02").siblings().hide();
+      })
+      $('#playlist03').on('click',function(){
+        var vi = $("#video03");
+        vi.attr("src", vi.data("autoplay-src") );
+        $("#video03").show();
+        $("#video03").siblings().hide();
+      })
+      $('#playlist04').on('click',function(){
+        var vi = $("#video04");
+        vi.attr("src", vi.data("autoplay-src") );
+        $("#video04").show();
+        $("#video04").siblings().hide();
+      })
+      $('.video-content .playlist ul li').on('click',function(){
+        $(this).css('opacity','1');
+        $(this).siblings().css('opacity','0.6');
+      })
+
       /* collapse article */
       $('.panel-heading .content').on('mouseenter',function(){
         $(this).animate({paddingTop:"10%"});
@@ -905,12 +938,36 @@
           </div>
         </div>
         <div class="video">
-          <div id="video-content">
-            <div class="video-unit video-player">
-              <div class="vid-play"></div>
+          <div class="video-content">
+            <div class="player">
+              <iframe id="video01" width="560" height="315" src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&mute=1&loop=1&playlist=HHTSsHMePhM" data-autoplay-src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe id="video02" width="560" height="315" src="https://www.youtube.com/embed/mHXAIicBGc8" data-autoplay-src="https://www.youtube.com/embed/mHXAIicBGc8?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe id="video03" width="560" height="315" src="https://www.youtube.com/embed/tte3FUxLFqM" data-autoplay-src="https://www.youtube.com/embed/tte3FUxLFqM?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe id="video04" width="560" height="315" src="https://www.youtube.com/embed/VfmYyEj62wY" data-autoplay-src="https://www.youtube.com/embed/VfmYyEj62wY?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class = "video-unit video-playlist">
-              <div class="yt-channels"></div>
+            <div class="playlist">
+              <ul>
+                <li id="playlist01">
+                  <p>KKday【帶你去旅行】<br>日本東京城市映像：交通</p>
+                  <i class="fa fa-play-circle fa-2x" aria-hidden="true"></i>
+                  <div class="clearfix"></div>
+                </li>
+                <li id="playlist02">
+                  <p>KKday【日本超級攻略】<br>日本東京車站置物櫃寄物教學、行李寄放處介紹</p>
+                  <i class="fa fa-play-circle fa-2x" aria-hidden="true"></i>
+                  <div class="clearfix"></div>
+                </li>
+                <li id="playlist03">
+                  <p>KKday【日本超級攻略】<br>日本東京公車搭乘全攻略</p>
+                  <i class="fa fa-play-circle fa-2x" aria-hidden="true"></i>
+                  <div class="clearfix"></div>
+                </li>
+                <li id="playlist04">
+                  <p>KKday【日本超級攻略】<br>日本SUICA西瓜卡購買與使用教學，日本旅遊必買交通卡</p>
+                  <i class="fa fa-play-circle fa-2x" aria-hidden="true"></i>
+                  <div class="clearfix"></div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

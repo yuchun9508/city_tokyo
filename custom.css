@@ -792,59 +792,47 @@ h3{
 /* video playlist */
 #transport .video{
     background-color: #26bec9;
-    padding: 10% 0;
+    height: 550px;
 }
-#video-content {
-	padding: 0 100px;
+.video-content{
+    padding: 100px 100px;
 }
-.video-unit {
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-	vertical-align: top;
-	overflow: hidden;
-	*overflow: visible;
+.video-content .player{
+    float: left;
+    width: 55%;
 }
-.video-player {
-    width: 60%;
-    background-color: black; 
+.video-content .player iframe{
+    width: 616px;
+    height: 346.5px;
 }
-.video-playlist {
-	width: 37%;
-	float:right
+.video-content .playlist{
+    float: left;
+    width: 45%;
 }
-.trans-play {
-	margin: 0px 0px 30px 0px;
-	padding: 0px 10px;
-	display:block;
-	overflow:hidden;
-    *overflow:visible;
-    cursor:pointer;
-    border-left: 3px solid white;
-    line-height: 1.8;
+.video-content .playlist ul{
+    list-style: none;
+    padding-inline-start: 0px;
+}
+.video-content .playlist ul li{
     font-size: 18px;
+    line-height: 1.5;
+    margin: 20px 0px;
+    padding-left: 10px;
+    border-left: 3px solid white;
     opacity: 0.6;
 }
-div.trans-play:hover, .trans-vid-active{
-	opacity: 1;
+.video-content .playlist ul li:hover{
+    opacity: 1;
 }
-.youtube-thumb{
+.video-content .playlist ul li p{
     float: left;
-    width: 80%;
+    margin: 0;
 }
-.play-btn{
-    float: left;
-    width: 10%;
-    margin-left: 10px;
+.video-content .playlist ul li i{
+    float: right;
+    margin-top: 10px;
 }
-iframe.trans-vid-iframe {
-	width: 100%;
-	height: 400px
-}
-#trans-user-img {
-	float:left;
-	margin-right:10px
-}
+
 
 /* theme */
 #theme{

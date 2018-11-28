@@ -136,73 +136,6 @@
         });
       })
 
-      // cache the navigation links 
-      var $navigationLinks = $('#menu > ul > li > a');
-      // cache (in reversed order) the sections
-      var $sections = $($(".area").get().reverse());
-
-      // map each section id to their corresponding navigation link
-      var sectionIdTonavigationLink = {};
-      $sections.each(function() {
-          var id = $(this).attr('id');
-          sectionIdTonavigationLink[id] = $('#menu > ul > li > a[href=\\#' + id + ']');
-      });
-
-      // throttle function, enforces a minimum time interval
-      function throttle(fn, interval) {
-          var lastCall, timeoutId;
-          return function () {
-              var now = new Date().getTime();
-              if (lastCall && now < (lastCall + interval) ) {
-                  // if we are inside the interval we wait
-                  clearTimeout(timeoutId);
-                  timeoutId = setTimeout(function () {
-                      lastCall = now;
-                      fn.call();
-                  }, interval - (now - lastCall) );
-              } else {
-                  // otherwise, we directly call the function 
-                  lastCall = now;
-                  fn.call();
-              }
-          };
-      }
-
-      function highlightNavigation() {
-        // get the current vertical position of the scroll bar
-        var scrollPosition = $(window).scrollTop();
-
-        // iterate the sections
-        $sections.each(function() {
-            var currentSection = $(this);
-            // get the position of the section
-            var sectionTop = currentSection.offset().top;
-
-            // if the user has scrolled over the top of the section  
-            if (scrollPosition >= sectionTop) {
-                // get the section id
-                var id = currentSection.attr('id');
-                // get the corresponding navigation link
-                var $navigationLink = sectionIdTonavigationLink[id];
-                // if the link is not active
-                if (!$navigationLink.hasClass('active')) {
-                    // remove .active class from all the links
-                    $navigationLinks.removeClass('active');
-                    // add .active class to the current link
-                    $navigationLink.addClass('active');
-                }
-                // we have found our section, so we return false to exit the each loop
-                return false;
-            }
-        });
-    }
-
-    $(window).scroll( throttle(highlightNavigation,100) );
-
-    // if you don't want to throttle the function use this instead:
-    // $(window).scroll( highlightNavigation );
-
-
       /* cascading-tab */
       $('.ctg01').addClass('active').children().addClass('active');
       $('.category').on('mouseenter',function(){
@@ -266,9 +199,9 @@
       $('.panel-heading .content').on('mouseleave',function(){
         $(this).animate({paddingTop:"15%"});
       })
-      $('.arrow-up').on('click',function(){
+      /*$('.arrow-up').on('click',function(){
         $(this).parents('.panel-collapse').collapse("hide");
-      })
+      })*/
 
       /* video-carousel */
       $('.video-carousel .owl-carousel').owlCarousel({
@@ -1062,7 +995,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7052/asia-japan-shibuya" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1274,7 +1207,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7236/asia-japan-asakusa-ueno" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1522,7 +1455,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7646/asia-japan-ginza" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1591,7 +1524,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1671,7 +1604,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/11689/asia-japan-tokyo-disneyland" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1717,7 +1650,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7775/asia-japan-tokyo-disneysea" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1757,7 +1690,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/21864/asia-japan-tokyo-one-piece-tower" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1799,7 +1732,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/23936/asia-japan-tokyo-sanrio-puroland" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -1919,7 +1852,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/18254/asia-japan-tokyo-shimachi" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2009,7 +1942,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7570/asia-japan-tokyo-kichijoji" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2044,7 +1977,7 @@
                       <img src="A3-3-05.jpg">
                       <ul></ul>
                       <a href="https://blog.kkday.com/7113/asia-japan-tokyo-station" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2124,7 +2057,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2191,7 +2124,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/18820/asia-japan-tokyo-anime-bus" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2230,7 +2163,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7701/asia-japan-tokyo-ghibli-museum-guide" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2325,7 +2258,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7571/asia-japan-animate-fans-must-go" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>
@@ -2420,7 +2353,7 @@
                         </ul>
                       </ul>
                       <a href="https://blog.kkday.com/7448/asia-japan-tokyo-akihabara" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
-                      <div class="arrow-up"></div>
+                      <!--<div class="arrow-up"></div>-->
                     </div>
                   </div>
                 </div>

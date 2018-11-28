@@ -169,7 +169,7 @@
         $(this).removeClass('active');
       })
       
-      //slide-window
+      /* slide-window */
       $('#transport .modal').on('show.bs.modal', function (e) {
         $('#transport .modal .modal-dialog').attr('class', 'modal-dialog  slideInUp  animated');
       })
@@ -192,7 +192,7 @@
       //picture-gallery
       $("#myCarousel01-1, #myCarousel01-2, #myCarousel01-3, #myCarousel01-4").carousel({interval: false});
 
-      //video-playlist
+      /* video-playlist */
       $("#video01").show();
       $("#video01").siblings().hide();
       $('#playlist01').css('opacity','1');
@@ -220,6 +220,7 @@
         $("#video04").show();
         $("#video04").siblings().hide();
       })
+
       $('.video-content .playlist ul li').on('click',function(){
         $(this).css('opacity','1');
         $(this).siblings().css('opacity','0.6');
@@ -254,7 +255,7 @@
             }
         }
       })
-
+      //stop prev video
       var video = $(".owl-video-wrapper iframe").attr("src");
       $('.video-carousel .owl-carousel .owl-nav button.owl-prev, .video-carousel .owl-carousel .owl-nav button.owl-next').on('click',function(){
         $(".owl-video-wrapper iframe").attr("src","");
@@ -940,7 +941,7 @@
         <div class="video">
           <div class="video-content">
             <div class="player">
-              <iframe id="video01" width="560" height="315" src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&mute=1&loop=1&playlist=HHTSsHMePhM" data-autoplay-src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe id="video01" width="560" height="315" src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&loop=1&playlist=HHTSsHMePhM&mute=1" data-autoplay-src="https://www.youtube.com/embed/HHTSsHMePhM?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <iframe id="video02" width="560" height="315" src="https://www.youtube.com/embed/mHXAIicBGc8" data-autoplay-src="https://www.youtube.com/embed/mHXAIicBGc8?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <iframe id="video03" width="560" height="315" src="https://www.youtube.com/embed/tte3FUxLFqM" data-autoplay-src="https://www.youtube.com/embed/tte3FUxLFqM?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <iframe id="video04" width="560" height="315" src="https://www.youtube.com/embed/VfmYyEj62wY" data-autoplay-src="https://www.youtube.com/embed/VfmYyEj62wY?rel=0&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

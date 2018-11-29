@@ -121,7 +121,18 @@
         } else {
           $('#menu').removeClass("fix-menu");
         }
-      }else if($(window).width() < 1025){
+      } else if($(window).width() < 769){
+        if($(this).scrollTop() > 810){
+          $('header').addClass("absolute-header");
+        } else {
+          $('header').removeClass("absolute-header");
+        }
+        if($(this).scrollTop() > 1020){   
+          $('#menu').addClass("fix-menu");
+        } else {
+          $('#menu').removeClass("fix-menu");
+        }
+      } else if($(window).width() < 1025){
         if($(this).scrollTop() > 1078){
           $('header').addClass("absolute-header");
         } else {
@@ -132,7 +143,7 @@
         } else {
           $('#menu').removeClass("fix-menu");
         }
-      }else{
+      } else{
         if($(this).scrollTop() > 358){   
           $('header').addClass("absolute-header");
         } else {
@@ -159,6 +170,12 @@
         }, 3000, 'swing', function() {
           // window.location.hash = target;
         });
+      })
+
+      //toggle menu
+      $('.toggle-menu .content').hide();
+      $('.toggle-menu .btn').on('click',function(){
+        $('.toggle-menu .content').toggle();
       })
 
       //cascading-tab
@@ -371,6 +388,21 @@
           <li><a href="#season" class="scroll" data-offset="178">四季玩法</a></li>
           <div class="clearfix"></div>
         </ul>
+        <div class="toggle-menu">
+          <a href="https://www.kkday.com/zh-tw" data-check-cid="1"><img src="logo_blue.png" class="logo"></a></li>
+          <div class="btn"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+          <div class="content">
+            <ul>
+              <li><a href="#basic-info" class="scroll" data-offset="50">基本資訊</a></li>
+              <li><a href="#top5" class="scroll" data-offset="50">精選推薦</a></li>
+              <li><a href="#transport" class="scroll" data-offset="50">交通攻略</a></li>
+              <li><a href="#theme" class="scroll" data-offset="178">主題玩法</a></li>
+              <li><a href="#expert" class="scroll" data-offset="100">達人帶路</a></li>
+              <li><a href="#season" class="scroll" data-offset="178">四季玩法</a></li>
+              <div class="clearfix"></div>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -3524,9 +3556,6 @@
     </footer>
 
   </div>
-
-  <!-- Google api -->
-  <script src="https://apis.google.com/js/client.js?onload=function"></script>
   
 </body>
 </html>

@@ -345,7 +345,7 @@ h3{
 #transport .title-img{
     width: 100%;
     position: absolute;
-    top: 5%;
+    top: 4%;
     left: 0;
     z-index: -1;
 }
@@ -816,7 +816,7 @@ h3{
 .video-content .playlist ul li{
     font-size: 18px;
     line-height: 1.5;
-    margin: 20px 0px;
+    margin: 25px 0px;
     padding-left: 10px;
     border-left: 3px solid white;
     opacity: 0.6;

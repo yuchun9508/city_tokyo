@@ -67,7 +67,7 @@
 
   <script>
 
-    /* banner video */
+    //banner video
     var tag = document.createElement('script');
 
     tag.src = "https://www.youtube.com/iframe_api";
@@ -107,8 +107,9 @@
       }
     }
 
-    /* scroll layer */
     $(document).scroll(function(){  
+
+      //scroll layer
       if($(this).scrollTop() > 358){   
         $('header').addClass("absolute-header");
       } else {
@@ -119,11 +120,12 @@
       } else {
         $('#menu').removeClass("fix-menu");
       }
+      
     })
 
     $(document).ready(function(){
 
-      /* scroll-link */
+      //scroll-link
       $('.scroll').on('click',function(e) {
         e.preventDefault();
         var offset = 0;
@@ -136,7 +138,7 @@
         });
       })
 
-      /* cascading-tab */
+      //cascading-tab
       $('.ctg01').addClass('active').children().addClass('active');
       $('.category').on('mouseenter',function(){
         $(this).addClass('active').siblings().removeClass('active');
@@ -169,7 +171,7 @@
         $(this).removeClass('active');
       })
       
-      /* slide-window */
+      //slide-window
       $('#transport .modal').on('show.bs.modal', function (e) {
         $('#transport .modal .modal-dialog').attr('class', 'modal-dialog  slideInUp  animated');
       })
@@ -192,7 +194,7 @@
       //picture-gallery
       $("#myCarousel01-1, #myCarousel01-2, #myCarousel01-3, #myCarousel01-4").carousel({interval: false});
 
-      /* video-playlist */
+      //video-playlist
       $("#video01").show();
       $("#video01").siblings().hide();
       $('#playlist01').css('opacity','1');
@@ -226,7 +228,7 @@
         $(this).siblings().css('opacity','0.6');
       })
 
-      /* collapse article */
+      //collapse article
       $('.panel-heading .content').on('mouseenter',function(){
         $(this).animate({paddingTop:"10%"});
       })
@@ -237,7 +239,7 @@
         $(this).parents('.panel-collapse').collapse("hide");
       })*/
 
-      /* video-carousel */
+      //video-carousel
       $('.video-carousel .owl-carousel').owlCarousel({
         items:1,
         merge:true,
@@ -255,14 +257,6 @@
             }
         }
       })
-      //stop prev video
-      var video = $(".owl-video-wrapper iframe").attr("src");
-      $('.video-carousel .owl-carousel .owl-nav button.owl-prev, .video-carousel .owl-carousel .owl-nav button.owl-next').on('click',function(){
-        $(".owl-video-wrapper iframe").attr("src","");
-        $('.owl-video-play-icon').show();
-        $('.owl-video-play-icon').parent().siblings('h3').show();
-      })
-      $(".owl-video-wrapper iframe").attr("src",video);
 
       $('.v01-1 .owl-video-wrapper').css('background-image', 'url(v01-1.jpg)');
       $('.v01-2 .owl-video-wrapper').css('background-image', 'url(v01-2.jpg)');
@@ -285,6 +279,15 @@
         $(this).parent().siblings('h3').hide();
         $(this).parent('.owl-video-wrapper').addClass('active');
       })
+
+      //stop video
+      var video = $(".owl-video-wrapper iframe").attr("src");
+      $('.video-carousel .owl-carousel .owl-nav button.owl-prev, .video-carousel .owl-carousel .owl-nav button.owl-next').on('click',function(){
+        $(".owl-video-wrapper iframe").attr("src","");
+        $('.owl-video-play-icon').show();
+        $('.owl-video-play-icon').parent().siblings('h3').show();
+      })
+      $(".owl-video-wrapper iframe").attr("src",video);
       
     });
 
@@ -2580,7 +2583,7 @@
                           <li>小江戶名勝巡迴巴士一日券：從川越站刷票出站後直走到底就會看到東武定期券的店面，裡頭有販賣巡迴巴士一日券。</li>
                         </ul>
                       </ul>
-                      <iframe width="560" height="315" src="https://www.youtube.com/embed/U_m--UK7EyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/U_m--UK7EyM?rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                       <a href="https://blog.kkday.com/16876/asia-japan-tokyo-kawagoe-guide" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
                     </div>
                     <div class="modal-footer">
@@ -2729,7 +2732,7 @@
                           <li>JR：從「東京」、「新宿」搭乘中央線（快速）到「吉祥寺」，或是從「秋葉原」搭乘中央・總武線至「吉祥寺」<a href="" target="_blank" class="info">（JR東日本詳細路線圖）</a></li>
                         </ul>
                       </ul>
-                      <iframe width="560" height="315" src="https://www.youtube.com/embed/QgFSPlE8Mac" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/QgFSPlE8Mac?rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                       <a href="https://blog.kkday.com/7570/asia-japan-tokyo-kichijoji" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
                     </div>
                     <div class="modal-footer">
@@ -2925,7 +2928,7 @@
                         <li>富士山・富士五湖パスポート：可以搭乘富士急行線 全線（大月～河口湖）、懷舊巴士路線（綠＋紅＋藍）、富士吉田・忍野八海・山中湖周遊巴士 （ふじっ湖号）、富士山世界遺産ループバス （富士山世界遺產巴士）、一般路線バス（五湖エリア），詳細使用方式可以參考<a href="http://bus.fujikyu.co.jp/otoku/fuji-passport" target="_blank" class="info">官網</a></li>
                       </ul>
                     </ul>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/d1nbwijg8PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/d1nbwijg8PE?rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                     <a href="https://blog.kkday.com/3438/asia-japan-tokyo-mtfuji-attraction" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
                   </div>
                   <div class="modal-footer">
@@ -2986,7 +2989,7 @@
                         </ol>
                       </ul>
                     </ul>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZiJeESQYVdA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZiJeESQYVdA?rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                     <a href="https://blog.kkday.com/16008/asia-japan-tokyo-nikko-guide" target="_blank" data-check-cid="1" class="more">閱讀更多 > </a>
                   </div>
                   <div class="modal-footer">

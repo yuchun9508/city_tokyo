@@ -1512,3 +1512,262 @@ footer .logo{
     background-color: white;
     color: #26bec9;
 }
+
+/* RWD */
+@media (min-width: 1920px){
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 430px;
+    }
+    /* menu */
+    #menu ul {
+        padding: 10px 330px;
+    }
+    /* basic-info */
+    #basic-info .half-bg{
+        height: 45vh;
+    }
+    #basic-info ul{
+        padding: 0px 300px;
+    }
+    /* top5 */
+    #top5 .title-img{
+        position: absolute;
+        top: -2%;
+    }
+    /* transport */
+    #transport .title-img{
+        position: absolute;
+        top: 2%;
+    }
+    #transport .slide-window .button .content{
+        position: absolute;
+        top: 35%;
+        left: 25%;
+    }
+    .video-content{
+        padding: 100px 350px;
+    }
+    /* theme */
+    #theme .tab-area{
+        margin-top: 200px;
+    }
+    #theme .title-img{
+        position: absolute;
+        top: -3.8%;
+    }
+    #theme .tab-content{
+        margin-top: 80px;
+    }
+    #theme .panel-heading .content{
+        padding: 11% 15px 10px 15px;
+    }
+    .arrow-down{
+        position: absolute;
+        bottom: 25px;
+        left: 1480px;
+    }
+    /* expert */
+    #expert .daytour .description{
+        padding-bottom: 21px;
+    }
+    #expert .slide-window .button .content{
+        width: 60%;
+        position: absolute;
+        top: 30%;
+        left: 20%;
+    }
+    /* season */
+    #season .container{
+        padding-top: 150px;
+    }
+    #season .title-img{
+        position: absolute;
+        top: -9.9%;
+        left: 0;
+    }
+    #season .tab-content .event .content{
+        width: 450px;
+        height: 450px;
+        margin-top: 45%;
+    }
+    #season .tab-content .event:hover .content{
+        width: 650px;
+        height: 650px;
+        padding: 150px 50px 0px 50px;
+        transform: translate(-12%, -55%);
+    }
+}
+@media (max-width: 1024px){
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 1078px;
+    }
+    /* menu */
+    #menu ul {
+        padding: 10px 20px;
+    }
+    #menu ul li {
+        margin: 10px 15px;
+    }
+    /* basic-info */
+    .intro-text {
+        padding: 60px 0px 60px 60px;
+    }
+    #basic-info .half-bg {
+        height: 32vh;
+    }
+    #basic-info ul {
+        padding: 0px 0px 0px 30px;
+    }
+    #basic-info ul li {
+        width: 13%;
+    }
+    /* top5 */
+    .cascading-tab {
+        margin-top: 110px;
+    }
+    #top5 .half-bg {
+        height: 30vh;
+    }
+    .ctg-content {
+        width: 49.4%;
+        padding: 31% 20px 10px 20px;
+    }
+    /* transport */
+    #transport .title-img {
+        position: absolute;
+        top: 6%;
+    }
+    #transport .slide-window .button .content {
+        position: absolute;
+        top: 21%;
+        left: 6%;
+    }
+    .picture-gallery {
+        padding-bottom: 200px;
+    }
+    .picture-gallery .carousel-indicators {
+        bottom: -200px !important;
+    }
+    #transport .modal-body ul {
+        width: 55%;
+    }
+    #transport .modal-body .row {
+        width: 70%;
+    }
+    #trans03 .modal-body .row {
+        width: 95%;
+    }
+    #transport .video {
+        height: 750px;
+    }
+    .video-content {
+        padding: 100px 95px;
+    }
+    .video-content .player {
+        float: none;
+        width: 100%;
+    }
+    .video-content .player iframe {
+        width: 840px;
+        height: 472.5px;
+    }
+    .video-content .playlist {
+        float: none;
+        width: 100%;
+    }
+    .video-content .playlist ul{
+        display: block;
+        overflow: auto;
+        white-space: nowrap;
+    }
+    .video-content .playlist ul li {
+        display: inline-block;
+        margin: 25px 10px;
+    }
+    .video-content .playlist ul li i {
+        margin-left: 25px;
+    }
+    /* theme */
+    #theme .title-img {
+        position: absolute;
+        top: -4%;
+        left: -1%;
+    }
+    #theme .nav-tabs {
+        width: 90%;
+    }
+    #theme .nav-tabs > li {
+        height: 220px;
+    }
+    #theme .panel-group {
+        width: 90%;
+    }
+    #theme .panel-heading .content {
+        padding: 10% 15px 10px 15px;
+    }
+    #theme .panel-heading .content p {
+        width: 90%;
+    }
+    .arrow-down{
+        position: absolute;
+        bottom: 25px;
+        left: 860px;
+    }
+    /* expert */
+    .half {
+        width: 100%;
+        text-align: center;
+    }
+    #expert .button h4 {
+        font-size: 24px;
+    }
+    #expert .slide-window .button .content {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+    }
+    #expert .modal{
+        text-align: left;
+    }
+    /* season */
+    #season .title-img {
+        position: absolute;
+        top: -4.85%;
+        left: 0;
+    }
+    #season .tab-content .event {
+        width: 50%;
+        height: 450px;
+    }
+    #season .tab-content .event .content {
+        width: 400px;
+        height: 400px;
+    }
+    #season .tab-content .event:hover .content {
+        width: 700px;
+        height: 700px;
+        transform: translate(-13%, -60%);
+    }
+}
+@media (max-width: 768px){
+
+}
+@media (max-width: 480px){
+
+}
+@media (max-width: 384px){
+
+}
+@media (max-width: 375px){
+
+}
+@media (max-width: 360px){
+
+}
+@media (max-width: 320px){
+
+}

@@ -121,6 +121,17 @@
         } else {
           $('#menu').removeClass("fix-menu");
         }
+      } else if($(window).width() < 481){
+        if($(this).scrollTop() > 620){
+          $('header').addClass("absolute-header");
+        } else {
+          $('header').removeClass("absolute-header");
+        }
+        if($(this).scrollTop() > 740){   
+          $('#menu').addClass("fix-menu");
+        } else {
+          $('#menu').removeClass("fix-menu");
+        }
       } else if($(window).width() < 769){
         if($(this).scrollTop() > 810){
           $('header').addClass("absolute-header");
@@ -174,7 +185,7 @@
 
       //toggle menu
       $('.toggle-menu .content').hide();
-      $('.toggle-menu .btn').on('click',function(){
+      $('.toggle-menu .button').on('click',function(){
         $('.toggle-menu .content').toggle();
       })
 
@@ -203,7 +214,19 @@
         $(this).parent().siblings('.cascading-tab-content').children('.ctg04-content-area').siblings().removeClass('active');
       })
 
-      if($(window).width() < 1025){
+      if($(window).width() < 481){
+        $('.ctg-content').animate({paddingTop:"10%"});
+        $('.ctg-content').addClass('active');
+      } else if($(window).width() < 769){
+        $('.ctg-content').on('mouseenter',function(){
+        $(this).animate({paddingTop:"12%"});
+        $(this).addClass('active');
+      })
+      $('.ctg-content').on('mouseleave',function(){
+        $(this).animate({paddingTop:"38%"});
+        $(this).removeClass('active');
+      })
+      } else if($(window).width() < 1025){
         $('.ctg-content').on('mouseenter',function(){
         $(this).animate({paddingTop:"12%"});
         $(this).addClass('active');
@@ -287,6 +310,13 @@
         })
         $('.panel-heading .content').on('mouseleave',function(){
           $(this).animate({paddingTop:"11%"});
+        })
+      } else if($(window).width() < 481){
+        $('.panel-heading .content').on('mouseenter',function(){
+          $(this).animate({paddingTop:"5%"});
+        })
+        $('.panel-heading .content').on('mouseleave',function(){
+          $(this).animate({paddingTop:"5%"});
         })
       } else if($(window).width() < 1025){
         $('.panel-heading .content').on('mouseenter',function(){
@@ -390,7 +420,7 @@
         </ul>
         <div class="toggle-menu">
           <a href="https://www.kkday.com/zh-tw" data-check-cid="1"><img src="logo_blue.png" class="logo"></a></li>
-          <div class="btn"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+          <div class="button"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
           <div class="content">
             <ul>
               <li><a href="#basic-info" class="scroll" data-offset="50">基本資訊</a></li>
@@ -420,29 +450,39 @@
         </div>
         <ul>
           <li>
-            <img src="icon01.png">
-            <h5>簽證</h5>
-            <p>觀光、商務、探親的目的赴日，停留期間不超過90日即可免簽證</p>
+            <div class="image"><img src="icon01.png"></div>
+            <div class="text">
+              <h5>簽證</h5>
+              <p>觀光、商務、探親的目的赴日，停留期間不超過90日即可免簽證</p>
+            </div>
           </li>
           <li>
-            <img src="icon02.png">
-            <h5>電壓</h5>
-            <p>100V，雙平腳插頭，和台灣長相相同不需轉接</p>
+            <div class="image"><img src="icon02.png"></div>
+            <div class="text">
+              <h5>電壓</h5>
+              <p>100V，雙平腳插頭，和台灣長相相同不需轉接</p>
+            </div>
           </li>
           <li>
-            <img src="icon03.png">
-            <h5>貨幣</h5>
-            <p>使用日圓，對台幣約0.27至0.3</p>
+            <div class="image"><img src="icon03.png"></div>
+            <div class="text">
+              <h5>貨幣</h5>
+              <p>使用日圓，對台幣約0.27至0.3</p>
+            </div>
           </li>
           <li>
-            <img src="icon04.png">
-            <h5>時差</h5>
-            <p>時區GMT+9，時間快台灣1小時</p>
+            <div class="image"><img src="icon04.png"></div>
+            <div class="text">
+              <h5>時差</h5>
+              <p>時區GMT+9，時間快台灣1小時</p>
+            </div>
           </li>
           <li>
-            <img src="icon05.png">
-            <h5>消費稅</h5>
-            <p>稅金0.8%，免稅店家單筆消費含稅超過5,400日圓即可退稅</p>
+            <div class="image"><img src="icon05.png"></div>
+            <div class="text">
+              <h5>消費稅</h5>
+              <p>稅金0.8%，免稅店家單筆消費含稅超過5,400日圓即可退稅</p>
+            </div>
           </li>
         </ul>
       </div>
@@ -459,7 +499,7 @@
               <h3>① 東京晴空塔</h3>
               <p>東京晴空塔總高度達634公尺，是金氏世界紀錄認證的「世界第一高塔」，同時也是東京的新地標。<br>
                 此塔與押上站連結並有Solamachi購物中心，購物中心集結了時尚品牌、特色餐廳與小吃。</p>
-              <p style="font-weight: 200;">開放時間：08：00～22：00（入場時間至21：00）<br>
+              <p class="hide-content" style="font-weight: 200;">開放時間：08：00～22：00（入場時間至21：00）<br>
                 休館日：全年無休<br>
                 購票網址：<a href="https://bit.ly/2TVpYpJ" target="_blank">https://bit.ly/2TVpYpJ</a></p>
             </div>
@@ -471,7 +511,7 @@
               <p>到了東京一定要來上一碗道地的拉麵呀！除了知名的連鎖拉麵店深受旅客喜愛，
                 全日本僅此一家的無敵家更是來到東京不可以錯過的拉麵名店！<br>
                 店裡的招牌「無敵家拉麵」是初訪必吃！喜歡濃厚系豚骨拉麵的一定要來上一碗呀！</p>
-              <p style="font-weight: 200;">地址：東京都豊島区南池袋1-17-1<br>
+              <p class="hide-content" style="font-weight: 200;">地址：東京都豊島区南池袋1-17-1<br>
                 交通： JR池袋駅東口出站，步行約3分鐘<br>
                 營業時間：10:30AM～4:00AM</p>
             </div>
@@ -504,7 +544,7 @@
                 <h3>② 淺草寺</h3>
                 <p>淺草寺又名金龍山淺草寺，觀光人數及參拜人數都是日本所有神社寺廟的第一名，也是東京都內歴史最悠久的寺院。
                   而「雷門」是淺草寺的正門，全名為風神雷神門，中間的大燈籠是淺草的象徵。</p>
-                <p style="font-weight: 200;">開放時間：06：30～17：00（4月份～9月份 6:00～17:00）<br>
+                <p class="hide-content" style="font-weight: 200;">開放時間：06：30～17：00（4月份～9月份 6:00～17:00）<br>
                   休館日：全年無休<br>
                   入場費：免費開放</p>
               </div>
@@ -512,7 +552,7 @@
                 <h3>③ 東京車站</h3>
                 <p>東京車站除了是東京市區的重要樞紐外，也是各大百貨公司、美食餐廳的集散地，是一棟兼具的交通、觀光及購物的建築。
                   車站美麗的紅色外觀更是到訪東京的必去理由，在近年經過外觀翻修後更是吸引遊客回訪。</p>
-                <p style="font-weight: 200;">開放時間：依各家店面不同一般營業時間10:30～23:00<br>
+                <p class="hide-content" style="font-weight: 200;">開放時間：依各家店面不同一般營業時間10:30～23:00<br>
                   休館日：全年無休<br>
                   入場費：免費參訪</p>
               </div>
@@ -522,7 +562,7 @@
               <div class="ctg-content" style="background-image: url(top5_01-3.JPG); margin-left: 0px;">
                 <h3>④ 東京迪士尼、海洋</h3>
                 <p>男女老少的夢幻王國：東京迪士尼樂園和東京迪士尼海洋，絕對是東京不能錯過的景點！無論是擁有經典城堡、米奇房子的東京迪士尼樂園，還是推出達菲熊、雪莉玫的東京迪士尼海洋，都適合全家大小或姐妹朋友一起造訪，一起創造美好回憶！</p>
-                <p style="font-weight: 200;">開放時間：9:00～22:00（旺季提早至8:00或8:30，依官方網站公告為準）<br>
+                <p class="hide-content" style="font-weight: 200;">開放時間：9:00～22:00（旺季提早至8:00或8:30，依官方網站公告為準）<br>
                   休館日：全年無休<br>
                   購票網址：<a href="https://bit.ly/2BFt3Dj" target="_blank">https://bit.ly/2BFt3Dj</a></p>
               </div>
@@ -530,7 +570,7 @@
                 <h3>⑤ 三鷹之森吉卜力美術館</h3>
                 <p>為著名動畫工作室「吉卜力工作室」所創立的動畫美術館，館主正是身兼作家、漫畫家、動畫導演的宮崎駿。
                   美術館內充滿著宮崎駿動畫中各種角色的雕像、商品，想要看看大型龍貓、貓巴士跟真人版天空之城的朋友們絕對不能錯過！</p>
-                <p style="font-weight: 200;">開放時間：10:00～18:00<br>
+                <p class="hide-content" style="font-weight: 200;">開放時間：10:00～18:00<br>
                   休館日： 星期二（長期休館期間依官方網站公告為準）<br>
                   購票網址：現場不售票，需事前預約入場。<a href="" target="_blank"></a></p>
               </div>
@@ -543,7 +583,7 @@
                 <h3>② 利久牛舌</h3>
                 <p>牛舌是日本仙台名物，既然可以在東京就吃的到牛舌名店當然也是不能錯過的呀！
                   Q彈的肉質、炭燒的香味都是利久牛舌吸引饕客的原因，份量上的選擇也相當有彈性，適合所有想一嚐牛舌美味的旅客喔！</p>
-                <p style="font-weight: 200;">地址：東京都墨田区押上1-1-2 東京晴空塔チ6F<br>
+                <p class="hide-content" style="font-weight: 200;">地址：東京都墨田区押上1-1-2 東京晴空塔チ6F<br>
                   交通：地鐵半藏門線「押上站」晴空塔出口<br>
                   營業時間：11:00AM～11:00PM</p>
               </div>
@@ -551,7 +591,7 @@
                 <h3>③ 煉瓦亭</h3>
                 <p>煉瓦亭創立於1895年，是一間比中華民國老的餐廳，號稱日本第一個洋食店！
                   煉瓦亭最知名的就是元祖級豬排蛋包飯，如果想要吃吃看經過時間考驗後還是依然超人氣的日式洋食，就一定要來這裡來一份豬排蛋包飯啦！</p>
-                <p style="font-weight: 200;">地址：東京都中央区銀座3-5-16<br>
+                <p class="hide-content" style="font-weight: 200;">地址：東京都中央区銀座3-5-16<br>
                   交通：東京地下鐵「銀座」站步行3分鐘<br>
                   營業時間：11:00～15:00，16:40～21:00，週日公休</p>
               </div>
@@ -562,14 +602,14 @@
                 <h3>④ 回し寿司 活美登利</h3>
                 <p>到東京想吃新鮮壽司又不想準備太多預算？那活美登利會是你很好的選擇！
                   活美登利是採迴轉壽司的用餐方式，桌上還有提供繁體中文的點單平板，食材新鮮又沒有語言上的障礙超級推薦給自由行的旅客們！</p>
-                <p style="font-weight: 200;">地址：東京都渋谷区宇田川町21-1 (西武渋谷店8F)<br>
+                <p class="hide-content" style="font-weight: 200;">地址：東京都渋谷区宇田川町21-1 (西武渋谷店8F)<br>
                   交通：JR渋谷站，6-2出口步行2分鐘<br>
                   營業時間：11:00～23:00</p>
               </div>
               <div class="ctg-content" style="background-image: url(top5_02-5.JPG); margin-right: 0px;">
                 <h3>⑤ Red Rock</h3>
                 <p>肉食愛好者必吃美食就是這一間！堆得像小山一樣高的烤牛肉飯，搭配上半熟蛋黃、特製醬料，絕對讓你的筷子停不下來！Red Rock貼心的端出兩種分量的餐點，肉食愛好者請不要猶豫的點大並一次大滿足！想嚐鮮的吃小份量的也很OK喔！</p>
-                <p style="font-weight: 200;">地址：東京都 渋谷区 神宮前 3-25-12 フジビル B1F<br>
+                <p class="hide-content" style="font-weight: 200;">地址：東京都 渋谷区 神宮前 3-25-12 フジビル B1F<br>
                   交通：JR原宿站，步行約6分鐘<br>
                   營業時間：11:30～22:00</p>
               </div>
@@ -649,7 +689,8 @@
 
     <section class="area" id="transport">
       <div class="container">
-        <img src="trans-title.png" class="title-img">
+        <img src="trans-title.png" class="title-img pc">
+        <img src="trans-title-m.png" class="title-img mobile">
         <div class="slide-window">
           <div class="btn-list">
             <a href="#" class="button btn01" data-toggle="modal" data-target="#trans01">
@@ -1088,7 +1129,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京血拼聖地澀谷 景點、美食、必買全攻略</h3>
-                        <p>澀谷不僅百貨公司林立，也是 Disney Store、Loft、MUJI 等大型旗艦店的聚集之地。</p>
+                        <p class="hide-content">澀谷不僅百貨公司林立，也是 Disney Store、Loft、MUJI 等大型旗艦店的聚集之地。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1162,7 +1203,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】感受東京老江戶的古樸風情，淺草上野必訪、必吃、交通超詳細攻略</h3>
-                        <p>淺草、上野是東京的下町文化中心，為過去低階武士和平民的居住地，泛指東京舊城區，也就是俗稱的江戶一帶。</p>
+                        <p class="hide-content">淺草、上野是東京的下町文化中心，為過去低階武士和平民的居住地，泛指東京舊城區，也就是俗稱的江戶一帶。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1374,7 +1415,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】名媛貴婦的逛街天堂！銀座有樂町必逛、下午茶、交通全攻略</h3>
-                        <p>東京銀座與倫敦牛津街、紐約第五大道齊名世界三大購物街，百年老店與國際時尚潮流比鄰而立，不僅是日本上流社會的代名詞，也是全日本地價最昂貴的地段之ㄧ。</p>
+                        <p class="hide-content">東京銀座與倫敦牛津街、紐約第五大道齊名世界三大購物街，百年老店與國際時尚潮流比鄰而立，不僅是日本上流社會的代名詞，也是全日本地價最昂貴的地段之ㄧ。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1622,7 +1663,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】時尚流行最前線 原宿表參道交通、必吃、必逛總攻略</h3>
-                        <p>表參道與原宿、竹下通相鄰，適合都會男女約會與購物，其由日本知名建築師安藤忠雄所設計的地標「表參道 HILLS」以狹長外觀與內建的螺旋式坡道聞名，集結許多國際品牌入駐， 堪稱東京的時尚潮流指標之一！</p>
+                        <p class="hide-content">表參道與原宿、竹下通相鄰，適合都會男女約會與購物，其由日本知名建築師安藤忠雄所設計的地標「表參道 HILLS」以狹長外觀與內建的螺旋式坡道聞名，集結許多國際品牌入駐， 堪稱東京的時尚潮流指標之一！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1716,7 +1757,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京迪士尼樂園門票、交通、Fast Pass教學、必玩必買必吃最強攻略</h3>
-                        <p>東京迪士尼樂園可以說是東京樂園最經典的象徵，東京迪士尼用心經營著我們心中的純真夢境，
+                        <p class="hide-content">東京迪士尼樂園可以說是東京樂園最經典的象徵，東京迪士尼用心經營著我們心中的純真夢境，
                           猶如走進迪士尼的奇幻世界一般，跟著米奇、米妮以及其他角色盡情玩樂。</p>
                       </div>
                       <div class="arrow-down"></div>
@@ -1770,7 +1811,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京迪士尼海洋交通、必玩設施、必吃必買超完整攻略</h3>
-                        <p>迪士尼海洋是全世界首個出現「海洋」主題的迪士尼樂園，相較於迪士尼樂園，以更多刺激設施聞名。並且也是讓達菲熊紅遍全世界的功臣，喜歡達菲熊的朋友們務必要朝聖的地方。</p>
+                        <p class="hide-content">迪士尼海洋是全世界首個出現「海洋」主題的迪士尼樂園，相較於迪士尼樂園，以更多刺激設施聞名。並且也是讓達菲熊紅遍全世界的功臣，喜歡達菲熊的朋友們務必要朝聖的地方。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1816,7 +1857,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京航海王交通、門票、園區完整介紹、必買周邊全攻略</h3>
-                        <p>位於東京鐵塔裡的航海王樂園，除了可以看到航海王的插畫展、大型模型，還有各種經典片段打造的遊戲與航海王真人表演秀。更有獨一無二的航海王主題餐廳、周邊商品店，航海王的粉絲們到了東京一定不能錯過。</p>
+                        <p class="hide-content">位於東京鐵塔裡的航海王樂園，除了可以看到航海王的插畫展、大型模型，還有各種經典片段打造的遊戲與航海王真人表演秀。更有獨一無二的航海王主題餐廳、周邊商品店，航海王的粉絲們到了東京一定不能錯過。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1856,7 +1897,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京三麗鷗彩虹樂園門票、交通、表演遊行資訊、必買伴手禮總攻略</h3>
-                        <p>三麗鷗彩虹樂園打造了一個超可愛的Hello Kiity世界，裡頭除了有華麗城堡和超好玩的遊樂設施，還有卡通人物精彩歌舞秀與遊行；另外也加入了蛋黃哥、大耳狗特區，萌得你不要不要的！</p>
+                        <p class="hide-content">三麗鷗彩虹樂園打造了一個超可愛的Hello Kiity世界，裡頭除了有華麗城堡和超好玩的遊樂設施，還有卡通人物精彩歌舞秀與遊行；另外也加入了蛋黃哥、大耳狗特區，萌得你不要不要的！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -1919,7 +1960,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【東京】下町谷根千散步，私房景點、美食、老宅改造小店總整理</h3>
-                        <p>東京谷中、根津和千駄木等三個地區，被總稱為「谷根千」，並以傳統懷舊的下町風情聞名，適合喜歡隨意走逛散步，享受悠閒風情的旅客走訪。</p>
+                        <p class="hide-content">東京谷中、根津和千駄木等三個地區，被總稱為「谷根千」，並以傳統懷舊的下町風情聞名，適合喜歡隨意走逛散步，享受悠閒風情的旅客走訪。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2018,7 +2059,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】雜貨、古著控的天堂，吉祥寺交通、必吃、必逛、路線總攻略</h3>
-                        <p>吉祥寺商店街鄰近吉卜力美術館、井之頭公園，適合安排一日遊之外，更值得喜歡生活雜貨與古著的你細細挖寶。</p>
+                        <p class="hide-content">吉祥寺商店街鄰近吉卜力美術館、井之頭公園，適合安排一日遊之外，更值得喜歡生活雜貨與古著的你細細挖寶。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2108,7 +2149,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】教你如何玩東京車站！一番地下街、皇居、丸之內瞭望台全攻略 </h3>
-                        <p>東京車站絕對不只是一座車站，除了繁榮的車站商圈，車站裡的一番地下街更是完美消磨等車時間的購物天堂，包括動漫人物街、東京拉麵街和零食天堂等；此外，鄰近還有皇居、Kitte、三菱一號美術館等知名必訪景點！</p>
+                        <p class="hide-content">東京車站絕對不只是一座車站，除了繁榮的車站商圈，車站裡的一番地下街更是完美消磨等車時間的購物天堂，包括動漫人物街、東京拉麵街和零食天堂等；此外，鄰近還有皇居、Kitte、三菱一號美術館等知名必訪景點！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2143,7 +2184,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】時尚流行最前線 原宿表參道交通、必吃、必逛總攻略</h3>
-                        <p>原宿一帶是東京著名的鬧區之一，因此眾多電鐵與地下鐵均經過此地，交通十分方便。除了車站附近名聞遐邇的明治神宮與代代木公園，與時下流行息息相關的竹下通就位於此處，無論是購物還是美食，均可在此一網打盡！</p>
+                        <p class="hide-content">原宿一帶是東京著名的鬧區之一，因此眾多電鐵與地下鐵均經過此地，交通十分方便。除了車站附近名聞遐邇的明治神宮與代代木公園，與時下流行息息相關的竹下通就位於此處，無論是購物還是美食，均可在此一網打盡！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2243,7 +2284,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】東京動漫巴士一日遊：藤子.Ｆ.不二雄博物館、鬼太郎茶屋、狹山公園、多摩湖</h3>
-                        <p>東京孕育了無數陪伴我們成長的動漫故事，無論是藤子不二雄筆下的《哆拉A夢》，還是啟發水木茂先生的《鬼太郎》靈感，或是《龍貓》取景地之一的狹山公園、多摩湖，不僅能夠回味童年，還可在花季盡賞宜人櫻花美景！</p>
+                        <p class="hide-content">東京孕育了無數陪伴我們成長的動漫故事，無論是藤子不二雄筆下的《哆拉A夢》，還是啟發水木茂先生的《鬼太郎》靈感，或是《龍貓》取景地之一的狹山公園、多摩湖，不僅能夠回味童年，還可在花季盡賞宜人櫻花美景！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2289,7 +2330,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】宮崎駿的動畫世界，三鷹の森吉卜力美術館交通、門票、館內資訊全攻略</h3>
-                        <p>宮崎駿的魅力馳名中外，數十年來不斷創作引人入勝的經典作品，影迷橫跨各年齡層。如果來到東京旅行，千萬不能錯過這處收藏著陪伴你我長大的兒時回憶備忘錄——三鷹の森吉卜力美術館。</p>
+                        <p class="hide-content">宮崎駿的魅力馳名中外，數十年來不斷創作引人入勝的經典作品，影迷橫跨各年齡層。如果來到東京旅行，千萬不能錯過這處收藏著陪伴你我長大的兒時回憶備忘錄——三鷹の森吉卜力美術館。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2328,7 +2369,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】動漫迷九大朝聖地，盤點動漫裡真實場景、主題樂園和淘週邊的好地方</h3>
-                        <p>日本每年輸出大量的動畫與漫畫作品，東京每年更是吸引無數來自世界各地的動漫迷，甚至御宅族前仆後繼前來朝聖，想知道在哪裡尋找動漫真實場景，或該去哪裡購買最齊全又便宜的周邊商品？千萬別錯過這些景點！</p>
+                        <p class="hide-content">日本每年輸出大量的動畫與漫畫作品，東京每年更是吸引無數來自世界各地的動漫迷，甚至御宅族前仆後繼前來朝聖，想知道在哪裡尋找動漫真實場景，或該去哪裡購買最齊全又便宜的周邊商品？千萬別錯過這些景點！</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2423,7 +2464,7 @@
                           <div class="clearfix"></div>
                         </ul>
                         <h3>【日本】宅宅們的秋葉原朝聖之旅，動漫周邊、遊戲、電器街讓你逛到失心瘋！</h3>
-                        <p>秋葉原一直被視為御宅族天堂與動漫聖地，同時也因作為世界屈指可數的電器街而聞名，不但是時下年輕人聚集之處，每年更吸引無數世界各地的動漫迷、遊戲迷前來朝聖。</p>
+                        <p class="hide-content">秋葉原一直被視為御宅族天堂與動漫聖地，同時也因作為世界屈指可數的電器街而聞名，不但是時下年輕人聚集之處，每年更吸引無數世界各地的動漫迷、遊戲迷前來朝聖。</p>
                       </div>
                       <div class="arrow-down"></div>
                     </a>
@@ -2533,7 +2574,8 @@
 
     <section class="area" id="expert">
       <div class="container">
-        <img src="expert-title.png" class="title-img">
+        <img src="expert-title.png" class="title-img pc">
+        <img src="expert-title-m.png" class="title-img mobile">
         <div class="half suburbs" style="background-color: #26bec9;">
           <h3>近郊散策地圖</h3>
           <p class="description">逛膩了人擠人的東京市區，想要逃離城市的塵囂？那就到東京近郊走走，感受一下悠閒的氣氛吧！
@@ -3148,7 +3190,8 @@
     </section>
 
     <section class="area" id="season">
-      <img src="season-title.png" class="title-img">
+      <img src="season-title.png" class="title-img pc">
+      <img src="season-title-m.png" class="title-img mobile">
       <div class="container">
           <div class="tab-area">
               <ul class="nav nav-tabs">

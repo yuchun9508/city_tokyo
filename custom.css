@@ -35,7 +35,7 @@ header .container{
     height: 100vh;
     overflow: hidden;
     position: relative;
-    background: url(banner.jpg);
+    background: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130092948_aUlRY/jpg);
     background-size: cover;
     background-position: 15% 100%;
 }
@@ -393,15 +393,15 @@ h3{
     transition: all .5s;
 }
 #transport .slide-window .btn01::before{
-    background-image: url(trans-btn_01.jpg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130101058_9TnVI/jpg);
 }
 #transport .slide-window .btn02::before{
-    background-image: url(trans-btn_02.jpg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130101103_zn60W/jpg);
     background-position: 55% center;
     background-size: 150%;
 }
 #transport .slide-window .btn03::before{
-    background-image: url(trans-btn_03.jpg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130101426_C40nq/jpg);
 }
 #transport .slide-window .button::after{
     content: '';
@@ -656,25 +656,25 @@ h3{
     transition: all .5s;
 }
 #transport .modal-body .p01::before{
-    background-image: url(6681.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082621_1do60/jpeg);
 }
 #transport .modal-body .p02::before{
-    background-image: url(6682.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082625_CIBuW/jpeg);
 }
 #transport .modal-body .p03::before{
-    background-image: url(5989.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082616_PdsMz/jpeg);
 }
 #transport .modal-body .p04::before{
-    background-image: url(18569.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082649_n6Mab/jpeg);
 }
 #transport .modal-body .p05::before{
-    background-image: url(9389.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082632_DuiA9/jpeg);
 }
 #transport .modal-body .p06::before{
-    background-image: url(7913.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082628_pxAFa/jpeg);
 }
 #transport .modal-body .p07::before{
-    background-image: url(18551.jpeg);
+    background-image: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082636_fpg5o/jpeg);
 }
 #transport .modal-body .product:hover:before{
     transform: scale(1.2);

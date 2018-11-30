@@ -2465,6 +2465,12 @@ footer .logo{
         bottom: 10px;
         left: 160px;
     }
+    #theme .panel-body {
+        font-size: 12px;
+    }
+    #theme .panel-body img {
+        margin: 20px 0px;
+    }
     .video-carousel .owl-carousel .item-video {
         height: 250px;
     }
@@ -2489,6 +2495,24 @@ footer .logo{
     }
     #expert .button h4 {
         font-size: 14px;
+    }
+    #expert .modal-header h4 {
+        font-size: 14px;
+    }
+    #expert .modal-body p {
+        font-size: 12px;
+    }
+    #expert .modal-body img {
+        margin: 20px 0px;
+    }
+    #expert .modal-body .list {
+        margin-top: 50px;
+        font-size: 12px;
+    }
+    #expert .modal-body iframe {
+        width: 280px;
+        height: 157.5px;
+        margin-left: -12px;
     }
     /* season */
     #season .title-img {

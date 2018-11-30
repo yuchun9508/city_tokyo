@@ -2234,14 +2234,290 @@ footer .logo{
 
 }
 @media (max-width: 384px){
-
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 533px;
+    }
+    /* basic-info */
+    #basic-info .half-bg {
+        height: 120vh;
+    }
+    /* transport */
+    #transport .slide-window .button .content {
+        position: absolute;
+        top: 10%;
+        left: 14%;
+    }
+    .picture-gallery .carousel-indicators {
+        bottom: -250px !important;
+    }
+    .video-content {
+        padding: 50px 25px;
+    }
+    /* theme */
+    #theme .title-img {
+        position: absolute;
+        top: -4.7%;
+    }
+    #theme .desciption {
+        padding: 20px;
+    }
+    .arrow-down {
+        position: absolute;
+        bottom: 10px;
+        left: 190px;
+    }
+    #expert .slide-window .button {
+        padding: 20% 0%;
+    }
+    /* season */
+    #season .title-img {
+        position: absolute;
+        top: -3.6%;
+    }
+    #season .tab-content .event {
+        height: 320px;
+    }
+    #season .tab-content .event:hover .content {
+        transform: translate(-22%, -48%);
+    }
+    /* footer */
+    .sns {
+        margin-left: 12%;
+    }
 }
 @media (max-width: 375px){
-
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 562px;
+    }
+    /* basic-info */
+    #basic-info .half-bg {
+        height: 115vh;
+    }
+    /* transport */
+    #transport .title-img {
+        position: absolute;
+        top: -9.5%;
+    }
+    #transport .slide-window .button .content {
+        position: absolute;
+        top: 8%;
+        left: 12%;
+    }
+    .video-content {
+        padding: 50px 20px;
+    }
+    /* theme */
+    #theme .title-img {
+        position: absolute;
+        top: -4.9%;
+    }
+    #theme .nav-tabs > li {
+        height: 170px;
+    }
+    /* season */
+    #season .title-img {
+        position: absolute;
+        top: -3.9%;
+    }
+    #season .tab-content .event:hover .content {
+        transform: translate(-23%, -48%);
+    }
 }
 @media (max-width: 360px){
-
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 539px;
+    }
+    /* transport */
+    .video-content {
+        padding: 50px 12px;
+    }
+    /* season */
+    #season .title-img {
+        position: absolute;
+        top: -3.4%;
+    }
+    #season .tab-content .event:hover .content {
+        width: 600px;
+        height: 600px;
+        transform: translate(-20%, -54%);
+    }
+    /* footer */
+    .sns {
+        margin-left: 8%;
+    }
 }
 @media (max-width: 320px){
-
+    /* header */
+    .absolute-header{
+        position: absolute;
+        top: 478px;
+    }
+    /* basic-info */
+    .intro-text {
+        padding: 20px;
+    }
+    .intro-text p {
+        line-height: 2;
+    }
+    #basic-info .half-bg {
+        height: 135vh;
+    }
+    /* top5 */
+    .tab-title.active {
+        font-size: 28px;
+    }
+    #top5 .tab-content h3{
+        font-size: 20px;
+    }
+    #top5 .tab-content p{
+        font-size: 12px;
+    }
+    .category {
+        height: 300px;
+    }
+    .tab-title {
+        position: relative;
+        top: 50px;
+        left: 8px;
+        font-size: 20px;
+    }
+    .ctg-content {
+        height: 200px;
+    }
+    .ctg-content h3{
+        font-size: 20px;
+    }
+    .ctg-content p{
+        font-size: 12px;
+    }
+    /* transport */
+    #transport .title-img {
+        position: absolute;
+        top: -10.6%;
+    }
+    #transport .slide-window {
+        margin-top: 10px;
+    }
+    #transport .slide-window .button {
+        padding: 23% 0%;
+    }
+    #transport .slide-window .button .content {
+        position: absolute;
+        top: 8%;
+        left: 5%;
+    }
+    #transport .slide-window .button .content img {
+        width: 20%;
+    }
+    #transport .slide-window .button .content h3{
+        font-size: 20px;
+    }
+    #transport .modal-header img {
+        width: 40px;
+    }
+    #transport .modal-header h4 {
+        font-size: 24px;
+    }
+    .video-content .player iframe {
+        width: 280px;
+        height: 157.5px;
+    }
+    .video-content {
+        padding: 50px 20px;
+    }
+    .video-content .playlist ul li p {
+        font-size: 14px;
+    }
+    .video-content .playlist ul li i {
+        font-size: 26px;
+    }
+    #transport .video {
+        height: 360px;
+    }
+    /* theme */
+    #theme .title-img {
+        position: absolute;
+        top: -4.7%;
+    }
+    #theme .nav-tabs > li {
+        height: 150px;
+    }
+    #theme .nav-tabs > li > a {
+        font-size: 14px;
+    }
+    #theme .desciption {
+        font-size: 12px;
+    }
+    #theme .panel-heading a ul li {
+        font-size: 12px;
+    }
+    #theme .panel-heading .content h3 {
+        font-size: 14px !important;
+    }
+    .arrow-down {
+        position: absolute;
+        bottom: 10px;
+        left: 160px;
+    }
+    .video-carousel .owl-carousel .item-video {
+        height: 250px;
+    }
+    .video-carousel .owl-carousel .item-video h3 {
+        font-size: 14px;
+    }
+    /* expert */
+    .half h3{
+        font-size: 20px;
+    }
+    .half h3::after {
+        border-left: 21px solid rgba(255,255,255,0.9);
+        border-top: 21px solid transparent;
+        border-bottom: 21px solid transparent;
+        border-right: 21px solid transparent;
+        position: absolute;
+        right: -42px;
+        top: 0;
+    }
+    .half .description {
+        font-size: 12px;
+    }
+    #expert .button h4 {
+        font-size: 14px;
+    }
+    /* season */
+    #season .title-img {
+        position: absolute;
+        top: -3.9%;
+    }
+    #season .tab-content .event .content {
+        width: 300px;
+        height: 300px;
+        margin-top: 60%;
+    }
+    #season .tab-content .event:hover .content {
+        width: 550px;
+        height: 550px;
+        transform: translate(-20%, -62%);
+    }
+    #season .tab-content .event .content h4{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    #season .tab-content .event .content p, #season .tab-content .event .content ul {
+        font-size: 12px;
+    }
+    /* footer */
+    .sns {
+        margin-left: 27%;
+        width: 60%;
+    }
+    .sns li {
+        margin: 5px;
+    }
 }

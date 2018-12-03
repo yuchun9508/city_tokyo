@@ -2004,7 +2004,7 @@ footer .logo{
     }
     /* footer */
     .sns{
-        padding-inline-start: 0px;
+        margin-left: 25%;
     }
 
 }
@@ -2278,7 +2278,7 @@ footer .logo{
         width: 22%;
     }
     .sns {
-        margin-left: 15%;
+        margin-left: 5%;
     }
 
 }
@@ -2333,7 +2333,7 @@ footer .logo{
     }
     /* footer */
     .sns {
-        margin-left: 12%;
+        margin-left: 1%;
     }
 }
 @media (max-width: 375px){
@@ -2398,7 +2398,7 @@ footer .logo{
     }
     /* footer */
     .sns {
-        margin-left: 8%;
+        margin-left: -2%;
     }
 }
 @media (max-width: 320px){
@@ -2587,7 +2587,7 @@ footer .logo{
     }
     /* footer */
     .sns {
-        margin-left: 27%;
+        margin-left: 15%;
         width: 60%;
     }
     .sns li {

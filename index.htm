@@ -446,6 +446,46 @@
         $('.owl-video-play-icon').parent().siblings('h3').show();
       })
       $(".owl-video-wrapper iframe").attr("src",video);
+
+      //season section mobile onclick
+      if($(window).width() < 321){
+        $('#season .tab-content .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+          $(this).siblings().children('.content').removeClass('active');
+        })
+      } else if($(window).width() < 361){
+        $('#season .tab-content .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+          $(this).siblings().children('.content').removeClass('active');
+        })
+      } else if($(window).width() < 376){
+        $('#season .tab-content .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+          $(this).siblings().children('.content').removeClass('active');
+        })
+      } else if($(window).width() < 385){
+        $('#season .tab-content .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+          $(this).siblings().children('.content').removeClass('active');
+        })
+      } else if($(window).width() < 481){
+        $('#season .tab-content .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+          $(this).siblings().children('.content').removeClass('active');
+        })
+        $('#season .tab-content #tab2-1 .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+        })
+        $('#season .tab-content #tab2-2 .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+        })
+        $('#season .tab-content #tab2-3 .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+        })
+        $('#season .tab-content #tab2-4 .event').on('click',function(){
+          $(this).children('.content').addClass('active');
+        })
+      }
       
     });
 

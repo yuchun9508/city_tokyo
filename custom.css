@@ -1472,23 +1472,23 @@ h3{
 #season .tab-content #tab2-4 .event .content{
     background-color: rgba(176,181,200,0.5);
 }
-#season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+#season .tab-content .event:hover .content, #season .tab-content .event .content.active{
     width: 600px;
     height: 600px;
     padding: 150px 50px 0px 50px;
     transform: translate(-20%, -60%);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
 }
-#season .tab-content #tab2-1 .event:hover .content, #season .tab-content #tab2-1 .event:focus .content{
+#season .tab-content #tab2-1 .event:hover .content, #season .tab-content #tab2-1 .event .content.active{
     background-color: rgba(246,200,180,0.8);
 }
-#season .tab-content #tab2-2 .event:hover .content, #season .tab-content #tab2-2 .event:focus .content{
+#season .tab-content #tab2-2 .event:hover .content, #season .tab-content #tab2-2 .event .content.active{
     background-color: rgba(255,206,51,0.8);
 }
-#season .tab-content #tab2-3 .event:hover .content, #season .tab-content #tab2-3 .event:focus .content{
+#season .tab-content #tab2-3 .event:hover .content, #season .tab-content #tab2-3 .event .content.active{
     background-color: rgba(194,82,56,0.8);
 }
-#season .tab-content #tab2-4 .event:hover .content, #season .tab-content #tab2-4 .event:focus .content{
+#season .tab-content #tab2-4 .event:hover .content, #season .tab-content #tab2-4 .event .content.active{
     background-color: rgba(176,181,200,0.8);
 }
 #season .tab-content .event .content h4{
@@ -1613,7 +1613,7 @@ footer .logo{
         height: 450px;
         margin-top: 45%;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+    #season .tab-content .event:hover .content{
         width: 650px;
         height: 650px;
         padding: 150px 50px 0px 50px;
@@ -1773,7 +1773,7 @@ footer .logo{
         width: 400px;
         height: 400px;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+    #season .tab-content .event:hover .content{
         width: 700px;
         height: 700px;
         transform: translate(-13%, -60%);
@@ -1999,7 +1999,7 @@ footer .logo{
         height: 350px;
         margin-top: 55%;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+    #season .tab-content .event:hover .content{
         transform: translate(-22%, -50%);
     }
     /* footer */
@@ -2273,6 +2273,9 @@ footer .logo{
     #season .tab-content .event .content {
         margin-top: 50%;
     }
+    #season .tab-content .event .content.active{
+        transform: translate(-20%, -50%);
+    }
     /* footer */
     footer .logo {
         width: 22%;
@@ -2328,7 +2331,9 @@ footer .logo{
     #season .tab-content .event {
         height: 320px;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+    #season .tab-content .event .content.active{
+        width: 600px;
+        height: 600px;
         transform: translate(-22%, -48%);
     }
     /* footer */
@@ -2372,7 +2377,7 @@ footer .logo{
         position: absolute;
         top: -3.9%;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
+    #season .tab-content .event .content.active{
         transform: translate(-23%, -48%);
     }
 }
@@ -2391,9 +2396,7 @@ footer .logo{
         position: absolute;
         top: -3.4%;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content{
-        width: 600px;
-        height: 600px;
+    #season .tab-content .event .content.active{
         transform: translate(-20%, -54%);
     }
     /* footer */
@@ -2573,7 +2576,7 @@ footer .logo{
         height: 300px;
         margin-top: 60%;
     }
-    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content, #season .tab-content .event:active .content {
+    #season .tab-content .event .content.active{
         width: 550px;
         height: 550px;
         transform: translate(-20%, -62%);

@@ -225,7 +225,8 @@ header .container{
     content: '';
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgb(0,0,0,0));
+    background-image: linear-gradient(to right, black, transparent);
+    opacity: 0.5;
     position: absolute;
     top: 0;
     left: 0;
@@ -285,7 +286,8 @@ header .container{
     content: '';
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.5;
     position: absolute;
     top: 0;
     left: 0;
@@ -323,7 +325,8 @@ h3{
     content: '';
     width: 100%;
     height: 30%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.5;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -710,7 +713,8 @@ h3{
     content: '';
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.5;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -765,7 +769,8 @@ h3{
     content: '';
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.7), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.7;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1005,7 +1010,8 @@ h3{
     content: '';
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.5;
     position: absolute;
     top: 0;
     left: 0; 
@@ -1086,7 +1092,8 @@ h3{
     content: '';
     width: 100%;
     height: 40%;
-    background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(255,255,255,0));
+    background-image: linear-gradient(to top, #28607f, transparent);
+    opacity: 0.5;
     position: absolute;
     bottom: 0;
     left: 0; 
@@ -2056,12 +2063,8 @@ footer .logo{
     #top5 .tab-content {
         padding: 0 30px 30px 30px;
     }
-    #top5 .tab-content::before {
-        background-image: linear-gradient(to top, #28607f, transparent);
-        opacity: 0.5;
-    }
     .ctg-content {
-        padding: 5% 20px 10px 20px;
+        padding: 20% 20px 10px 20px;
     }
     .tab-title {
         position: relative;
@@ -2074,13 +2077,12 @@ footer .logo{
     .category {
         height: 350px;
     }
-    .category::before{
-        background-image: linear-gradient(to right, #000000, transparent);
-        opacity: 0.7;
-    }
     .ctg-content {
         width: 100%;
         height: 250px;
+    }
+    .ctg-content::before {
+        height: 100%;
     }
     /* transport */
     #transport .title-img {

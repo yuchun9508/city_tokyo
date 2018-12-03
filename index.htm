@@ -268,9 +268,7 @@
         $(this).parent().siblings('.cascading-tab-content').children('.ctg04-content-area').siblings().removeClass('active');
       })
 
-      if($(window).width() < 481){
-        
-      } else if($(window).width() < 769){
+      if($(window).width() < 769){
         $('.ctg-content').on('mouseenter',function(){
           $(this).animate({paddingTop:"12%"});
           $(this).addClass('active');

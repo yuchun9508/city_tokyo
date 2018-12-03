@@ -2189,6 +2189,11 @@ footer .logo{
         height: 150px;
         padding: 5% 15px 10px 15px;
     }
+    #theme .panel-heading .content::before {
+        background-image: none;
+        background-color: #28607f;
+        opacity: 0.5;
+    }
     #theme .panel-heading .content h3 {
         line-height: 1.5;
     }

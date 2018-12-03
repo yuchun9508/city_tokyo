@@ -2054,6 +2054,9 @@ footer .logo{
         width: 40%;
         margin-top: 10px;
     }
+    #basic-info ul li p {
+        font-weight: normal;
+    }
     /* top5 */
     #top5 .title-img {
         width: 90%;
@@ -2133,6 +2136,15 @@ footer .logo{
     #transport .modal-body ul {
         width: 90%;
         padding-inline-start: 0px;
+        font-weight: normal;
+    }
+    #transport .modal-body ul li {
+        margin: 10px 0px;
+    }
+    #transport .modal-body ul li span {
+        border: none;
+        padding: 0px;
+        font-weight: bold;
     }
     #transport .modal-body .product {
         margin-bottom: 20px;

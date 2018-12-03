@@ -2006,9 +2006,7 @@ footer .logo{
     }
     /* header */
     .banner .logo {
-        position: absolute;
-        top: 10px;
-        left: 20px;
+        display: none;
     }
     .absolute-header{
         position: absolute;
@@ -2056,7 +2054,17 @@ footer .logo{
         top: 4%;
     }
     #top5 .tab-content {
-        padding: 0px 30px 30px 30px;
+        padding: 0 30px 30px 30px;
+    }
+    #top5 .tab-content::before {
+        background-image: linear-gradient(to top, rgba(40,96,127,0.7), rgb(40,96,127,0));
+    }
+    .ctg-content {
+        padding: 5% 20px 10px 20px;
+    }
+    .ctg-content::before {
+        height: 100%;
+        background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(40,96,127,0.5));
     }
     .tab-title {
         position: relative;

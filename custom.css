@@ -2057,16 +2057,14 @@ footer .logo{
         padding: 0 30px 30px 30px;
     }
     #top5 .tab-content::before {
-        background: linear-gradient(to top, rgba(40,96,127,0.7), rgb(40,96,127,0));
-        background: -webkit-linear-gradient(to top, rgba(40,96,127,0.7), rgb(40,96,127,0));
+        background-image: linear-gradient(to top, red, yellow);
     }
     .ctg-content {
         padding: 5% 20px 10px 20px;
     }
     .ctg-content::before {
         height: 100%;
-        background: linear-gradient(to top, rgba(40,96,127,0.5), rgb(40,96,127,0.5));
-        background: -webkit-linear-gradient(to top, rgba(40,96,127,0.5), rgb(40,96,127,0.5));
+        background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(40,96,127,0.5));
     }
     .tab-title {
         position: relative;

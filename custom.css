@@ -2135,8 +2135,8 @@ footer .logo{
     }
     #transport .modal-body ul {
         width: 90%;
-        padding-inline-start: 0px;
         font-weight: normal;
+        margin-left: -40px;
     }
     #transport .modal-body ul li {
         margin: 10px 0px;
@@ -2211,7 +2211,7 @@ footer .logo{
         padding: 30px !important;
     }
     #theme .panel-body ul, #theme .panel-body ol{
-        padding-inline-start: 20px;
+        margin-left: -20px;
     }
     .video-carousel .owl-video-wrapper::before {
         height: 100%;

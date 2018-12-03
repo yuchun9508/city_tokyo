@@ -2056,6 +2056,10 @@ footer .logo{
     #top5 .tab-content {
         padding: 0 30px 30px 30px;
     }
+    #top5 .tab-content::before {
+        background-image: linear-gradient(to top, #28607f, transparent);
+        opacity: 0.5;
+    }
     .ctg-content {
         padding: 5% 20px 10px 20px;
     }
@@ -2072,7 +2076,7 @@ footer .logo{
     }
     .category::before{
         background-image: linear-gradient(to right, #000000, transparent);
-        opacity: 0.5;
+        opacity: 0.7;
     }
     .ctg-content {
         width: 100%;

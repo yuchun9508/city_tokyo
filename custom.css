@@ -2241,7 +2241,7 @@ footer .logo{
     #expert .slide-window .button .content {
         width: 90%;
         position: absolute;
-        top: 8%;
+        top: 12%;
         left: 6%;
     }
     #expert .modal-header .content {
@@ -2249,6 +2249,9 @@ footer .logo{
     }
     #expert .modal-body {
         padding: 30px !important;
+    }
+    #expert .modal-body ul, #expert .modal-body ol{
+        margin-left: -20px;
     }
     #expert .modal-body iframe {
         margin-top: 30px;

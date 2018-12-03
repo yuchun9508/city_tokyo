@@ -2120,6 +2120,9 @@ footer .logo{
     .picture-gallery {
         width: 90%;
     }
+    .carousel-inner>.item>img{
+        width: 100%;
+    }
     .picture-gallery .carousel-indicators li {
         width: 80px !important;
         height: 70px !important;

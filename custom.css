@@ -1613,7 +1613,7 @@ footer .logo{
         height: 450px;
         margin-top: 45%;
     }
-    #season .tab-content .event:hover .content{
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content{
         width: 650px;
         height: 650px;
         padding: 150px 50px 0px 50px;
@@ -1773,7 +1773,7 @@ footer .logo{
         width: 400px;
         height: 400px;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content {
         width: 700px;
         height: 700px;
         transform: translate(-13%, -60%);
@@ -1999,7 +1999,7 @@ footer .logo{
         height: 350px;
         margin-top: 55%;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content {
         transform: translate(-22%, -50%);
     }
     /* footer */
@@ -2328,7 +2328,7 @@ footer .logo{
     #season .tab-content .event {
         height: 320px;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content{
         transform: translate(-22%, -48%);
     }
     /* footer */
@@ -2372,7 +2372,7 @@ footer .logo{
         position: absolute;
         top: -3.9%;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content {
         transform: translate(-23%, -48%);
     }
 }
@@ -2391,7 +2391,7 @@ footer .logo{
         position: absolute;
         top: -3.4%;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content {
         width: 600px;
         height: 600px;
         transform: translate(-20%, -54%);
@@ -2573,7 +2573,7 @@ footer .logo{
         height: 300px;
         margin-top: 60%;
     }
-    #season .tab-content .event:hover .content {
+    #season .tab-content .event:hover .content, #season .tab-content .event:focus .content {
         width: 550px;
         height: 550px;
         transform: translate(-20%, -62%);

@@ -2056,15 +2056,8 @@ footer .logo{
     #top5 .tab-content {
         padding: 0 30px 30px 30px;
     }
-    #top5 .tab-content::before {
-        background-image: linear-gradient(to top, red, yellow);
-    }
     .ctg-content {
         padding: 5% 20px 10px 20px;
-    }
-    .ctg-content::before {
-        height: 100%;
-        background-image: linear-gradient(to top, rgba(40,96,127,0.5), rgb(40,96,127,0.5));
     }
     .tab-title {
         position: relative;
@@ -2076,6 +2069,10 @@ footer .logo{
     }
     .category {
         height: 350px;
+    }
+    .category::before{
+        background-image: linear-gradient(to right, #000000, transparent);
+        opacity: 0.5;
     }
     .ctg-content {
         width: 100%;

@@ -268,7 +268,16 @@
         $(this).parent().siblings('.cascading-tab-content').children('.ctg04-content-area').siblings().removeClass('active');
       })
 
-      if($(window).width() < 769){
+      if($(window).width() < 481){
+        $('.ctg-content').on('mouseenter',function(){
+          $(this).animate({paddingTop:"20%"});
+          $(this).addClass('active');
+        })
+        $('.ctg-content').on('mouseleave',function(){
+          $(this).animate({paddingTop:"20%"});
+          $(this).removeClass('active');
+        })
+      } else if($(window).width() < 769){
         $('.ctg-content').on('mouseenter',function(){
           $(this).animate({paddingTop:"12%"});
           $(this).addClass('active');

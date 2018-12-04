@@ -2378,7 +2378,7 @@ footer .logo{
         top: -3.9%;
     }
     #season .tab-content .event .content.active{
-        transform: translate(-19%, -56%);
+        transform: translate(0, -56%);
     }
 }
 @media (max-width: 360px){

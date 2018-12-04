@@ -2272,7 +2272,8 @@ footer .logo{
     }
     #season .tab-content .event .content {
         margin-top: 50%;
-        transition: all .3s;
+        transition: width .3s;
+        transition: height .3s;
     }
     #season .tab-content .event .content.active{
         transform: translate(-20%, -50%);

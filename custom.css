@@ -2332,8 +2332,8 @@ footer .logo{
         height: 320px;
     }
     #season .tab-content .event .content.active{
-        width: 600px;
-        height: 600px;
+        width: 350px;
+        height: 350px;
         transform: translate(-22%, -48%);
     }
     /* footer */
@@ -2378,7 +2378,7 @@ footer .logo{
         top: -3.9%;
     }
     #season .tab-content .event .content.active{
-        transform: translate(0, -56%);
+        transform: translate(-19%, -56%);
     }
 }
 @media (max-width: 360px){

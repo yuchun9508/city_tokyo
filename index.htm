@@ -452,26 +452,31 @@
         $('#season .tab-content .event').on('click',function(){
           $(this).children('.content').addClass('active');
           $(this).siblings().children('.content').removeClass('active');
+          $(this).parent('.event-outer').siblings('.event-outer').children('.event').children('.content').removeClass('active');
         })
       } else if($(window).width() < 361){
         $('#season .tab-content .event').on('click',function(){
           $(this).children('.content').addClass('active');
           $(this).siblings().children('.content').removeClass('active');
+          $(this).parent('.event-outer').siblings('.event-outer').children('.event').children('.content').removeClass('active');
         })
       } else if($(window).width() < 376){
         $('#season .tab-content .event').on('click',function(){
           $(this).children('.content').addClass('active');
           $(this).siblings().children('.content').removeClass('active');
+          $(this).parent('.event-outer').siblings('.event-outer').children('.event').children('.content').removeClass('active');
         })
       } else if($(window).width() < 385){
         $('#season .tab-content .event').on('click',function(){
           $(this).children('.content').addClass('active');
           $(this).siblings().children('.content').removeClass('active');
+          $(this).parent('.event-outer').siblings('.event-outer').children('.event').children('.content').removeClass('active');
         })
       } else if($(window).width() < 481){
         $('#season .tab-content .event').on('click',function(){
           $(this).children('.content').addClass('active');
           $(this).siblings().children('.content').removeClass('active');
+          $(this).parent('.event-outer').siblings('.event-outer').children('.event').children('.content').removeClass('active');
         })
         $('#season .tab-content #tab2-1 .event').on('click',function(){
           $(this).children('.content').addClass('active');

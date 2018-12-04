@@ -2334,7 +2334,8 @@ footer .logo{
     #season .tab-content .event .content.active{
         width: 600px;
         height: 600px;
-        transform: translate(-22%, -48%);
+        transform: translate(-18%, -56%);
+        padding: 150px 10px 0px 10px;
     }
     /* footer */
     .sns {
@@ -2376,9 +2377,6 @@ footer .logo{
     #season .title-img {
         position: absolute;
         top: -3.9%;
-    }
-    #season .tab-content .event .content.active{
-        transform: translate(-19%, -56%);
     }
 }
 @media (max-width: 360px){
@@ -2579,7 +2577,8 @@ footer .logo{
     #season .tab-content .event .content.active{
         width: 550px;
         height: 550px;
-        transform: translate(-20%, -62%);
+        transform: translate(-21%, -62%);
+        padding: 150px 30px 0px 30px;
     }
     #season .tab-content .event .content h4{
         font-size: 16px;

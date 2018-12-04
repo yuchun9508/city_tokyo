@@ -242,6 +242,9 @@
       $('.toggle-menu .button').on('click',function(){
         $('.toggle-menu .content').toggle();
       })
+      $('.toggle-menu .content ul li').on('click',function(){
+        $('.toggle-menu .content').hide();
+      })
 
       //cascading-tab
       $('.ctg01').addClass('active').children().addClass('active');

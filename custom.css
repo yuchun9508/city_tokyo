@@ -10,6 +10,9 @@ a{
     width: 100%;
     overflow-x: hidden;
 }
+.for-mobile{
+    display: none;
+}
 
 /* header */
 header{
@@ -921,7 +924,7 @@ h3{
     z-index: -1;
 }
 /* collapse */
-#theme .desciption{
+#theme .description{
     text-align: center;
     padding: 50px 100px;
     letter-spacing: 3px;
@@ -1928,7 +1931,7 @@ footer .logo{
         width: 45%;
         margin: 6% 2%;
     }
-    #theme .desciption {
+    #theme .description {
         width: 90%;
         padding: 50px 40px;
     }
@@ -2009,6 +2012,12 @@ footer .logo{
 
 }
 @media (max-width: 480px){
+    .for-pc{
+        display: none;
+    }
+    .for-mobile{
+        display: block;
+    }
     .hide-content{
         display: none;
     }
@@ -2186,7 +2195,7 @@ footer .logo{
     #theme .nav-tabs > li > a:hover span, #theme .nav-tabs > li.active > a > span {
         border-bottom: none;
     }
-    #theme .desciption {
+    #theme .description {
         padding: 30px;
     }
     #theme .panel-heading .content {
@@ -2235,6 +2244,9 @@ footer .logo{
     }
     .half.suburbs {
         padding: 200px 20px 100px 20px;
+    }
+    #expert .slide-window {
+        margin-top: 15px;
     }
     #expert .button h4 {
         font-size: 18px;
@@ -2314,7 +2326,7 @@ footer .logo{
         position: absolute;
         top: -4.7%;
     }
-    #theme .desciption {
+    #theme .description {
         padding: 20px;
     }
     .arrow-down {
@@ -2503,7 +2515,7 @@ footer .logo{
     #theme .nav-tabs > li > a {
         font-size: 14px;
     }
-    #theme .desciption {
+    #theme .description {
         font-size: 12px;
     }
     #theme .panel-heading a ul li {

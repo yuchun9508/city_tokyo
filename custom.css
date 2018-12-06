@@ -2076,8 +2076,14 @@ footer .logo{
     #top5 .tab-content {
         padding: 0 30px 30px 30px;
     }
+    #top5 .tab-content p {
+        font-weight: normal !important;
+    }
     .ctg-content {
         padding: 15% 20px 10px 20px;
+    }
+    .ctg-content p {
+        font-weight: normal !important;
     }
     .tab-title {
         position: relative;

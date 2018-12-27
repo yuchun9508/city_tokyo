@@ -2190,10 +2190,21 @@ footer .logo{
         background: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181227043153_wrS8X/jpg);
         background-position: center center;
     }
+    .banner:before{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 30%;
+        background-image: linear-gradient(to top, black, transparent);
+        opacity: 0.5;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
     #scroll-down {
         position: absolute;
         bottom: 10%;
-        left: 37%;
+        left: 36%;
         padding-top: 83px;
     }
     .point-down {
@@ -2586,7 +2597,7 @@ footer .logo{
     /* banner */
     #scroll-down {
         position: absolute;
-        left: 35%;
+        left: 32%;
     }
     /* basic-info */
     .intro-text {

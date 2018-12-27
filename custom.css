@@ -40,7 +40,7 @@ header .container{
     position: relative;
     background: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130092948_aUlRY/jpg);
     background-size: cover;
-    background-position: 15% 100%;
+    background-position: center center;
 }
 .banner .logo{
     width: 8%;
@@ -76,6 +76,154 @@ header .container{
     left: 0;
     z-index: 1;
 }
+#scroll-down {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 45%;
+    padding-top: 83px;
+    z-index: 2;
+}
+.point-down {
+    display: block;
+    margin: 0 auto;
+    width: 8px;
+    height: 38px;
+}
+.point-down:after {
+    content: '';
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+#scroll-title {
+    display: block;
+    text-transform: uppercase;
+    color: white;
+    font-size:14px;
+    letter-spacing:.1em;
+}
+#scroll-down::before {
+    -webkit-animation: elasticus 1.2s cubic-bezier(1, 0, 0, 1) infinite;
+    /* Safari 4+ */
+    animation: elasticus 1.2s cubic-bezier(1, 0, 0, 1) infinite;
+    /* IE 10+, Fx 29+ */
+    
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 90px;
+    background: white;
+    content: ' ';
+}
+@-webkit-keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
+@keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
 
 /* menu */
 #menu{
@@ -109,16 +257,16 @@ header .container{
     line-height: 2.2;
     margin: 10px 30px;
 }
-#menu ul li:hover{
-    color: #26bec9;
-}
 #menu ul li a{
     text-decoration: none;
+}
+#menu-center ul li a.active{
+    color: #26bec9 !important;
 }
 #menu .logo{
     width: 50%;
 }
-.area:not(#menu):not(#season){
+.area:not(#menu):not(#season):not(#transport):not(#expert){
     padding-bottom: 100px;
 }
 .toggle-menu{
@@ -858,12 +1006,12 @@ h3{
     padding: 0;
 }
 #theme .tab-area{
-    margin-top: 100px;
+    margin-top: 200px;
 }
 #theme .title-img{
     width: 75%;
     position: absolute;
-    top: -4.09%;
+    top: 0;
     left: -1%;
 }
 /* tab */
@@ -924,7 +1072,7 @@ h3{
     z-index: -1;
 }
 /* collapse */
-#theme .description{
+#theme > .container > .tab-area > .tab-content > .tab-pane > .description{
     text-align: center;
     padding: 50px 100px;
     letter-spacing: 3px;
@@ -993,7 +1141,7 @@ h3{
     letter-spacing: 3px;
 }
 #theme .panel-heading .content{
-    height: 250px;
+    height: 230px;
     padding: 15% 15px 10px 15px;
     position: relative;
     z-index: 1;
@@ -1039,23 +1187,30 @@ h3{
 #theme .panel-body p{
     width: 70%;
 }
+#theme .panel-body > ul{
+    width: 70%;
+}
 #theme .panel-body .info{
     color: #26bec9 !important;
 }
 #theme .panel-body .more{
-    border: 1px solid #262626;
     color: #262626;
+    display: block;
+    width: 10%;
+    margin-top: 30px;
+    text-decoration: none !important;
+}
+#theme .panel-body .more span{
+    border: 1px solid #262626;
     padding: 8px 10px;
-    display: inline-block;
-    margin-top: 20px;
     transition: all .5s;
 }
-#theme .panel-body .more:hover{
-    text-decoration: none;
+#theme .panel-body .more span:hover{
     background-color: #262626;
     color: white !important;
 }
 .arrow-up{
+    display: block;
     width: 20px;
     height: 20px;
     border-top: 2px solid #808080;
@@ -1066,6 +1221,10 @@ h3{
     right: 50px;
     z-index: 1;
     transition: all .5s;
+}
+.anchor{
+    padding-top: 80px;
+    margin-top: -80px;
 }
 /* video-carousel */
 .video-carousel{
@@ -1386,7 +1545,7 @@ h3{
 #season .title-img{
     width: 100%;
     position: absolute;
-    top: -10.4%;
+    top: 0;
     left: 0;
 }
 #season .title-img.mobile{
@@ -1394,7 +1553,7 @@ h3{
 }
 #season .container{
     width: 100%;
-    padding-top: 100px;
+    padding-top: 200px;
     padding-right: 0px;
     padding-left: 0px;
 }
@@ -1556,16 +1715,7 @@ footer .logo{
     #basic-info ul{
         padding: 0px 300px;
     }
-    /* top5 */
-    #top5 .title-img{
-        position: absolute;
-        top: -2%;
-    }
     /* transport */
-    #transport .title-img{
-        position: absolute;
-        top: 2%;
-    }
     #transport .slide-window .button .content{
         position: absolute;
         top: 35%;
@@ -1576,11 +1726,7 @@ footer .logo{
     }
     /* theme */
     #theme .tab-area{
-        margin-top: 200px;
-    }
-    #theme .title-img{
-        position: absolute;
-        top: -3.8%;
+        margin-top: 300px;
     }
     #theme .tab-content{
         margin-top: 80px;
@@ -1605,12 +1751,7 @@ footer .logo{
     }
     /* season */
     #season .container{
-        padding-top: 150px;
-    }
-    #season .title-img{
-        position: absolute;
-        top: -9.9%;
-        left: 0;
+        padding-top: 250px;
     }
     #season .tab-content .event .content{
         width: 450px;
@@ -1669,7 +1810,7 @@ footer .logo{
     /* transport */
     #transport .title-img {
         position: absolute;
-        top: 6%;
+        top: 5.5%;
     }
     #transport .slide-window .button .content {
         position: absolute;
@@ -1722,11 +1863,6 @@ footer .logo{
         margin-left: 25px;
     }
     /* theme */
-    #theme .title-img {
-        position: absolute;
-        top: -4%;
-        left: -1%;
-    }
     #theme .nav-tabs {
         width: 90%;
     }
@@ -1747,6 +1883,9 @@ footer .logo{
         bottom: 25px;
         left: 860px;
     }
+    #theme .panel-body .more {
+        width: 15%;
+    }
     /* expert */
     .half {
         width: 100%;
@@ -1764,11 +1903,6 @@ footer .logo{
         text-align: left;
     }
     /* season */
-    #season .title-img {
-        position: absolute;
-        top: -4.85%;
-        left: 0;
-    }
     #season .tab-content .event {
         width: 50%;
         height: 450px;
@@ -1794,7 +1928,7 @@ footer .logo{
         padding-right: 0px;
         padding-left: 0px;
     }
-    #menu > .container > ul{
+    #menu > .container > #menu-center{
         display: none;
     }
     .toggle-menu{
@@ -1823,7 +1957,20 @@ footer .logo{
         float: none;
         font-size: 24px;
     }
+    #menu-center-m ul li a.active{
+        color: #26bec9 !important;
+    }
     /* basic-info */
+    #basic-info{
+        padding-bottom: 0px !important;
+    }
+    #basic-info .container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .intro {
+        margin-bottom: 10px;
+    }
     .intro-pic {
         float: none;
         width: 100%;
@@ -1836,11 +1983,15 @@ footer .logo{
         padding: 60px;
     }
     #basic-info .half-bg {
-        height: 68vh;
+        display: none;
     }
-    #basic-info ul{
-        width: 90%;
+    #basic-info ul {
+        width: 100%;
         padding-inline-start: 0px;
+        background-color: #26bec9;
+        display: inline-block;
+        padding: 80px 0px;
+        margin-bottom: -10px;
     }
     #basic-info ul li {
         width: 100%;
@@ -1857,6 +2008,9 @@ footer .logo{
         text-align: left;
     }
     /* top5 */
+    #top5{
+        padding-bottom: 0px !important;
+    }
     #top5 .container{
         width: 100%;
         padding-right: 0px;
@@ -1886,8 +2040,10 @@ footer .logo{
     }
     #transport .title-img {
         position: absolute;
-        top: -6%;
         left: -1%;
+    }
+    #transport .slide-window {
+        margin-top: 260px;
     }
     #transport .slide-window .button {
         width: 100%;
@@ -1921,20 +2077,15 @@ footer .logo{
         height: 378px;
     }
     /* theme */
-    #theme .title-img {
-        position: absolute;
-        top: -3.6%;
-    }
     #theme .tab-area {
-        margin-top: 0px;
+        margin-top: 100px;
+    }
+    #theme > .container > .tab-area > .tab-content > .tab-pane > .description {
+        width: 100%;
     }
     #theme .nav-tabs > li {
         width: 45%;
         margin: 6% 2%;
-    }
-    #theme .description {
-        width: 90%;
-        padding: 50px 40px;
     }
     #theme .panel-group {
         width: 100%;
@@ -1948,10 +2099,16 @@ footer .logo{
     #theme .panel-body img {
         width: 100%;
     }
+    #theme .panel-body > ul {
+        width: 100%;
+    }
     .arrow-down {
         position: absolute;
         bottom: 25px;
         left: 720px;
+    }
+    #theme .panel-body .more {
+        width: 20%;
     }
     .video-carousel .owl-carousel .owl-video-play-icon {
         position: absolute;
@@ -1989,8 +2146,6 @@ footer .logo{
     }
     #season .title-img {
         width: 90%;
-        position: absolute;
-        top: -5.5%;
     }
     #season .nav-tabs > li {
         width: 50%;
@@ -2030,6 +2185,20 @@ footer .logo{
         position: absolute;
         top: 580px;
     }
+    /* banner */
+    .banner{
+        background: url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181227043153_wrS8X/jpg);
+        background-position: center center;
+    }
+    #scroll-down {
+        position: absolute;
+        bottom: 10%;
+        left: 37%;
+        padding-top: 83px;
+    }
+    .point-down {
+        height: 20px;
+    }
     /* menu */
     #menu {
         height: 70px;
@@ -2058,8 +2227,8 @@ footer .logo{
     .intro-text p br{
         display: none;
     }
-    #basic-info .half-bg {
-        height: 95vh;
+    #basic-info ul {
+        padding: 50px 15px;
     }
     #basic-info ul li img {
         width: 40%;
@@ -2072,7 +2241,7 @@ footer .logo{
     #top5 .title-img {
         width: 90%;
         position: absolute;
-        top: 4%;
+        top: 3.5%;
     }
     #top5 .tab-content {
         padding: 0 30px 30px 30px;
@@ -2105,12 +2274,8 @@ footer .logo{
         height: 100%;
     }
     /* transport */
-    #transport .title-img {
-        position: absolute;
-        top: -9%;
-    }
     #transport .slide-window {
-        margin-top: 50px;
+        margin-top: 150px;
     }
     #transport .slide-window .button {
         padding: 22% 0%;
@@ -2188,8 +2353,9 @@ footer .logo{
     /* theme */
     #theme .title-img {
         width: 90%;
-        position: absolute;
-        top: -4.9%;
+    }
+    #theme > .container > .tab-area > .tab-content > .tab-pane > .description {
+        padding: 30px;
     }
     #theme .nav-tabs {
         width: 100%;
@@ -2199,11 +2365,12 @@ footer .logo{
         margin: 2% 2%;
         height: 180px;
     }
+    #theme .nav-tabs > li > a {
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        display: inline-block;
+    }
     #theme .nav-tabs > li > a:hover span, #theme .nav-tabs > li.active > a > span {
         border-bottom: none;
-    }
-    #theme .description {
-        padding: 30px;
     }
     #theme .panel-heading .content {
         height: 150px;
@@ -2229,6 +2396,18 @@ footer .logo{
     }
     #theme .panel-body ul, #theme .panel-body ol{
         margin-left: -20px;
+    }
+    #theme .panel-body .more {
+        width: 30%;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    .arrow-up {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        bottom: 10px;
+        right: 47%;
     }
     .video-carousel .owl-video-wrapper::before {
         height: 100%;
@@ -2280,11 +2459,7 @@ footer .logo{
     }
     /* season */
     #season .container {
-        padding-top: 30px;
-    }
-    #season .title-img {
-        position: absolute;
-        top: -3.2%;
+        padding-top: 100px;
     }
     #season .tab-content .event {
         width: 100%;
@@ -2312,11 +2487,11 @@ footer .logo{
         position: absolute;
         top: 493px;
     }
-    /* basic-info */
-    #basic-info .half-bg {
-        height: 120vh;
-    }
     /* transport */
+    #transport .title-img {
+        position: absolute;
+        top: 6.5%;
+    }
     #transport .slide-window .button .content {
         position: absolute;
         top: 10%;
@@ -2329,10 +2504,6 @@ footer .logo{
         padding: 50px 25px;
     }
     /* theme */
-    #theme .title-img {
-        position: absolute;
-        top: -4.7%;
-    }
     #theme .description {
         padding: 20px;
     }
@@ -2345,10 +2516,6 @@ footer .logo{
         padding: 20% 0%;
     }
     /* season */
-    #season .title-img {
-        position: absolute;
-        top: -3.6%;
-    }
     #season .tab-content .event {
         height: 320px;
     }
@@ -2369,15 +2536,7 @@ footer .logo{
         position: absolute;
         top: 522px;
     }
-    /* basic-info */
-    #basic-info .half-bg {
-        height: 115vh;
-    }
     /* transport */
-    #transport .title-img {
-        position: absolute;
-        top: -9.5%;
-    }
     #transport .slide-window .button .content {
         position: absolute;
         top: 8%;
@@ -2387,17 +2546,8 @@ footer .logo{
         padding: 50px 20px;
     }
     /* theme */
-    #theme .title-img {
-        position: absolute;
-        top: -4.9%;
-    }
     #theme .nav-tabs > li {
         height: 170px;
-    }
-    /* season */
-    #season .title-img {
-        position: absolute;
-        top: -3.9%;
     }
 }
 @media (max-width: 360px){
@@ -2407,14 +2557,18 @@ footer .logo{
         top: 499px;
     }
     /* transport */
+    #transport .title-img {
+        position: absolute;
+        top: 7%;
+    }
     .video-content {
         padding: 50px 12px;
     }
-    /* season */
-    #season .title-img {
-        position: absolute;
-        top: -3.4%;
+    /* theme */
+    #theme .panel-body .more {
+        width: 35%;
     }
+    /* season */
     #season .tab-content .event .content.active{
         transform: translate(-20%, -54%);
     }
@@ -2429,15 +2583,17 @@ footer .logo{
         position: absolute;
         top: 438px;
     }
+    /* banner */
+    #scroll-down {
+        position: absolute;
+        left: 35%;
+    }
     /* basic-info */
     .intro-text {
         padding: 20px;
     }
     .intro-text p {
         line-height: 2;
-    }
-    #basic-info .half-bg {
-        height: 135vh;
     }
     /* top5 */
     .tab-title.active {
@@ -2468,12 +2624,8 @@ footer .logo{
         font-size: 12px;
     }
     /* transport */
-    #transport .title-img {
-        position: absolute;
-        top: -10.6%;
-    }
     #transport .slide-window {
-        margin-top: 10px;
+        margin-top: 135px;
     }
     #transport .slide-window .button {
         padding: 23% 0%;
@@ -2512,10 +2664,6 @@ footer .logo{
         height: 360px;
     }
     /* theme */
-    #theme .title-img {
-        position: absolute;
-        top: -4.7%;
-    }
     #theme .nav-tabs > li {
         height: 150px;
     }
@@ -2586,10 +2734,6 @@ footer .logo{
         margin-left: -12px;
     }
     /* season */
-    #season .title-img {
-        position: absolute;
-        top: -3.9%;
-    }
     #season .tab-content .event .content {
         width: 300px;
         height: 300px;

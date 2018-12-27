@@ -117,7 +117,7 @@
       }
     }
 
-    $(document).scroll(function(){  
+    $(window).scroll(function(){  
 
       //scroll layer
       if($(window).width() > 1919){
@@ -224,6 +224,74 @@
 
     $(document).ready(function(){
 
+      $(document).on("scroll", onScroll);
+    
+      //smoothscroll
+      $('#menu-center a[href^="#"]').on('click', function (e) {
+          e.preventDefault();
+          $(document).off("scroll");
+          
+          $('a').each(function () {
+              $(this).removeClass('active');
+          })
+          $(this).addClass('active');
+        
+          var target = this.hash,
+              menu = target;
+          $target = $(target);
+          $('html, body').stop().animate({
+              'scrollTop': $target.offset().top-79
+          }, 3000, 'swing', function (e) {
+              $(document).on("scroll", onScroll);
+              e.preventDefault();
+              window.location.hash = target;  
+          });
+      })
+      if($(window).width() < 769){
+        $('#menu-center-m a[href^="#"]').on('click', function (e) {
+            e.preventDefault();
+            $(document).off("scroll");
+            
+            $('a').each(function () {
+                $(this).removeClass('active');
+            })
+            $(this).addClass('active');
+          
+            var target = this.hash,
+                menu = target;
+            $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-79
+            }, 3000, 'swing', function (e) {
+                $(document).on("scroll", onScroll);
+                e.preventDefault();
+                window.location.hash = target;  
+            });
+        })
+      }
+      if($(window).width() < 481){
+        $('#menu-center-m a[href^="#"]').on('click', function (e) {
+            e.preventDefault();
+            $(document).off("scroll");
+            
+            $('a').each(function () {
+                $(this).removeClass('active');
+            })
+            $(this).addClass('active');
+          
+            var target = this.hash,
+                menu = target;
+            $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-69
+            }, 3000, 'swing', function (e) {
+                $(document).on("scroll", onScroll);
+                e.preventDefault();
+                window.location.hash = target;  
+            });
+        })
+      }
+
       //scroll-link
       $('.scroll').on('click',function(e) {
         e.preventDefault();
@@ -231,11 +299,24 @@
         var target = this.hash;
         if ($(this).data('offset') != undefined) offset = $(this).data('offset');
         $('html, body').stop().animate({
-          'scrollTop': $(target).offset().top - offset
+          'scrollTop': $(target).offset().top-78 - offset
         }, 3000, 'swing', function() {
-          // window.location.hash = target;
+          //window.location.hash = target;
         });
       })
+      if($(window).width() < 481){
+        $('.scroll').on('click',function(e) {
+          e.preventDefault();
+          var offset = 0;
+          var target = this.hash;
+          if ($(this).data('offset') != undefined) offset = $(this).data('offset');
+          $('html, body').stop().animate({
+            'scrollTop': $(target).offset().top-68 - offset
+          }, 3000, 'swing', function() {
+            //window.location.hash = target;
+          });
+        })
+      }
 
       //toggle menu
       $('.toggle-menu .content').hide();
@@ -395,10 +476,21 @@
         $('.panel-heading .content').on('mouseleave',function(){
           $(this).animate({paddingTop:"15%"});
         })
-        /*$('.arrow-up').on('click',function(){
-          $(this).parents('.panel-collapse').collapse("hide");
-        })*/
       }
+      
+      $('.panel-collapse').on('hide.bs.collapse', function(){
+        $(this).siblings('.panel-heading').children().children('.arrow-down').show();
+      })
+      $('.panel-collapse').on('show.bs.collapse', function(){
+        $(this).siblings('.panel-heading').children().children('.arrow-down').hide();
+      })
+      $('.arrow-up').on('click',function(){
+        $(this).parents('.panel-collapse').collapse("hide");
+      })
+
+      $('#theme .tab-area ul li').on('click',function(){
+        $('.panel-collapse').collapse("hide");
+      })
 
       //video-carousel
       $('.video-carousel .owl-carousel').owlCarousel({
@@ -494,8 +586,59 @@
           $(this).children('.content').addClass('active');
         })
       }
+      //season mobile
+      if($(window).width() < 481){
+        $('#season .nav-tabs li').on('click',function(){
+          $('html,body').animate({
+              scrollTop: $('#season .tab-content').offset().top},
+              'slow');
+        })
+      }
       
     });
+
+    //scroll section menu
+    function onScroll(event){
+      var scrollPos = $(document).scrollTop();
+      $('#menu-center a:not(a[href="https://www.kkday.com/zh-tw"])').each(function () {
+          var currLink = $(this);
+          var refElement = $(currLink.attr("href"));
+          if (refElement.position().top-79 <= scrollPos && refElement.position().top-79 + refElement.height() > scrollPos) {
+              $('#menu-center ul li a').removeClass("active");
+              currLink.addClass("active");
+          }
+          else{
+              currLink.removeClass("active");
+          }
+      });
+      //mobile
+      if($(window).width() < 769){
+        $('#menu-center-m a').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.position().top-79 <= scrollPos && refElement.position().top-79 + refElement.height() > scrollPos) {
+                $('#menu-center-m ul li a').removeClass("active");
+                currLink.addClass("active");
+            }
+            else{
+                currLink.removeClass("active");
+            }
+        });
+      }
+      if($(window).width() < 481){
+        $('#menu-center-m a').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.position().top-69 <= scrollPos && refElement.position().top-69 + refElement.height() > scrollPos) {
+                $('#menu-center-m ul li a').removeClass("active");
+                currLink.addClass("active");
+            }
+            else{
+                currLink.removeClass("active");
+            }
+        });
+      }
+    }
 
   </script>
 
@@ -511,32 +654,42 @@
       <div class="video-wrap">
         <div id="player"></div>
       </div>
+      <div id="scroll-down">
+        <span class="point-down">
+          <!--css generated icon-->
+        </span>
+        <span id="scroll-title">
+          Scroll down
+        </span>
+      </div>
       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130094229_0Xj7u/png" class="title_layer">
     </section>
 
     <section class="area" id="menu">
       <div class="container">
-        <ul>
-          <li><a href="#basic-info" class="scroll" data-offset="50">基本資訊</a></li>
-          <li><a href="#top5" class="scroll" data-offset="50">精選推薦</a></li>
-          <li><a href="#transport" class="scroll" data-offset="50">交通攻略</a></li>
-          <li><a href="https://www.kkday.com/zh-tw"><img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130094236_QUbKY/png" class="logo"></a></li>
-          <li><a href="#theme" class="scroll" data-offset="178">主題玩法</a></li>
-          <li><a href="#expert" class="scroll" data-offset="100">達人帶路</a></li>
-          <li><a href="#season" class="scroll" data-offset="178">四季玩法</a></li>
-          <div class="clearfix"></div>
-        </ul>
+        <div id="menu-center">
+          <ul>
+            <li><a href="#basic-info" class="active">基本資訊</a></li>
+            <li><a href="#top5">精選推薦</a></li>
+            <li><a href="#transport">交通攻略</a></li>
+            <li><a href="https://www.kkday.com/zh-tw"><img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130094236_QUbKY/png" class="logo"></a></li>
+            <li><a href="#theme">主題玩法</a></li>
+            <li><a href="#expert">達人帶路</a></li>
+            <li><a href="#season">四季玩法</a></li>
+            <div class="clearfix"></div>
+          </ul>
+        </div>
         <div class="toggle-menu">
           <a href="https://www.kkday.com/zh-tw"><img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130094236_QUbKY/png" class="logo"></a></li>
           <div class="button"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
-          <div class="content">
+          <div class="content" id="menu-center-m">
             <ul>
-              <li><a href="#basic-info" class="scroll" data-offset="50">基本資訊</a></li>
-              <li><a href="#top5" class="scroll" data-offset="50">精選推薦</a></li>
-              <li><a href="#transport" class="scroll" data-offset="50">交通攻略</a></li>
-              <li><a href="#theme" class="scroll" data-offset="178">主題玩法</a></li>
-              <li><a href="#expert" class="scroll" data-offset="100">達人帶路</a></li>
-              <li><a href="#season" class="scroll" data-offset="178">四季玩法</a></li>
+              <li><a href="#basic-info" class="active">基本資訊</a></li>
+              <li><a href="#top5">精選推薦</a></li>
+              <li><a href="#transport">交通攻略</a></li>
+              <li><a href="#theme">主題玩法</a></li>
+              <li><a href="#expert">達人帶路</a></li>
+              <li><a href="#season">四季玩法</a></li>
               <div class="clearfix"></div>
             </ul>
           </div>
@@ -1135,7 +1288,7 @@
                 <div class="modal-body">
                   <h5>成田機場路線圖</h5>
                   <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181224070607_jpLuS/png" class="map">
-                  <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181224071336_FoXZU/png" class="map">
+                  <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181226102124_oSdy2/png" class="map">
                   <h5>羽田機場路線圖</h5>
                   <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181224074621_gNVB4/png" class="map">
                   <div class="row">
@@ -1238,19 +1391,20 @@
                 包括新鮮的生魚片、壽司、定食、拉麵、烏龍麵、串燒、居酒屋與多元的異國餐廳，甚至是各具特色的咖啡館與下午茶餐點；
                 深入澀谷、原宿、表參道、竹下通、新宿、淺草和吉祥寺等地，在大街小巷裡尋找屬於自己的旅行戰利品，也留下難忘的味蕾記憶！</p>
               <p class="description for-mobile">東京是旅者的購物天堂，深入澀谷、原宿、表參道、竹下通、新宿、淺草和吉祥寺等地，嚐遍美味的日式料理與甜點，在大街小巷裡尋找屬於自己的戰利品！</p>
-              <div class="panel-group" id="accordion">
+              <div class="panel-group">
+                <div id="clps1-1" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082653_zzfLv/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1-1">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】東京血拼聖地澀谷 景點、美食、必買全攻略</h3>
                         <p class="hide-content">澀谷不僅百貨公司林立，也是 Disney Store、Loft、MUJI 等大型旗艦店的聚集之地。</p>
                       </div>
@@ -1266,17 +1420,12 @@
                         澀谷 Hikarie 地下三至五樓則有適合輕熟女的 ShinQs 百貨，提供服飾、美妝、雜貨與甜點如青木定治等複合式服務
                         與餐飲。並且，你還可在此一睹揚名海內外的動人故事主角「忠犬八公」銅像，感受八公溫暖真摯的感情！
                       </p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082700_weWp5/jpg">
-                      <p>穿過人流壯觀的澀谷十字交叉路口，體驗至多 3000 人次的日本最大十字路口魅力；
-                        或從星巴克澀谷 TSUTAYA 店俯瞰川流不息的人潮，取得最佳攝影角度！
-                        而位於澀谷站前的旅遊指南中心「綠青蛙」，則是由前東急東橫線超輕量電車 5000 系列車廂改造而成，
-                        別有一番風味！若時間充裕，更可前往人氣咖啡廳——人間關係Cafe de Copain、下午茶專門店 Cafe and Dining and People 等地，
-                        感受日本的文青氣息之餘， 細細品味精緻的美食與香醇咖啡。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082704_hguse/jpg">
                       <ul>
-                        <li>忠犬八公雕像、澀谷十字交叉路口</li>
+                        <li>SHIBUYA109</li>
                         <ul>
-                          <li>澀谷站八號出口（八公口）</li>
+                          <li>地址：東京都渋谷区道玄坂2-29-1（座標：35.659536, 139.698751）</li>
+                          <li>營業時間：商場營業時間為10:00～21:00，餐廳營業時間以各店為準</li>
+                          <li>詳細資訊：<a href="https://www.shibuya109.jp/SHIBUYA/" target="_blank" class="info">SHIBUYA109官網</a></li>
                         </ul>
                         <li>丸井0101</li>
                         <ul>
@@ -1284,11 +1433,17 @@
                           <li>營業時間：11:00 – 21:00（週一～週六）11:00 – 20:30（週日及國定假日）</li>
                           <li>詳細資訊：<a href="https://www.0101.co.jp/013/?from=01_pc_top_gn" target="_blank" class="info">丸井OIOI官網</a></li>
                         </ul>
-                        <li>SHIBUYA109</li>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082700_weWp5/jpg">
+                      <p>穿過人流壯觀的澀谷十字交叉路口，體驗至多 3000 人次的日本最大十字路口魅力；
+                        或從星巴克澀谷 TSUTAYA 店俯瞰川流不息的人潮，取得最佳攝影角度！
+                        而位於澀谷站前的旅遊指南中心「綠青蛙」，則是由前東急東橫線超輕量電車 5000 系列車廂改造而成，
+                        別有一番風味！若時間充裕，更可前往人氣咖啡廳——人間關係Cafe de Copain、下午茶專門店 Cafe and Dining and People 等地，
+                        感受日本的文青氣息之餘， 細細品味精緻的美食與香醇咖啡。</p>
+                      <ul>
+                        <li>忠犬八公雕像、澀谷十字交叉路口</li>
                         <ul>
-                          <li>地址：東京都渋谷区道玄坂2-29-1（座標：35.659536, 139.698751）</li>
-                          <li>營業時間：商場營業時間為10:00～21:00，餐廳營業時間以各店為準</li>
-                          <li>詳細資訊：<a href="https://www.shibuya109.jp/SHIBUYA/" target="_blank" class="info">SHIBUYA109官網</a></li>
+                          <li>澀谷站八號出口（八公口）</li>
                         </ul>
                         <li>澀谷Hikarie（渋谷ヒカリエ）</li>
                         <ul>
@@ -1296,35 +1451,26 @@
                           <li>營業時間：商場營業時間為10:00～21:00，餐廳營業時間以各店為準</li>
                           <li>詳細資訊：<a href="http://www.hikarie.jp.t.ui.hp.transer.com/" target="_blank" class="info">Hikarie官網</a></li>
                         </ul>
-                        <li>人間關係 Cafe de Copain</li>
-                        <ul>
-                          <li>地址：東京都渋谷區宇田川町16-12（座標：35.661141, 139.698940）
-                          <li>營業時間：9:00 – 23:30
-                        </ul>
-                        <li>Cafe and Dining and People</li>
-                        <ul>
-                          <li>地址：東京都渋谷区宇田川町10-2（座標：35.662714, 139.697191）
-                          <li>營業時間：12:00 – 23:30
-                          <li>詳細資訊：<a href="https://www.andpeople.co.jp/" target="_blank" class="info">and People官網</a>
-                        </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7052/asia-japan-shibuya" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082704_hguse/jpg">
+                      <a href="https://blog.kkday.com/7052/asia-japan-shibuya" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps1-1" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps1-2" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130082708_3UzBU/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1-2">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】感受東京老江戶的古樸風情，淺草上野必訪、必吃、交通超詳細攻略</h3>
                         <h3 class="for-mobile">【日本】東京老江戶古樸風情，淺草上野必訪、必吃、交通詳細攻略</h3>
                         <p class="hide-content">淺草、上野是東京的下町文化中心，為過去低階武士和平民的居住地，泛指東京舊城區，也就是俗稱的江戶一帶。</p>
@@ -1341,110 +1487,28 @@
                         偕同好友一起穿上傳統和服漫步淺草街頭，悠閒品嚐在地小吃如人形燒、炸饅頭、糰子、菠蘿包、銅鑼燒、仙貝、咖哩麵包，
                         或前往淺草新地標東京晴空塔，在結合押上站與 Solamachi 購物中心的舒適空間，逛遍時尚品牌、特色餐廳、雜貨與甜品店，
                         尋找獨一無二的晴空塔限定商品，同時將美麗的東京景色盡收眼底！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083145_JUb0S/jpg">
-                      <p>上野銜接東京與東北地區，故有「北方玄關」之稱，來到知名購物聖地阿美橫町，你可以找到各式各樣好吃又便宜的零食、雜貨，
-                        並到四大藥妝——松本清、OS DRUG、SUNDRUG 和大國藥妝買齊所有必需品，還可享受部分免稅的優惠。
-                        來到佔地廣大的上野恩賜公園，深入綠意盎然的步道，在裝潢優雅的 Park Side Cafe 或全木造的休閒風星巴克裡喝一杯咖啡，
-                        參觀上野動物園、美術館、博物館與科博館等，度過美好的假期時光。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083149_FNRSo/jpg">
-                      <p>若從上野站步行至御徒町站間的高架橋下，還有許多特色居酒屋可小酌一番；或品嚐上野藪蕎麥麵、炸肉餅等美味佳餚，
-                        深入道地的懷舊日本平民風情。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083152_ds4DU/jpg">
-                      <h5>淺草</h5>
                       <ul>
                         <li>淺草寺（仲見世通、傳法院通、寶藏門、五重塔）</li>
                         <ul>
                           <li>交通：東武伊勢崎線、東京地下鐵、Tsukuba Express「淺草」站步行約5分鐘，都營地鐵淺草線「淺草」站A4出口步行5分鐘。</li>
                           <li>營業時間： 06:00～17:00</li>
-                          <li>官網：<a href="http://www.senso-ji.jp/about/index_c.html" target="_blank" class="info">淺草寺</a></li>
                         </ul>
-                        <li>晴空塔</li>
+                        <li>【百年老店——木村家本店】</li>
                         <ul>
-                          <li>地址：東京都墨田區押上一丁目1-13（座標：35.710064, 139.810704）</li>
-                          <li>交通：地鐵東武晴空塔線(又名東武伊勢崎線)，下車直達/東京metro半藏門線、都營淺草線「押上」站下車，步行1分鐘</li>
-                          <li>開放時間： 08:00～22:00（入場時間至21：00）</li>
-                          <li>官網：<a href="http://www.tokyo-skytree.jp/cn_t/" target="_blank" class="info">東京晴空塔</a></li>
-                        </ul>
-                        <li>人形燒</li>
-                        <ul>
-                          <li>【淺草觀音御用——龜屋】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草1-37-1 (攤位編號E27)，往淺草寺方向的右手邊</li>
-                            <li>電話：+81 3-3842-2796</li>
-                            <li>營業時間： 09:30～19:00</li>
-                            <li>價錢：七個500円</li>
-                          </ul>
-                          <li>【百年老店——木村家本店】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草2-3-1，淺草觀音寺正對面 (攤位編號E53)</li>
-                            <li>電話：+81 3-3844-9754</li>
-                            <li>營業時間： 09:30～18:30</li>
-                            <li>價錢：四個300円</li>
-                            <li>官網：<a href="http://www.kimura-ya.co.jp/" target="_blank" class="info">木村家本店</a></li>
-                          </ul>
-                        </ul>
-                        <li>炸饅頭</li>
-                        <ul>
-                          <li>【淺草九重 あげまんじゅう】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草2丁目3-1(攤位編號E51)</li>
-                            <li>電話：+81 3-3841-9386</li>
-                            <li>營業時間： 09:30～19:00</li>
-                            <li>價錢：120～200円/顆</li>
-                            <li>官網：<a href="https://twitter.com/asakusakokonoe" target="_blank" class="info">Twitter</a></li>
-                          </ul>
-                        </ul>
-                        <li>糰子</li>
-                        <ul>
-                          <li>【桃太郎團子——吉備糰子きびだんごあづま】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草1丁目18−1(攤位編號W06)，往淺草寺方向的左手邊</li>
-                            <li>電話：+81 3-3843-0190</li>
-                            <li>營業時間： 11:00～21:00（六、日）10:30～21:00</li>
-                            <li>價錢：一串糰子(330円) 配一杯抹茶(110円) 440円</li>
-                            <li>官網：<a href="https://twitter.com/asakusakokonoe" target="_blank" class="info">浅草きびだんご　あづま</a></li>
-                          </ul>
-                        </ul>
-                        <li>麵包</li>
-                        <ul>
-                          <li>【花月堂雷門店】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草 1-18-11（座標：35.711501, 139.796061）</li>
-                            <li>電話：+81 3-3847-5251</li>
-                            <li>營業時間： 09:00～17:00</li>
-                            <li>價錢：200円/顆</li>
-                            <li>官網：<a href="https://asakusa-kagetudo.com/" target="_blank" class="info">花月堂</a>
-                          </ul>
-                          <li>【黑毛和牛咖哩麵包——豐福】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草2-3-4（座標：35.712911, 139.796084）</li>
-                            <li>營業時間： 10:00～19:00</li>
-                            <li>官網：<a href="http://toyofuku-curry.com/" target="_blank" class="info">豐福</a>
-                          </ul>
-                        </ul>
-                        <li>銅鑼燒</li>
-                        <ul>
-                          <li>【龜十】</li>
-                          <ul>
-                            <li>地址：東京都台東区雷門2-18-11</li>
-                            <li>交通：都營「淺草」站A4出口徒步3分鐘，東京地鐵「淺草」站2口徒步1分鐘</li>
-                            <li>電話：+81 3-3841-2210</li>
-                            <li>營業時間： 10:00～20:30</li>
-                          </ul>
-                        </ul>
-                        <li>仙貝</li>
-                        <ul>
-                          <li>【龜屋】</li>
-                          <ul>
-                            <li>地址：東京都台東区浅草1-37-1 (攤位編號E27)，往淺草寺方向的右手邊</li>
-                            <li>電話：+81 3-3842-2796</li>
-                            <li>營業時間： 09:30～19:00</li>
-                          </ul>
+                          <li>地址：東京都台東区浅草2-3-1，淺草觀音寺正對面 (攤位編號E53)</li>
+                          <li>電話：+81 3-3844-9754</li>
+                          <li>營業時間： 09:30～18:30</li>
+                          <li>價錢：四個300円</li>
+                          <li>官網：<a href="http://www.kimura-ya.co.jp/" target="_blank" class="info">木村家本店</a></li>
                         </ul>
                       </ul>
-                      <h5>上野</h5>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083145_JUb0S/jpg">
+                      <p>上野銜接東京與東北地區，故有「北方玄關」之稱，來到知名購物聖地阿美橫町，你可以找到各式各樣好吃又便宜的零食、雜貨，
+                        並到四大藥妝——松本清、OS DRUG、SUNDRUG 和大國藥妝買齊所有必需品，還可享受部分免稅的優惠。
+                        來到佔地廣大的上野恩賜公園，深入綠意盎然的步道，在裝潢優雅的 Park Side Cafe 或全木造的休閒風星巴克裡喝一杯咖啡，
+                        參觀上野動物園、美術館、博物館與科博館等，度過美好的假期時光。</p>
                       <ul>
-                        <li>上野恩賜公園（上野公園、星巴克、上野之森美術館、國立西洋美術館、東京國立博物館、東京都美術館、國立科學博物館）</li>
+                        <li>上野恩賜公園</li>
                         <ul>
                           <li>交通：</li>
                           <ol>
@@ -1452,92 +1516,48 @@
                             <li>東京地下鐵銀座線、日比谷線「上野」站G16、H17出口徒歩約5分鐘</li>
                             <li>京成地鐵本線「京成上野」站徒歩約1分鐘</li>
                           </ol>
-                          <li>電話：+81 3-3828-5644</li>
                           <li>官網：<a href="http://www.kensetsu.metro.tokyo.jp/jigyo/park/kouenannai/park/ueno/index_top.html" target="_blank" class="info">上野恩賜公園</a>
                             、<a href="http://www.ueno-panda.jp/" target="_blank" class="info">上野動物園</a>
-                            、<a href="http://www.ueno-mori.org/" target="_blank" class="info">上野之森美術館</a>
-                            、<a href="http://www.nmwa.go.jp/jp/index.html" target="_blank" class="info">國立西洋美術館</a>
-                            、<a href="http://www.tnm.jp/" target="_blank" class="info">東京國立博物館</a>
-                            、<a href="http://www.tobikan.jp/" target="_blank" class="info">東京都美術館</a>
-                            、<a href="http://www.kahaku.go.jp/" target="_blank" class="info">國立科學博物館</a></li>
+                            、<a href="http://www.ueno-mori.org/" target="_blank" class="info">上野之森美術館</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083149_FNRSo/jpg">
+                      <p>若從上野站步行至御徒町站間的高架橋下，還有許多特色居酒屋可小酌一番；或品嚐上野藪蕎麥麵、炸肉餅等美味佳餚，
+                        深入道地的懷舊日本平民風情。</p>
+                      <ul>
                         <li>上野居酒屋</li>
                         <ul>
                           <li>【文樂】</li>
                           <ul>
                             <li>地址：東京都台東区上野6-12-1（座標：35.710439, 139.774922）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li>JR「上野」站不忍口徒步3分鐘</li>
-                              <li>京成電鐵「京成上野」站徒步3分鐘</li>
-                            </ol>
-                            <li>電話：+81 3-3832-0319</li>
                             <li>營業時間：14:00～22:00（六）12:00～20:00（日）11:00～19:00</li>
                           </ul>
-                          <li>【大統領】</li>
-                          <ul>
-                            <li>地址：東京都台東區上野6-10-14（座標：35.710329, 139.774777）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li>JR「上野」站不忍口徒步3分鐘</li>
-                              <li>京成電鐵「京成上野」站徒步2分鐘</li>
-                            </ol>
-                            <li>電話：+81 3-3832-5622</li>
-                            <li>營業時間：10:00～24:00（日）09:00～24:00</li>
-                            <li>官網：<a href="http://www.ameyoko.net/shop/280" target="_blank" class="info">もつ焼　大統領</a></li>
-                          </ul>
-                          <li>【佐原屋本店】</li>
-                          <ul>
-                            <li>地址：東京都台東区上野5-27-5（座標：35.707300, 139.774773）</li>
-                            <li>交通：交通：「御徒町站」一出口</li>
-                            <li>電話：+81 3-3831-6388</li>
-                            <li>營業時間：11:00～14:00，17:00～23:30，每月第二、三個六、日公休</li>
-                          </ul>
-                        </ul>
-                        <li>肉の大山–炸肉餅</li>
-                        <ul>
-                          <li>地址：東京都台東區上野6-13-2（座標：35.710419, 139.775242）</li>
-                          <li>交通：東京地下鐵銀座線、日比谷線「上野」站6號出口徒步2分</li>
-                          <li>電話：03-3831-9007</li>
-                          <li>營業時間：11:00～23:00（法定節日）11:00～22:00</li>
-                          <li>官網：<a href="http://www.ohyama.com/ueno" target="_blank" class="info">肉の大山</a></li>
                         </ul>
                         <li>上野藪蕎麥麵</li>
                         <ul>
                           <li>地址：東京都台東區上野6-9-16（座標：35.710196, 139.775462）</li>
-                          <li>交通：JR「上野站」步行1分鐘</li>
-                          <li>電話：+81-3-3831-4728</li>
                           <li>營業時間：11:30～21:00，週三公休</li>
                         </ul>
-                        <li>零食店</li>
-                        <ul>
-                          <li>【二木の菓子】</li>
-                          <ul>
-                            <li>地址：東京都台東區上野4-6-1（座標：35.708553, 139.774418）</li>
-                            <li>交通：「上野御徒町」站徒步三分鐘</li>
-                            <li>電話：+81 3-3833-4051</li>
-                            <li>營業時間：10:00～20:00</li>
-                            <li>官網：<a href="http://www.nikinokashi.co.jp/shoplist/bickan/" target="_blank" class="info">二木の菓子</a></li>
-                          </ul>
-                        </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7236/asia-japan-asakusa-ueno" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083152_ds4DU/jpg">
+                      <a href="https://blog.kkday.com/7236/asia-japan-asakusa-ueno" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps1-2" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps1-3" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083156_OiRkc/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1-3">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】名媛貴婦的逛街天堂！銀座有樂町必逛、下午茶、交通全攻略</h3>
                         <p class="hide-content">東京銀座與倫敦牛津街、紐約第五大道齊名世界三大購物街，百年老店與國際時尚潮流比鄰而立，不僅是日本上流社會的代名詞，也是全日本地價最昂貴的地段之ㄧ。</p>
                       </div>
@@ -1553,239 +1573,96 @@
                         文具店如銀座伊東屋 G.itoya，享用明治時期即開業的銀座天國、日本第一間洋食店煉瓦亭、國民點心紅豆麵包創始店木村家，
                         以及過去文人雅士聚集地 Lupin Bar 等，感受銀座橫跨今昔的神秘氣質。
                       </p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083204_ZPr3M/jpg">
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083207_f4mIA/jpg">
-                      <p>逛街小憩，可選擇至 BVLGARI Café、SHISEIDO Café、 CHANEL Café 等下午茶名店與好姐妹共度；
-                        或在入夜後仍不掩高雅氣息的銀座，體驗全套懷石料理「銀座波奈」、高級和食「肉割烹宮下」等，深入日本上流社會中心，
-                        在精緻甜品或絕美夜色的陪伴下慶祝難忘的紀念日與美好時光。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083211_pdUCi/jpeg">
-                      <p>有樂町、日比谷一帶，則是新興的平價購物商圈，鄰近歌舞伎座、宮崎駿大笨鐘、築地場外市場等知名景點，
-                        聚集了丸井 0101 百貨、Lumine、MUJI、阪急紳士館 TOKYO，以及美食天堂 ITOCiA Plaza 等逛街勝地，
-                        吸引年輕族群駐足。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083214_EC6IS/jpg">
-                      <p>你可在此大啖異國美食，購買可口點心、精緻伴手禮或有機農產品，天黑後再步行到有樂町鐵道高架橋下，
-                        隨機找一間復古的昭和懷舊居酒屋，聽著頭頂上電車行駛的隆隆聲響，點一杯啤酒搭配炸物、串燒，享受道地的日本生活文化！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083217_kCOQn/jpg">
-                      <h5>銀座</h5>
                       <ul>
-                        <li>百貨</li>
+                        <li>【TOKYU PLAZA GINZA】</li>
                         <ul>
-                          <li>【TOKYU PLAZA GINZA】</li>
-                          <ul>
-                            <li>地址：東京都中央區銀座5-2-1（座標：35.672150, 139.762441）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li>東京地下鐵：銀座線、丸之內線、日比谷線「銀座」站C2、C3出口步行1分鐘，
-                                日比谷線、千代田線「日比谷」站A1出口步行2分鐘，有樂町線「有樂町」站A0出口步行2分鐘。</li>
-                              <li>JR：山手線、京濱東北線「有樂町」站銀座出口步行4分鐘</li>
-                            </ol>
-                            <li>電話：+81 3-3571-0109</li>
-                            <li>營業時間：11:00～21:00</li>
-                            <li>官網：<a href="https://ginza.tokyu-plaza.com/" target="_blank" class="info">TOKYU PLAZA GINZA</a></li>
-                          </ul>
-                          <li>【GINZA SIX】</li>
-                          <ul>
-                            <li>地址：東京都中央區銀座6-10-1（座標：35.669614, 139.764039）</li>
-                            <li>交通：交通：東京地下鐵「銀座」站 A3出口步行2分鐘</li>
-                            <li>電話：03-6891-3390（僅供日文服務）</li>
-                            <li>營業時間：10:30～20:30，餐廳11:00～23:30</li>
-                            <li>官網：<a href="https://ginza6.tokyo/" target="_blank" class="info">GINZA SIX</a></li>
-                          </ul>
-                          <li>【GINZA ViVi & erume de beat】</li>
-                          <ul>
-                            <li>地址：104-0061 東京都中央區銀座8-7先 銀座Ginza NINE 2號館1F（座標：35.667613, 139.760849）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li>東京地下鐵：銀座線、淺草線「新橋」站3、5出口步行1分鐘。</li>
-                              <li>JR：山手線「新橋」站 銀座口徒步2分鐘</li>
-                            </ol>
-                            <li>電話：03-6228-5359（erume de beaute） 03-3572-0530（銀座 vivi）</li>
-                            <li>營業時間：10:00～21:00 （週六、日）11:00～20:00，每月第三個週日公休</li>
-                            <li>官網：<a href="http://www.ginzavivi.com/" target="_blank" class="info">Ginza ViVi & erume de beaute</a></li>
-                          </ul>
+                          <li>地址：東京都中央區銀座5-2-1（座標：35.672150, 139.762441）</li>
+                          <li>營業時間：11:00～21:00</li>
+                          <li>官網：<a href="https://ginza.tokyu-plaza.com/" target="_blank" class="info">TOKYU PLAZA GINZA</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083204_ZPr3M/jpg">
+                      <ul>
                         <li>銀座伊東屋 G.itoya</li>
                         <ul>
-                          <li>地址：日本東京都中央區銀座２丁目７−１５（座標：35.672997, 139.767383）</li>
                           <li>交通：東京地下鐵：銀座線、丸之內線、日比谷線「銀座」站從A13松屋口往京橋方向徒歩2分鐘</li>
-                          <li>電話：03-3561-8311</li>
                           <li>營業時間：10:00～20:00 （週六、日）10:00～19:00</li>
-                          <li>官網：<a href="http://www.ito-ya.co.jp/ginza/" target="_blank" class="info">伊東屋</a></li>
-                        </ul>
-                        <li>銀座天國</li>
-                        <ul>
-                          <li>地址：東京都中央区銀座8-9-11 銀座天国ビル（座標：35.674395, 139.756285）</li>
-                          <li>交通：</li>
-                          <ol>
-                            <li>東京地下鐵：丸之內線、千代田線「霞關」站或日比谷線「日比谷」站下車後步行2分鐘</li>
-                            <li>JR：山手線「有樂町」站下車後步行8分鐘</li>
-                          </ol>
-                          <li>電話：+81 3-3571-1092</li>
-                          <li>營業時間：11:30～22:00</li>
-                          <li>官網：<a href="http://www.tenkuni.com/" target="_blank" class="info">銀座天國</a></li>
-                        </ul>
-                        <li>煉瓦亭</li>
-                        <ul>
-                          <li>地址：東京都中央区銀座3-5-16（座標：35.672716, 139.766034）</li>
-                          <li>交通：東京地下鐵「銀座」站步行3分鐘</li>
-                          <li>電話：+81 3-3561-3882</li>
-                          <li>營業時間：11:00～15:00，16:40～21:00，週日公休</li>
-                          <li>官網：<a href="http://ginzarengatei.com/" target="_blank" class="info">煉瓦亭</a></li>
                         </ul>
                         <li>木村家紅豆麵包 Kimuraya</li>
                         <ul>
                           <li>地址：東京都中央區銀座4-5-7（座標：35.671679, 139.765261）</li>
                           <li>交通：東京地下鐵「銀座」站A9出口</li>
-                          <li>電話：03-3561-0091</li>
                           <li>營業時間：10:00～21:00（3樓10:30、4樓11:00開始營業）</li>
-                          <li>官網：<a href="http://www.ginzakimuraya.jp/" target="_blank" class="info">Kimuraya</a></li>
                         </ul>
-                        <li>Lupin Bar</li>
-                        <ul>
-                          <li>地址：東京都中央区銀座五丁目５番11号　塚本不動産ビル地階（座標：35.671073, 139.763276）</li>
-                          <li>交通：東京地下鐵「銀座」站B3出口</li>
-                          <li>電話：+81 3-3571-0750</li>
-                          <li>營業時間：17:00～23:00，週日、週ㄧ公休</li>
-                          <li>官網：<a href="http://www.lupin.co.jp/" target="_blank" class="info">Lupin Bar</a></li>
-                        </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083207_f4mIA/jpg">
+                      <p>逛街小憩，可選擇至 BVLGARI Café、SHISEIDO Café、 CHANEL Café 等下午茶名店與好姐妹共度；
+                        或在入夜後仍不掩高雅氣息的銀座，體驗全套懷石料理「銀座波奈」、高級和食「肉割烹宮下」等，深入日本上流社會中心，
+                        在精緻甜品或絕美夜色的陪伴下慶祝難忘的紀念日與美好時光。</p>
+                      <ul>
                         <li>銀座和食 肉割烹宮下</li>
                         <ul>
                           <li>地址：東京都中央区銀座2-2-14 マロニエゲート12F（座標：35.674158, 139.765395）</li>
-                          <li>交通：</li>
-                          <ol>
-                            <li>JR：「有樂町」站 步行3分鐘</li>
-                            <li>東京地下鐵：「銀座一丁目」站 步行1分鐘</li>
-                          </ol>
-                          <li>電話：+81 3-3538-4129</li>
                           <li>營業時間：（一～五） 午餐：11:00-15:00，晚餐：17:00-23:00(L.O.22:00)
                               （六、日）午餐：11:00-16:00，晚餐：16:00-23:00(L.O.22:00)</li>
                           <li>官網：<a href="https://xn----no6at4lqrc60n0pegdy60fbzuis9atk4b97p.com/" target="_blank" class="info">銀座 和食 なら江戸前肉割烹 宮下</a></li>
                         </ul>
-                        <li>銀座波奈</li>
+                        <li>【BVLGARI Café】</li>
                         <ul>
-                          <li>地址：東京都中央区銀座5-5-11 塚本不動産ビルディング4F（座標：35.671065, 139.763277）</li>
-                          <li>交通：東京地下鐵「銀座」站 B5出口 步行2分鐘</li>
-                          <li>電話：+81 3-3571-1987</li>
-                          <li>營業時間：（預約制）17:00-23:00，最後點餐時間：22:00（週六限定）午餐：11:30-14:00</li>
-                          <li>官網：<a href="http://ginza.washokuhana.com/" target="_blank" class="info">銀座波奈</a>
-                        </ul>
-                        <li>貴婦下午茶</li>
-                        <ul>
-                          <li>【BVLGARI Café】</li>
-                          <ul>
-                            <li>地址：東京都中央區銀座2-7-12 寶格麗銀座塔9～11F（座標：35.672950, 139.767319）</li>
-                            <li>交通：東京地下鐵「銀座」站A13 步行3分鐘</li>
-                            <li>電話：03-6362-0555</li>
-                            <li>營業時間：11:30～14:30，18:00～21:30</li>
-                            <li>官網：<a href="https://www.bulgarihotels.com/en_US/tokyo-osaka-restaurants/tokyo/il-ristorante" target="_blank" class="info">BVLGAR</a>
-                          </ul>
-                          <li>【SHISEIDO Café】</li>
-                          <ul>
-                            <li>地址：東京都中央区銀座8-8-3 東京銀座資生堂ビル3F（座標：35.668573, 139.761913）</li>
-                            <li>交通：東京地下鐵「銀座」站A1 步行7分鐘</li>
-                            <li>電話：+81 3-5537-6241</li>
-                            <li>營業時間：11:30～21:30，週一公休</li>
-                            <li>官網：<a href="https://parlour.shiseido.co.jp/shoplist/restaurantginza/" target="_blank" class="info">Shiseido Parlour salon de café</a>
-                          </ul>
-                          <li>【CHANEL Café】</li>
-                          <ul>
-                            <li>地址：東京都中央区銀座3-5-3 シャネル銀座ビル10F（座標：35.673044, 139.766475）</li>
-                            <li>交通：東京地下鐵「銀座」站 A13出口 步行3分鐘</li>
-                            <li>電話：+81 3-5159-5500</li>
-                            <li>營業時間：11:30～16:00（最晚點餐14:00），18:00～23:30（最晚點餐20:30），週一、二休，露天咖啡廳冬天不開放，詳情見官網。</li>
-                            <li>官網：<a href="http://www.beige-tokyo.com/ja/" target="_blank" class="info">Chanel Beige Alain Ducasse Tokyo</a>
-                          </ul>
+                          <li>地址：東京都中央區銀座2-7-12 寶格麗銀座塔9～11F（座標：35.672950, 139.767319）</li>
+                          <li>營業時間：11:30～14:30，18:00～21:30</li>
+                          <li>官網：<a href="https://www.bulgarihotels.com/en_US/tokyo-osaka-restaurants/tokyo/il-ristorante" target="_blank" class="info">BVLGAR</a>
                         </ul>
                       </ul>
-                      <h5>有樂町、日比谷</h5>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083211_pdUCi/jpeg">
+                      <p>有樂町、日比谷一帶，則是新興的平價購物商圈，鄰近歌舞伎座、宮崎駿大笨鐘、築地場外市場等知名景點，
+                        聚集了丸井 0101 百貨、Lumine、MUJI、阪急紳士館 TOKYO，以及美食天堂 ITOCiA Plaza 等逛街勝地，
+                        吸引年輕族群駐足。</p>
                       <ul>
-                        <li>百貨</li>
-                        <ul>
-                          <li>【0101丸井百貨】</li>
-                          <ul>
-                            <li>地址：東京都千代田區有樂町2-7-1（座標：35.674177, 139.763781）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li> JR「有樂町」站中央口步行1分鐘</li>
-                              <li>東京地下鐵有樂町線「有樂町」站 D7-b出口 徒步1分，銀座線/日比谷線/丸之內線「銀座站」C-9出口 徒步1分</li>
-                            </ol>
-                            <li>電話：+81 3-6267-0800</li>
-                            <li>營業時間：11:00～21:00，餐廳11:00～23:00</li>
-                            <li>官網：<a href="http://www.0101.co.jp.t.ex.hp.transer.com/086/" target="_blank" class="info">0101丸井百貨</a>
-                            、<a href="https://www.facebook.com/0101marui.zh/" target="_blank" class="info">丸井FB</a></li>
-                          </ul>
-                          <li>【Lumine】</li>
-                          <ul>
-                            <li>地址：東京都千代田區有樂町2-5-1（座標：35.673452, 139.763037）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li> JR有樂町站銀座口徒步1分鐘</li>
-                              <li>東京地下鐵「銀座」站的C4 出口步行1分鐘、A0出口步行0分鐘，有樂町線「有樂町」站D7出口步行3分鐘</li>
-                            </ol>
-                            <li>電話：+81-3-6268-0730</li>
-                            <li>營業時間：11:00～21:30（六、日）11:00～21:00，餐廳11:00～23:00</li>
-                            <li>官網：<a href="http://www.lumine.ne.jp/yurakucho/" target="_blank" class="info">Lumine</a></li>
-                          </ul>
-                          <li>【阪急紳士館TOKYO】</li>
-                          <ul>
-                            <li>地址：東京都千代田區有樂町2-5-1（座標：35.673637, 139.762465）</li>
-                            <li>交通：</li>
-                            <ol>
-                              <li>JR「有樂町」站 銀座出口步行1分鐘</li>
-                              <li>東京地下鐵「銀座」站 C4出口，日比谷站 A0出口 步行3分鐘</li>
-                            </ol>
-                            <li>電話：03-6252-1381</li>
-                            <li>營業時間：（一、二）12:00～20:00（三～五）12:00～21:00（六）11:00～21:00（日）11:00～20:00</li>
-                            <li>官網：<a href="http://www.hankyu-dept.co.jp/mens-tokyo/" target="_blank" class="info">Hankyu MEN’S TOKYO</a></li>
-                          </ul>
-                        </ul>
-                        <li>ITOCiA Plaza＋FOOD AVENUE</li>
+                        <li>【0101丸井百貨】</li>
                         <ul>
                           <li>地址：東京都千代田區有樂町2-7-1（座標：35.674177, 139.763781）</li>
                           <li>交通：</li>
                           <ol>
-                            <li>JR「有樂町」站中央口步行1分鐘</li>
+                            <li> JR「有樂町」站中央口步行1分鐘</li>
                             <li>東京地下鐵有樂町線「有樂町」站 D7-b出口 徒步1分，銀座線/日比谷線/丸之內線「銀座站」C-9出口 徒步1分</li>
                           </ol>
-                          <li>電話：+81 3-6267-0800</li>
                           <li>營業時間：11:00～21:00，餐廳11:00～23:00</li>
-                          <li>官網：<a href="http://www.itocia.jp/" target="_blank" class="info">ITOCiA</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083214_EC6IS/jpg">
+                      <p>你可在此大啖異國美食，購買可口點心、精緻伴手禮或有機農產品，天黑後再步行到有樂町鐵道高架橋下，
+                        隨機找一間復古的昭和懷舊居酒屋，聽著頭頂上電車行駛的隆隆聲響，點一杯啤酒搭配炸物、串燒，享受道地的日本生活文化！</p>
+                      <ul>
                         <li>有樂町鐵道下昭和風居酒屋</li>
                         <ul>
                           <li>【登運豚 豚豚】</li>
                           <ul>
                             <li>地址：東京都千代田區有樂町2-1-10（座標：35.673042, 139.760756）</li>
                             <li>交通：JR「有樂町」站京橋口步行5分鐘</li>
-                            <li>電話：+81 3-3508-9454</li>
                             <li>營業時間：13:30～23:00（六、日）12:00～23:00</li>
-                          </ul>
-                          <li>【有楽町ねのひ】</li>
-                          <ul>
-                            <li>地址：東京都千代田區有樂町2-3-3（座標：35.673114, 139.761469）</li>
-                            <li>交通：JR「有樂町」站京橋口步行3分鐘</li>
-                            <li>電話：+81 3-3571-9132</li>
-                            <li>營業時間：16:00～01:00（六）15:00～01:00（日）15:00～00:00</li>
                           </ul>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7646/asia-japan-ginza" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083217_kCOQn/jpg">
+                      <a href="https://blog.kkday.com/7646/asia-japan-ginza" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps1-3" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps1-4" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083220_Ky4Ca/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1-4">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】時尚流行最前線 原宿表參道交通、必吃、必逛總攻略</h3>
                         <p class="hide-content">表參道與原宿、竹下通相鄰，適合都會男女約會與購物，其由日本知名建築師安藤忠雄所設計的地標「表參道 HILLS」以狹長外觀與內建的螺旋式坡道聞名，集結許多國際品牌入駐， 堪稱東京的時尚潮流指標之一！</p>
                       </div>
@@ -1799,37 +1676,12 @@
                       <p>除卻購物天堂的美名，表參道精美的下午茶店與特色咖啡廳更是深藏不露！
                         來到表參道，你可品嚐 Bills 鬆餅、Eggs’n Things 鬆餅，前進收藏豐富文具與書籍的文具咖啡廳，
                         或豪邁地咬一口 Luke’s Lobster 龍蝦堡，滿滿都是難忘滋味的幸福回憶！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083537_kV4Im/jpg">
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083540_TtcoJ/jpg">
                       <ul>
-                        <li>表參道 HILLS</li>
-                        <ul>
-                          <li>地址：東京都渋谷区神宮前4-12-10（座標：35.667167, 139.709042）</li>
-                          <li>營業時間：</li>
-                          <ul>
-                            <li>購物 11:00 – 21:00（週日至20:00）</li>
-                            <li>餐廳 11:00 – 23:30（週日至22:30）</li>
-                            <li>咖啡廳 11:00 – 22:30（週日至21:30）</li>
-                          </ul>
-                          <li>詳細資訊：<a href="http://www.omotesandohills.com/" target="_blank" class="info">表參道 HILLS官網</a></li>
-                        </ul>
-                        <li>Bills</li>
-                        <ul>
-                          <li>地址：東京都渋谷区神宮前4-30-3 東急プラザ表参道原宿7F（座標：35.668726, 139.705986）</li>
-                          <li>營業時間：08:30 – 23:00</li>
-                          <li>詳細資訊：<a href="https://billsjapan.com/jp/%E8%A1%A8%E5%8F%82%E9%81%93" target="_blank" class="info">Bills 官網</a></li>
-                        </ul>
                         <li>文具咖啡廳（文房具カフェ）</li>
                         <ul>
                           <li>地址：東京都渋谷區神宮前4-8-1 內田ビルB1F（座標：35.668152, 139.711796）</li>
                           <li>營業時間：10:00 – 23:30（L.O. 21:00）</li>
-                          <li>詳細資訊：<a href="#" target="_blank" class="info">文具咖啡廳官網</a></li>
-                        </ul>
-                        <li>Eggs’n Things</li>
-                        <ul>
-                          <li>地址：東京都渋谷区神宮前4-30-2（座標：35.668581, 139.706245）</li>
-                          <li>營業時間：8:00 – 22:30（L.O. 21:30）</li>
-                          <li>詳細資訊：<a href="http://www.eggsnthingsjapan.com/harajuku" target="_blank" class="info">Eggs’n Things 官網</a></li>
+                          <li>詳細資訊：<a href="https://www.bun-cafe.com/map" target="_blank" class="info">文具咖啡廳官網</a></li>
                         </ul>
                         <li>Luke’s Lobster</li>
                         <ul>
@@ -1838,8 +1690,24 @@
                           <li>詳細資訊：<a href="http://lukeslobster.jp/" target="_blank" class="info">Luke’s Lobster 官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083537_kV4Im/jpg">
+                      <ul>
+                        <li>Bills</li>
+                        <ul>
+                          <li>地址：東京都渋谷区神宮前4-30-3 東急プラザ表参道原宿7F（座標：35.668726, 139.705986）</li>
+                          <li>營業時間：08:30 – 23:00</li>
+                          <li>詳細資訊：<a href="https://billsjapan.com/jp/%E8%A1%A8%E5%8F%82%E9%81%93" target="_blank" class="info">Bills 官網</a></li>
+                        </ul>
+                        <li>Eggs’n Things</li>
+                        <ul>
+                          <li>地址：東京都渋谷区神宮前4-30-2（座標：35.668581, 139.706245）</li>
+                          <li>營業時間：8:00 – 22:30（L.O. 21:30）</li>
+                          <li>詳細資訊：<a href="http://www.eggsnthingsjapan.com/harajuku" target="_blank" class="info">Eggs’n Things 官網</a></li>
+                        </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083540_TtcoJ/jpg">
+                      <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps1-4" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
@@ -1869,18 +1737,19 @@
                 趕快跟著魯夫一行人學習成為最強海賊王！當然，東京的樂園不只有讓人瘋狂的角色們，
                 這裡的遊樂設施從闔家共享到令人尖叫的刺激遊戲都一應俱全，想讓旅程更加盡興就絕對不能錯過。</p>
               <p class="description for-mobile">東京是個讓孩子們盡情作夢，並實現大人童年夢想的樂園；在這裡有熟悉的迪士尼、Hello Kitty、讓人熱血沸騰的航海王等著你一起來玩耍。</p>
-              <div class="panel-group" id="accordion">
+              <div class="panel-group">
+                <div id="clps2-1" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083543_OpHxY/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-1">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】東京迪士尼樂園門票、交通、Fast Pass教學、必玩必買必吃最強攻略</h3>
                         <h3 class="for-mobile">東京迪士尼樂園門票、交通、必玩必買必吃最強攻略</h3>
                         <p class="hide-content">東京迪士尼樂園可以說是東京樂園最經典的象徵，東京迪士尼用心經營著我們心中的純真夢境，
@@ -1920,22 +1789,23 @@
                           <li>詳細資訊：<a href="https://www.tokyodisneyresort.jp/tc/tdl/" target="_blank" class="info">官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/11689/asia-japan-tokyo-disneyland" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/11689/asia-japan-tokyo-disneyland" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps2-1" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps2-2" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083607_tcMVM/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-2">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】東京迪士尼海洋交通、必玩設施、必吃必買超完整攻略</h3>
                         <p class="hide-content">迪士尼海洋是全世界首個出現「海洋」主題的迪士尼樂園，相較於迪士尼樂園，以更多刺激設施聞名。並且也是讓達菲熊紅遍全世界的功臣，喜歡達菲熊的朋友們務必要朝聖的地方。</p>
                       </div>
@@ -1966,22 +1836,23 @@
                           <li>詳細資訊：<a href="https://www.tokyodisneyresort.jp/tc/tds/" target="_blank" class="info">官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7775/asia-japan-tokyo-disneysea" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/7775/asia-japan-tokyo-disneysea" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps2-2" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps2-3" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083932_OhbqQ/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-3">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】東京航海王交通、門票、園區完整介紹、必買周邊全攻略</h3>
                         <p class="hide-content">位於東京鐵塔裡的航海王樂園，除了可以看到航海王的插畫展、大型模型，還有各種經典片段打造的遊戲與航海王真人表演秀。更有獨一無二的航海王主題餐廳、周邊商品店，航海王的粉絲們到了東京一定不能錯過。</p>
                       </div>
@@ -2006,22 +1877,23 @@
                           <li>詳細資訊：<a href="https://onepiecetower.tokyo/" target="_blank" class="info">官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/21864/asia-japan-tokyo-one-piece-tower" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/21864/asia-japan-tokyo-one-piece-tower" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps2-3" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps2-4" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130083946_5iLfk/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-4">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <li>團體</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】東京三麗鷗彩虹樂園門票、交通、表演遊行資訊、必買伴手禮總攻略</h3>
                         <h3 class="for-mobile">東京三麗鷗彩虹樂園門票、交通、遊行、紀念品攻略</h3>
                         <p class="hide-content">三麗鷗彩虹樂園打造了一個超可愛的Hello Kiity世界，裡頭除了有華麗城堡和超好玩的遊樂設施，還有卡通人物精彩歌舞秀與遊行；另外也加入了蛋黃哥、大耳狗特區，萌得你不要不要的！</p>
@@ -2049,8 +1921,8 @@
                           <li>詳細資訊：<a href="https://www.puroland.jp/" target="_blank" class="info">官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/23936/asia-japan-tokyo-sanrio-puroland" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/23936/asia-japan-tokyo-sanrio-puroland" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps2-4" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
@@ -2075,18 +1947,19 @@
             <div id="tab3" class="tab-pane fade">
               <p class="description for-pc">喜歡老街、雜貨、古著、文具或各式日本製的文青小物嗎？來到東京千萬不能錯過這些私房景點，你可以穿梭在日式老宅邸和充滿舊式韻味的街道，逛盡特色小店、跳蚤市場或商店街，尋覓特別的紀念品，感受道地的日式氛圍。</p>
               <p class="description for-mobile">喜歡雜貨、古著和日製文青小物嗎？千萬別錯過這些東京私房景點，穿梭在日式古宅和老街，愜意走逛特色小店、跳蚤市場與商店街，感受道地日式氛圍。</p>
-              <div class="panel-group" id="accordion">
+              <div class="panel-group">
+                <div id="clps3-1" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084003_OEdqx/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3-1">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【東京】下町谷根千散步，私房景點、美食、老宅改造小店總整理</h3>
                         <p class="hide-content">東京谷中、根津和千駄木等三個地區，被總稱為「谷根千」，並以傳統懷舊的下町風情聞名，適合喜歡隨意走逛散步，享受悠閒風情的旅客走訪。</p>
                       </div>
@@ -2097,22 +1970,8 @@
                     <div class="panel-body">
                       <p class="description">東京谷中、根津和千駄木等三個地區，被總稱為「谷根千」，並以傳統懷舊的下町風情聞名，適合喜歡隨意走逛散步，享受悠閒風情的旅客走訪。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084003_OEdqx/jpg">
-                      <p>步根津神社位於根津站附近，佔地廣闊且氣派，現已列為日本政府國家指定文化財，腹地內還有一塊名為「文豪之石」的石塊，據說日本大文豪夏目漱石過去經常在此沈思。若於春季到訪神社的「杜鵑苑」，還可一睹百種杜鵑花輪番盛開的壯觀景色；或在百座鳥居綿延不斷的走廊體驗日本文化風情，感受神社莊嚴的氣氛。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084319_2NEOm/jpg">
-                      <p>見過傳統捏麵人嗎？「飴細工」是日本平安時代從中國傳入的傳統製糖技術，需先將糖加熱至 90 度，再以手工與剪刀細心塑形。「飴細工 吉原」本店位於千駄木站附近，每間分店均有專業的「飴職人」在此手工製作商品，不僅能親自挑選喜歡的成品，還可以近距離觀看精緻的製程與職人手藝。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084322_WQW4T/jpg">
-                      <p>「上野櫻木ATARI」是東京老宅新生的著名案例之一，建築位於谷中外側的住宅區內。此三棟木屋原建於1938年，在歷經可能被拆除卻幸運被保留的過程後，翻修為現今的店家。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084325_k9SgQ/jpg">
-                      <p>位於根津附近的「釜竹」，是一間手打烏龍麵店，此紅磚建築建於1910年，與隔壁養老院僅有一座庭園之隔，而這兩棟建築均在2005年經知名建築師隈研吾改造，使整體氛圍更有設計感。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084330_c8bxw/jpg">
-                      <p>「はん亭」位於釜竹店面附近，是一間相當有名的炸串老舖，販售多達30種的炸物和串燒料理。根津本店更將明治時代的木造建築保存良好，店內二樓及三樓也提供顧客入座，來到這裡點一杯冰啤酒和朋友暢聊，再美好不過了！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084333_djcYr/jpg">
-                      <p>「Kayaba coffee」位於上野櫻木ATARI附近，喫茶店建築已有百年歷史，不僅保留了古早時期的建築外觀，更沿用昭和時代的傢俱；二樓則是榻榻米區。來到 Kayaba coffee，除了能喝杯咖啡、品嚐三明治，還能感受置身過去般的懷舊感！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084337_BL47y/jpg">
-                      <p>「Yanaka Beer Hall（谷中ビアホール）」是一間位於上野櫻木ATARI裡的啤酒小屋，來到這裡，可以在懷舊的木造建築中品飲谷中自家釀造的薑汁啤酒，以及用土鍋悶煮的傳統煙燻小菜。谷中啤酒因為在原料中加入燻製麥芽，口感特別濃郁，也使啤酒的顏色有了如同谷中木造老屋般的深棕色。如果天氣正好，點杯啤酒在庭院裡悠閒暢飲，確是人間享受！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084341_32UEo/jpg">
-                      <p>「ひみつ堂」刨冰採用天然冰製成冰塊，因此冰品更為綿密細緻，並使用新鮮草莓、哈密瓜等水果，讓品嚐過的人都讚嘆不已，若想在東京尋找美味特色冰品，不妨來到谷中試試！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084345_aDyB4/jpg">
+                      <p>根津神社位於根津站附近，佔地廣闊且氣派，現已列為日本政府國家指定文化財，腹地內還有一塊名為「文豪之石」的石塊，據說日本大文豪夏目漱石過去經常在此沈思。若於春季到訪神社的「杜鵑苑」，還可一睹百種杜鵑花輪番盛開的壯觀景色；或在百座鳥居綿延不斷的走廊體驗日本文化風情，感受神社莊嚴的氣氛。</p>
                       <ul>
                         <li>根津神社</li>
                         <ul>
@@ -2120,6 +1979,10 @@
                           <li>交通方式：千代田線根津站步行5分鐘</li>
                           <li>開放時間：日出～18：00（冬季至17：00）</li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084322_WQW4T/jpg">
+                      <p>見過傳統捏麵人嗎？「飴細工」是日本平安時代從中國傳入的傳統製糖技術，需先將糖加熱至 90 度，再以手工與剪刀細心塑形。「飴細工 吉原」本店位於千駄木站附近，每間分店均有專業的「飴職人」在此手工製作商品，不僅能親自挑選喜歡的成品，還可以近距離觀看精緻的製程與職人手藝。</p>
+                      <ul>
                         <li>飴細工 吉原</li>
                         <ul>
                           <li>地址：東京都文京区千駄木1-23-5 巴ビル 1F<a href="https://www.google.com.tw/maps/place/Amezaiku+Yoshihara+Sendagi+Main+Store/@35.7202328,139.7519833,15z/data=!4m8!1m2!2m1!1z6aO057Sw5belIOWQieWOnw!3m4!1s0x60188dcdd9d47773:0x3b2a09784031fc6d!8m2!3d35.7250109!4d139.7609051?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2127,6 +1990,10 @@
                           <li>營業時間：平日13：00～18：00、六日10：00～18：00（週二公休）</li>
                           <li>官網：<a href="https://ame-yoshihara.com/" target="_blank" class="info">あめ細工吉原</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084325_k9SgQ/jpg">
+                      <p>「上野櫻木ATARI」是東京老宅新生的著名案例之一，建築位於谷中外側的住宅區內。此三棟木屋原建於1938年，在歷經可能被拆除卻幸運被保留的過程後，翻修為現今的店家。</p>
+                      <ul>
                         <li>上野桜木あたり（上野櫻木ATARI）</li>
                         <ul>
                           <li>地址：東京都台東区上野桜木2丁目15−6<a href="https://www.google.com.tw/maps/place/%E4%B8%8A%E9%87%8E%E6%AB%BB%E6%9C%A8%E3%81%82%E3%81%9F%E3%82%8A/@35.722414,139.7687737,17z/data=!3m1!4b1!4m5!3m4!1s0x60188c2af7f630b3:0x4b161663731ccb05!8m2!3d35.722414!4d139.7709624?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2134,13 +2001,21 @@
                           <li>營業時間：8：00～20：00（週一公休）</li>
                           <li>官網：<a href="http://uenosakuragiatari.jp/" target="_blank" class="info">上野桜木あたり</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084330_c8bxw/jpg">
+                      <p>位於根津附近的「釜竹」，是一間手打烏龍麵店，此紅磚建築建於1910年，與隔壁養老院僅有一座庭園之隔，而這兩棟建築均在2005年經知名建築師隈研吾改造，使整體氛圍更有設計感。</p>
+                      <ul>
                         <li>隱密烏龍麵「根津 釜竹」</li>
                         <ul>
-                            <li>地址：東京都文京区根津2−14−18<a href="https://www.google.com.tw/maps/place/%E7%83%8F%E9%BE%8D%E9%BA%B5%E5%90%8D%E5%BA%97+%E6%A0%B9%E6%B4%A5+%E9%87%9C%E7%AB%B9/@35.7180829,139.7647759,17z/data=!3m1!4b1!4m5!3m4!1s0x60188c2ea14f1471:0xfbabdd495ec4e27b!8m2!3d35.7180829!4d139.7669646?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
-                            <li>交通方式：千代田線根津站步行5分鐘</li>
-                            <li>營業時間：11：30～14:30、17：30～21：00（週一整天、週日晚上公休）</li>
-                            <li>官網：<a href="http://kamachiku.com/" target="_blank" class="info">根津 釜竹</a></li>
+                          <li>地址：東京都文京区根津2−14−18<a href="https://www.google.com.tw/maps/place/%E7%83%8F%E9%BE%8D%E9%BA%B5%E5%90%8D%E5%BA%97+%E6%A0%B9%E6%B4%A5+%E9%87%9C%E7%AB%B9/@35.7180829,139.7647759,17z/data=!3m1!4b1!4m5!3m4!1s0x60188c2ea14f1471:0xfbabdd495ec4e27b!8m2!3d35.7180829!4d139.7669646?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
+                          <li>交通方式：千代田線根津站步行5分鐘</li>
+                          <li>營業時間：11：30～14:30、17：30～21：00（週一整天、週日晚上公休）</li>
+                          <li>官網：<a href="http://kamachiku.com/" target="_blank" class="info">根津 釜竹</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084333_djcYr/jpg">
+                      <p>「はん亭」位於釜竹店面附近，是一間相當有名的炸串老舖，販售多達30種的炸物和串燒料理。根津本店更將明治時代的木造建築保存良好，店內二樓及三樓也提供顧客入座，來到這裡點一杯冰啤酒和朋友暢聊，再美好不過了！</p>
+                      <ul>
                         <li>炸串老舖「はん亭 根津本店」</li>
                         <ul>
                           <li>地址：東京都文京区根津2-12-15<a href="https://www.google.com.tw/maps/place/%E8%80%81%E5%B1%8B%E4%B8%B2%E7%82%B8+%E3%81%AF%E3%82%93%E4%BA%AD/@35.7173406,139.763942,17z/data=!3m1!4b1!4m5!3m4!1s0x60188c2e91695555:0x674c1cd02efec349!8m2!3d35.7173406!4d139.7661307?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2148,6 +2023,10 @@
                           <li>營業時間：11：00～15：00、17：00～23：00（週一公休）</li>
                           <li>官網：<a href="http://hantei.co.jp/sinmaru.html" target="_blank" class="info">串揚げ はん亭</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084337_BL47y/jpg">
+                      <p>「Kayaba coffee」位於上野櫻木ATARI附近，喫茶店建築已有百年歷史，不僅保留了古早時期的建築外觀，更沿用昭和時代的傢俱；二樓則是榻榻米區。來到 Kayaba coffee，除了能喝杯咖啡、品嚐三明治，還能感受置身過去般的懷舊感！</p>
+                      <ul>
                         <li>老建築喫茶店「Kayaba coffee」</li>
                         <ul>
                           <li>地址：東京都台東区谷中6-1-29<a href="https://www.google.com.tw/maps/place/Kayaba+Coffee+since+1938/@35.721158,139.7685323,17z/data=!3m1!4b1!4m5!3m4!1s0x60188dd2ff27d8ad:0xb205712509505ae7!8m2!3d35.721158!4d139.770721?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2155,6 +2034,10 @@
                           <li>營業時間：08：00～23：00（週日08：00~18：00）</li>
                           <li>官網：<a href="http://kayaba-coffee.com/" target="_blank" class="info">Kayaba coffee</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084341_32UEo/jpg">
+                      <p>「Yanaka Beer Hall（谷中ビアホール）」是一間位於上野櫻木ATARI裡的啤酒小屋，來到這裡，可以在懷舊的木造建築中品飲谷中自家釀造的薑汁啤酒，以及用土鍋悶煮的傳統煙燻小菜。谷中啤酒因為在原料中加入燻製麥芽，口感特別濃郁，也使啤酒的顏色有了如同谷中木造老屋般的深棕色。如果天氣正好，點杯啤酒在庭院裡悠閒暢飲，確是人間享受！</p>
+                      <ul>
                         <li>谷中啤酒小屋「Yanaka Beer Hall」</li>
                         <ul>
                           <li>地址：東京都台東区谷中6-1-29<a href="https://www.google.com.tw/maps/place/%E8%B0%B7%E4%B8%AD%E5%95%A4%E9%85%92%E9%A4%A8/@35.7222842,139.7687574,17z/data=!3m1!4b1!4m5!3m4!1s0x60188c2af7f630b3:0xb62dc0c98b4f2568!8m2!3d35.7222842!4d139.7709461?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2162,6 +2045,10 @@
                           <li>營業時間：8：00~21：00（週日至18:00）</li>
                           <li>官網：<a href="https://www.herofield.com/bbq/yanakabeerhall/" target="_blank" class="info">谷中ビアホール</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084345_aDyB4/jpg">
+                      <p>「ひみつ堂」刨冰採用天然冰製成冰塊，因此冰品更為綿密細緻，並使用新鮮草莓、哈密瓜等水果，讓品嚐過的人都讚嘆不已，若想在東京尋找美味特色冰品，不妨來到谷中試試！</p>
+                      <ul>
                         <li>日式刨冰名店「ひみつ堂」</li>
                         <ul>
                           <li>地址：東京都台東区谷中3-11-18<a href="https://www.google.com.tw/maps/place/%E5%82%B3%E7%B5%B1%E6%8C%AB%E5%86%B0%E5%90%8D%E5%BA%97+%E3%81%B2%E3%81%BF%E3%81%A4%E5%A0%82/@35.7273365,139.7644081,17z/data=!3m1!4b1!4m5!3m4!1s0x60188dd3e05fe7db:0x9f59666464ce52b2!8m2!3d35.7273365!4d139.7665968?hl=zh-TW&authuser=1" target="_blank" class="info">（Google Map地圖）</a></li>
@@ -2170,22 +2057,23 @@
                           <li>官網：<a href="http://himitsudo.com/" target="_blank" class="info">ひみつ堂</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/18254/asia-japan-tokyo-shimachi" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/18254/asia-japan-tokyo-shimachi" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps3-1" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps3-2" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084348_GBTsC/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3-2">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】雜貨、古著控的天堂，吉祥寺交通、必吃、必逛、路線總攻略</h3>
                         <p class="hide-content">吉祥寺商店街鄰近吉卜力美術館、井之頭公園，適合安排一日遊之外，更值得喜歡生活雜貨與古著的你細細挖寶。</p>
                       </div>
@@ -2196,29 +2084,17 @@
                     <div class="panel-body">
                       <p class="description">吉祥寺商店街鄰近吉卜力美術館、井之頭公園，適合安排一日遊之外，更值得喜歡生活雜貨與古著的你細細挖寶。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084348_GBTsC/jpg">
-                      <p>吉祥寺商店街 SUNROAD 位在吉祥寺車站的北口，集結各大連鎖藥妝店、服飾、配件、生活用品與多元化餐飲，另外，附近更有京王集團旗下的Kirarina百貨公司（キラリナ京王吉祥寺），囊括了Salut、本系土、Marche de Bleuet等日系雜貨品牌。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084353_rp8dE/jpg">
-                      <p>口琴橫丁（ハモニカ横丁）一帶，則是由許多店家組成中央通、朝日通、仲間日通、のれん小路（暖簾小路）、祥和會通5條窄巷，開設許多居酒屋與串燒店，因保留二次大戰後昭和時代氛圍，成為許多旅客喜歡涉足的地標之一。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090147_E1K6j/jpg">
-                      <p>對家飾擺設、地毯、餐具、抱枕等生活用品和古著情有獨鍾的人，則千萬不能錯過 B-company，你可以在這裡找到平價又具有質感的小單品；熱愛古著與日系穿搭者，也能在 NEW YORK JOE EXCHANGE 二手專賣店找到屬於自己風格的衣物與配件，即使價格低廉，依然能看出店家對於商品處理與清潔的堅持！人氣名店 RAGTAG 亦收購諸多名牌與潮流物品，趕緊來吉祥寺淘寶吧！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090151_zPBMf/jpg">
-                      <p>吉祥寺的代表性食物，首選當然是 SATOU 牛肉丸！SATOU 販售頂級松阪牛排、和牛牛排與平價現炸小吃牛肉丸，咬一口金黃酥脆的牛肉丸，感受多汁的內餡與洋蔥甜味，享受平價的高品質美味！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090154_qkVuO/jpg">
-                      <p>如果你喜歡寶可夢，那就務必前來嘗試吉祥寺的鯉魚王鯛魚燒！不僅完整還原動畫造型，連紙袋都設計成寶貝球的模樣，更重要的是，全東京僅有五間門市限定販售，而吉祥寺店就是其中之一！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090158_00Uum/jpg">
-                      <p>若時間充裕，也可選擇前往鄰近的井之頭公園，這裡腹地廣大，不僅坐擁大片樹林與湖水風景，適合野餐、散步，更是《Last Friends》、《東京愛情故事》、《大和拜金女》和《我無法戀愛的理由》等知名日劇取景地！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090201_5BJCp/jpg">
+                      <p>吉祥寺商店街 SUNROAD 位在吉祥寺車站的北口，集結各大連鎖藥妝店、服飾、配件、生活用品與多元化餐飲。</p>
                       <ul>
                         <li>吉祥寺商店街</li>
                         <ul>
                           <li>地址：日本〒180-0004 Tokyo, Musashino, 吉祥寺本町１丁目-１５-１（座標：35.703811, 139.579848）</li>
                           <li>營業時間：依照各店家而有所不同</li>
                         </ul>
-                        <li>口琴橫丁</li>
-                        <ul>
-                          <li>地址：日本〒180-0004 Tokyo, Musashino, 吉祥寺本町1 Chome−31−6, ムサシノ第1ビル（座標：35.703683, 139.579137）</li>
-                          <li>營業時間：依照各店家而有所不同</li>
-                        </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130084353_rp8dE/jpg">
+                      <p>另外，附近更有京王集團旗下的Kirarina百貨公司（キラリナ京王吉祥寺），囊括了Salut、本系土、Marche de Bleuet等日系雜貨品牌。</p>
+                      <ul>
                         <li>百貨公司：キラリナ京王吉祥寺 (Kirarina)</li>
                         <ul>
                           <li>地址：東京都武藏野市吉祥寺南町2-1-25（座標：35.702836, 139.580003）</li>
@@ -2226,6 +2102,19 @@
                           <li>營業時間：10:00-21:00</li>
                           <li>官網：<a href="http://www.kirarinakeiokichijoji.jp/" target="_blank" class="info">Kirarina官網</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090147_E1K6j/jpg">
+                      <p>口琴橫丁（ハモニカ横丁）一帶，則是由許多店家組成中央通、朝日通、仲間日通、のれん小路（暖簾小路）、祥和會通5條窄巷，開設許多居酒屋與串燒店，因保留二次大戰後昭和時代氛圍，成為許多旅客喜歡涉足的地標之一。</p>
+                      <ul>
+                        <li>口琴橫丁</li>
+                        <ul>
+                          <li>地址：日本〒180-0004 Tokyo, Musashino, 吉祥寺本町1 Chome−31−6, ムサシノ第1ビル（座標：35.703683, 139.579137）</li>
+                          <li>營業時間：依照各店家而有所不同</li>
+                        </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090151_zPBMf/jpg">
+                      <p>對家飾擺設、地毯、餐具、抱枕等生活用品和古著情有獨鍾的人，則千萬不能錯過 B-company，你可以在這裡找到平價又具有質感的小單品；熱愛古著與日系穿搭者，也能在 NEW YORK JOE EXCHANGE 二手專賣店找到屬於自己風格的衣物與配件，即使價格低廉，依然能看出店家對於商品處理與清潔的堅持！人氣名店 RAGTAG 亦收購諸多名牌與潮流物品，趕緊來吉祥寺淘寶吧！</p>
+                      <ul>
                         <li>B-company</li>
                         <ul>
                           <li>地址：〒180-0003 東京都武蔵野市吉祥寺南町1-1-24 アトレ吉祥寺 2F（座標：35.703111, 139.578810）</li>
@@ -2239,12 +2128,10 @@
                           <li>交通方式：吉祥寺南口，步行約10分鐘</li>
                           <li>營業時間：12:00-20:00</li>
                         </ul>
-                        <li>RAGTAG</li>
-                        <ul>
-                          <li>地址：東京都武蔵野市吉祥寺南町1-8-6カーサカルム吉祥寺1F（座標：35.701844, 139.578702）</li>
-                          <li>交通方式：吉祥寺南口，步行約5-7分鐘</li>
-                          <li>營業時間：11:00~20:00</li>
-                        </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090154_qkVuO/jpg">
+                      <p>吉祥寺的代表性食物，首選當然是 SATOU 牛肉丸！SATOU 販售頂級松阪牛排、和牛牛排與平價現炸小吃牛肉丸，咬一口金黃酥脆的牛肉丸，感受多汁的內餡與洋蔥甜味，享受平價的高品質美味！</p>
+                      <ul>
                         <li>さとう SATOU 牛肉丸</li>
                         <ul>
                           <li>地址：日本〒180-0004 Tokyo, Musashino, Kichijoji Honcho, １−１−８（座標：35.704018, 139.579062）</li>
@@ -2252,6 +2139,10 @@
                           <li>營業時間：10:00~19:00</li>
                           <li>官網：<a href="https://www.shop-satou.com/" target="_blank" class="info">SATOU官網</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090158_00Uum/jpg">
+                      <p>如果你喜歡寶可夢，那就務必前來嘗試吉祥寺的鯉魚王鯛魚燒！不僅完整還原動畫造型，連紙袋都設計成寶貝球的模樣，更重要的是，全東京僅有五間門市限定販售，而吉祥寺店就是其中之一！</p>
+                      <ul>
                         <li>くりこ庵  鯉魚王鯛魚燒</li>
                         <ul>
                           <li>地址：東京武蔵野市吉祥寺本町1-1-7（座標：35.703932, 139.578983）</li>
@@ -2260,22 +2151,25 @@
                           <li>官網：<a href="http://kurikoan.com/" target="_blank" class="info">くりこ庵</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7570/asia-japan-tokyo-kichijoji" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090201_5BJCp/jpg">
+                      <p>若時間充裕，也可選擇前往鄰近的井之頭公園，這裡腹地廣大，不僅坐擁大片樹林與湖水風景，適合野餐、散步，更是《Last Friends》、《東京愛情故事》、《大和拜金女》和《我無法戀愛的理由》等知名日劇取景地！</p>
+                      <a href="https://blog.kkday.com/7570/asia-japan-tokyo-kichijoji" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps3-2" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps3-3" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090204_5xNVM/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3-3">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】教你如何玩東京車站！一番地下街、皇居、丸之內瞭望台全攻略 </h3>
                         <p class="hide-content">東京車站絕對不只是一座車站，除了繁榮的車站商圈，車站裡的一番地下街更是完美消磨等車時間的購物天堂，包括動漫人物街、東京拉麵街和零食天堂等；此外，鄰近還有皇居、Kitte、三菱一號美術館等知名必訪景點！</p>
                       </div>
@@ -2286,31 +2180,31 @@
                     <div class="panel-body">
                       <p class="description">東京車站絕對不只是一座車站，除了繁榮的車站商圈，車站裡的一番地下街更是完美消磨等車時間的購物天堂，包括動漫人物街、東京拉麵街和零食天堂等；此外，鄰近還有皇居、Kitte、三菱一號美術館等知名必訪景點！</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090204_5xNVM/jpg">
-                      <p>東京一番街主要分成三大區塊，若從東京車站八重州地下中央口進入，首先會來到東京零食樂園，往南口為拉麵街，北口則是動漫人物街和 Tokyo Me+ 伴手禮區。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090210_ecIQ9/jpg">
-                      <p>東京零食樂園集結日本各種本土零食，你幾乎可以在這裡找到想到的任何糖果餅乾，而加卡比、森永和固力果等三大零食品牌更設有專門店。</p>
+                      <p>東京一番街主要分成三大區塊，若從東京車站八重州地下中央口進入，首先會來到東京零食樂園，往南口為拉麵街，北口則是動漫人物街和 Tokyo Me+ 伴手禮區。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090217_jtRlJ/jpg">
-                      <p>東京拉麵街聚集八間極富好評的東京拉麵名店，隨意挑選一間風格順眼的店，點一碗美味的拉麵，撫慰逛街累了的心情和體力，享受道地的日本美食。</p>
+                      <p>東京零食樂園集結日本各種本土零食，你幾乎可以在這裡找到想到的任何糖果餅乾，而加卡比、森永和固力果等三大零食品牌更設有專門店。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090557_Snxqy/jpg">
-                      <p>如果特別熱愛日本出產的卡通與動漫，東京動漫人物街肯定是不容錯過的景點，舉凡蛋黃哥、Jump角色、寶可夢、米飛兔、龍貓、拉拉熊或美少女戰士等周邊商品都能輕易找到，多樣的扭蛋機、專賣店更是讓人目不轉睛；更重要的是，一番街已於2017年開始提供退稅服務，堪稱東京旅遊最幸福的購物天堂之一！</p>
+                      <p>東京拉麵街聚集八間極富好評的東京拉麵名店，隨意挑選一間風格順眼的店，點一碗美味的拉麵，撫慰逛街累了的心情和體力，享受道地的日本美食。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090601_mvnNQ/jpg">
-                      <ul></ul>
-                      <a href="https://blog.kkday.com/7113/asia-japan-tokyo-station" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <p>如果特別熱愛日本出產的卡通與動漫，東京動漫人物街肯定是不容錯過的景點，舉凡蛋黃哥、Jump角色、寶可夢、米飛兔、龍貓、拉拉熊或美少女戰士等周邊商品都能輕易找到，多樣的扭蛋機、專賣店更是讓人目不轉睛；更重要的是，一番街已於2017年開始提供退稅服務，堪稱東京旅遊最幸福的購物天堂之一！</p>
+                      <a href="https://blog.kkday.com/7113/asia-japan-tokyo-station" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps3-3" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps3-4" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090604_sXUmr/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3-4">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>家庭</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3>【日本】時尚流行最前線 原宿表參道交通、必吃、必逛總攻略</h3>
                         <p class="hide-content">原宿一帶是東京著名的鬧區之一，因此眾多電鐵與地下鐵均經過此地，交通十分方便。除了車站附近名聞遐邇的明治神宮與代代木公園，與時下流行息息相關的竹下通就位於此處，無論是購物還是美食，均可在此一網打盡！</p>
                       </div>
@@ -2324,12 +2218,6 @@
                       <p>竹下通是一條狹長型的商店街，充斥著許多特色店舖，販賣時下最流行的服飾、雜貨與甜點，其中千萬不可錯過的就非百花齊放的可麗餅莫屬，兩間主打可麗餅的店家 MARION CREPES、Angel Heart 相鄰而立，競爭激烈，你可自行選擇新鮮水果、起司蛋糕、巧克力或其他配料，享用以薄薄的麵皮包裹豐富餡料的少女甜點！另外，超巨大的夢幻彩色棉花糖也是IG打卡亮點之一，同樣是許多遊客的首選！</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090604_sXUmr/jpg">
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090919_kVV9s/jpg">
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090922_o9KGo/jpg">
-                      <p>WEGO 是日本的原宿系服飾品牌，價格平價且深受日本大學生喜愛，還經常登上日本流行雜誌如 Vivi、Seventeen、Popteen 等。除了衣服，包包、鞋子、襪子或頸鏈等配件亦極具特色。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090926_qbkKq/jpg">
-                      <p>出自原宿的服飾品牌 W♥C ，也是WEGO的關係品牌，主打以蘇格蘭格紋與鮮艷色彩為基調，誇張的粉紅色更是其顯眼特色。平價服飾專賣店 SPINNS 則提供風格多元的衣飾，除了雜誌流行穿搭，亦可找到偏童趣俏皮感的古著單品。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090929_KzdH3/jpg">
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090932_0logj/jpg">
                       <ul>
                         <li>MARION CREPES</li>
                         <ul>
@@ -2343,12 +2231,19 @@
                           <li>營業時間：10:30 – 22:00</li>
                           <li>詳細資訊：<a href="http://www.cafe-crepe.co.jp/" target="_blank" class="info">カフェクレープ 官網</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090922_o9KGo/jpg">
+                      <ul>
                         <li>TOTTI CANDY FACTORY（彩色巨大棉花糖）</li>
                         <ul>
                           <li>地址：東京都渋谷区神宮前1-16-5 RYUアパルトマン2F（座標：35.671169, 139.704587）</li>
                           <li>營業時間：09:30 – 20:00（假日）10:30 – 20:00（平日）10:30 – 19:00（冬季平日11、12、1月）</li>
                           <li>詳細資訊：<a href="http://www.totticandy.com/" target="_blank" class="info">TOTTI CANDY FACTORY官網</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090926_qbkKq/jpg">
+                      <p>WEGO 是日本的原宿系服飾品牌，價格平價且深受日本大學生喜愛，還經常登上日本流行雜誌如 Vivi、Seventeen、Popteen 等。除了衣服，包包、鞋子、襪子或頸鏈等配件亦極具特色。</p>
+                      <ul>
                         <li>WEGO</li>
                         <ul>
                           <li>【原宿本店】</li>
@@ -2362,12 +2257,19 @@
                             <li>營業時間：10:30 – 20:30（平日）10:30 – 21:00（假日）</li>
                           </ul>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090929_KzdH3/jpg">
+                      <p>出自原宿的服飾品牌 W♥C ，也是WEGO的關係品牌，主打以蘇格蘭格紋與鮮艷色彩為基調，誇張的粉紅色更是其顯眼特色。平價服飾專賣店 SPINNS 則提供風格多元的衣飾，除了雜誌流行穿搭，亦可找到偏童趣俏皮感的古著單品。</p>
+                      <ul>
                         <li>W♥C 原宿竹下通り店</li>
                         <ul>
                           <li>地址：東京都東京渋谷区神宮前1-19-5（座標：35.671429, 139.703939）</li>
                           <li>營業時間：10:30 – 20:30</li>
                           <li>詳細資訊：<a href="https://twitter.com/wc__official" target="_blank" class="info">W♥C 推特</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090932_0logj/jpg">
+                      <ul>
                         <li>SPINNS原宿竹下通り店</li>
                         <ul>
                           <li>地址：東京都渋谷区神宮前1丁目7-1 Cute Cube Harajuku 2F（座標：35.670812, 139.705497）</li>
@@ -2375,8 +2277,8 @@
                           <li>詳細資訊：<a href="https://www.spinns.com/shop/takeshita_inf/" target="_blank" class="info">SPINNS官網</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/7135/asia-japan-tokyo-harajiku" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps3-4" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
@@ -2401,17 +2303,18 @@
             <div id="tab4" class="tab-pane fade">
               <p class="description for-pc">日本東京集國內音樂與電影之大成，坐擁許多經典的展覽、商店與動漫電玩聖地。你可以前往秋葉原，在豐富的電子娛樂聚集經濟商圈尋寶；或深入東京車站的地下一番街，探索日本多元的次文化或收購喜愛的週邊商品。此外，你也可以在藤子.F.不二雄博物館、三鷹之森吉卜力美術館和各式主題樂園裡體驗日本揚名國際的動畫精髓與作品演進史；又或者直接深入東京日常的街道、餐館、電車與咖啡廳，朝聖電影與日劇裡曾經出現的場景，盡情感受東京與日本影視文化的無窮魅力。</p>
               <p class="description for-mobile">東京集日本音樂與電影之大成，你可前往秋葉原、東京車站一番街，探索動漫與電玩聖地，或深入日常的街道，品嚐特色餐館與咖啡廳，感受次文化的魅力。</p>
-              <div class="panel-group" id="accordion">
+              <div class="panel-group">
+                <div id="clps4-1" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090938_u3O8L/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse4-1">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】東京動漫巴士一日遊：藤子.Ｆ.不二雄博物館、鬼太郎茶屋、狹山公園、多摩湖</h3>
                         <h3 class="for-mobile">【日本】動漫之旅：藤子不二雄博物館、鬼太郎茶屋、多摩湖</h3>
                         <p class="hide-content">東京孕育了無數陪伴我們成長的動漫故事，無論是藤子不二雄筆下的《哆拉A夢》，還是啟發水木茂先生的《鬼太郎》靈感，或是《龍貓》取景地之一的狹山公園、多摩湖，不僅能夠回味童年，還可在花季盡賞宜人櫻花美景！</p>
@@ -2426,39 +2329,40 @@
                       <p>藤子.F.不二雄博物館位於川崎市多摩區，2011 年開館以來始終是人氣不減的遊玩聖地。現場提供中文語音導覽機，憑入場券還可兌換博物館內限定的特別版電影票！</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090950_5amv0/jpg">
                       <p>博物館屋頂廣場更還原了動畫經典場景如任意門、空地和各種道具，來到這裡，不僅可以與角色們盡情合影，還能在漫畫專區、兒童遊樂室殺時間，欣賞藤子大師的珍貴原畫展示與各式收藏品，或外帶一份記憶吐司、享用附設咖啡館裝飾卡通元素的精緻餐點，與哆拉A夢一行人共度美好的一天。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090953_r8hPJ/jpg">
-                      <p>鬼太郎茶屋位於調布市，茶屋二樓為「水木茂紀念館」，展示作者部分手稿與珍藏的作品和玩偶，並隨處藏匿著充滿巧思的設計，等待旅客發覺。戶外更設有變裝攝影區，供遊客體驗戴上假髮裝扮為故事主角；茶屋亦販售各式角色甜點和周邊紀念品，離開前不妨買一瓶最經典的燒灼回家淺嚐！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090938_u3O8L/jpg">
-                      <p>狹山公園和多摩湖，是宮崎駿描繪《龍貓》動畫時參考的場景之一，整體湖區廣大，放眼望去還能一覽數座山脈綿延，麥山浮橋佇立在水面上，風景優美。另外，一旁的公園遍佈櫻花樹，是日本人最喜歡的賞櫻勝地之一，每當春季來臨，在綠意盎然的草地上呼吸新鮮空氣，搭配遼闊景致與櫻花紛飛，絕對是野餐散步的好選擇！</p>
                       <ul>
                         <li>藤子.Ｆ.不二雄博物館</li>
                         <ul>
                           <li>地址：2 Chome-8-1 Nagao, Tama Ward, Kawasaki, Kanagawa Prefecture 214-0023日本</li>
                           <li>開放時間：10:00 - 18:00（每週二公休）</li>
-                          <li>電話：+81 570-055-245</li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090953_r8hPJ/jpg">
+                      <p>鬼太郎茶屋位於調布市，茶屋二樓為「水木茂紀念館」，展示作者部分手稿與珍藏的作品和玩偶，並隨處藏匿著充滿巧思的設計，等待旅客發覺。戶外更設有變裝攝影區，供遊客體驗戴上假髮裝扮為故事主角；茶屋亦販售各式角色甜點和周邊紀念品，離開前不妨買一瓶最經典的燒灼回家淺嚐！</p>
+                      <ul>
                         <li>鬼太郎茶屋</li>
                         <ul>
                           <li>地址：5 Chome-12-８ Jindaiji Motomachi, Chofu, Tokyo 182-0017日本</li>
                           <li>開放時間：10:00 - 17:00（每週一公休）</li>
-                          <li>電話：+81 42-482-4059</li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/18820/asia-japan-tokyo-anime-bus" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130090938_u3O8L/jpg">
+                      <p>狹山公園和多摩湖，是宮崎駿描繪《龍貓》動畫時參考的場景之一，整體湖區廣大，放眼望去還能一覽數座山脈綿延，麥山浮橋佇立在水面上，風景優美。另外，一旁的公園遍佈櫻花樹，是日本人最喜歡的賞櫻勝地之一，每當春季來臨，在綠意盎然的草地上呼吸新鮮空氣，搭配遼闊景致與櫻花紛飛，絕對是野餐散步的好選擇！</p>
+                      <a href="https://blog.kkday.com/18820/asia-japan-tokyo-anime-bus" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps4-1" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps4-2" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091322_TcFpQ/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse4-2">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】宮崎駿的動畫世界，三鷹の森吉卜力美術館交通、門票、館內資訊全攻略</h3>
                         <h3 class="for-mobile">【日本】宮崎駿動畫世界：三鷹の森吉卜力美術館全攻略</h3>
                         <p class="hide-content">宮崎駿的魅力馳名中外，數十年來不斷創作引人入勝的經典作品，影迷橫跨各年齡層。如果來到東京旅行，千萬不能錯過這處收藏著陪伴你我長大的兒時回憶備忘錄——三鷹の森吉卜力美術館。</p>
@@ -2484,21 +2388,22 @@
                           <li>交通：JR中央線/中央總武線，JR三鷹站南口再轉搭<a href="http://www.ghibli-museum.jp/en/howtogo/" target="_blank" class="info">接駁公車</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7701/asia-japan-tokyo-ghibli-museum-guide" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/7701/asia-japan-tokyo-ghibli-museum-guide" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps4-2" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps4-3" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091337_O3KXq/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse4-3">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】動漫迷九大朝聖地，盤點動漫裡真實場景、主題樂園和淘週邊的好地方</h3>
                         <h3 class="for-mobile">【日本】動漫迷朝聖地！盤點動漫真實場景、主題樂園與週邊商店！</h3>
                         <p class="hide-content">日本每年輸出大量的動畫與漫畫作品，東京每年更是吸引無數來自世界各地的動漫迷，甚至御宅族前仆後繼前來朝聖，想知道在哪裡尋找動漫真實場景，或該去哪裡購買最齊全又便宜的周邊商品？千萬別錯過這些景點！</p>
@@ -2511,25 +2416,18 @@
                       <p class="description">日本每年輸出大量的動畫與漫畫作品，東京每年更是吸引無數來自世界各地的動漫迷，甚至御宅族前仆後繼前來朝聖，想知道在哪裡尋找動漫真實場景，或該去哪裡購買最齊全又便宜的周邊商品？千萬別錯過這些景點！</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091337_O3KXq/jpg">
                       <p>連鎖店 Animate，舉凡漫畫、周邊甚至角色服裝一應俱全，池袋 Animate 更號稱世界最大的動漫商品店，是整棟高達九層樓的小型百貨。一進到店裡，彷彿就像是進入另一個全新的世界一般，你可以在這裡找到過季或當季商品、海報、公仔、人形立牌與超乎想像的周邊商品，盡情消磨時間。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091341_Gnwkz/jpg">
-                      <p>歷久不衰的經典作品《灌籃高手》，動畫片頭曲中櫻木與晴子在平交道前揮手的場景，就在江之電鐵鎌倉高校前站！背後海水波光粼粼的景色與影片如出一徹，往返的電車也在動畫裡活靈活現地完整還原，堪稱喜愛灌籃高手的粉絲們必須朝聖的首選景點！此外，江之島海岸線浪漫優美，周邊亦有許多景點可以慢慢走逛，值得花費一天的時間細細品味。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091344_jtuIf/jpg">
-                      <p>自從賣座日本動畫電影《你的名字》上映後，劇中至關重要的關鍵場景「系守湖」原型，即長野縣「諏訪湖」，成為吸引眾多觀光客前來一探究竟的爆紅景點。諏訪湖四周高山環繞，鄰近溫泉區， 夏季還會在湖畔施放美不勝收的煙火，冬天更有特殊的冰釣活動可體驗，電影裡看似深山的遠景，實際上距離東京新宿僅需兩小時車程即可抵達！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091346_lQdCj/jpg">
-                      <p>Jump 的動漫可謂無人不知無人不曉，著名連載作品包括《航海王》、《火影忍者》、《七龍珠》和《死神》等。一旦來到以這些經典動漫為主題的室內樂園 J-World，除了豐富的遊樂設施，還有聯名餐廳、周邊專賣店和扭蛋專區等著粉絲來親自體驗！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091349_wtacF/jpg">
-                      <p>電影《頭文字D》的魔鬼髮夾彎真實存在！擁有 48 個轉彎的伊呂坡山道，一路蜿蜒輾轉又刺激，是許多車手都曾來挑戰的經典場景。秋季來臨時，伊呂坡也以楓紅美景聞名，因此又有「紅葉坂」的另稱，甚至被視為日本最浪漫的道路之一。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091352_TzNJd/jpg">
-                      <p>來到秋葉原，一步出車站就能看見令鋼彈迷熱血沸騰的鋼彈咖啡廳！不但有身著鋼彈駕駛員制服的店員為你服務，比出招牌敬禮動作，還有許多鋼彈模型供顧客拍照合影，並提供以鋼彈為主題的精緻餐點，吸引全球各地的鋼彈迷前來朝聖。</p>
                       <ul>
                         <li>池袋 Animate</li>
                         <ul>
                           <li>地址：日本〒173-0013 東京都豊島区Higashiikebukuro, 1 Chome−20, 〒170-0013 東池袋１-２０-７（座標：35.731423, 139.715477）</li>
                           <li>營業時間：10:00～21:00</li>
-                          <li>電話：+81 3-3988-1351</li>
                           <li>交通：JR、東京地下鐵、東武鐵道、西武鐵道「池袋」站東口步行5分鐘<a href="http://www.jreast.co.jp/tc/info/map_a4ol.pdf" target="_blank" class="info">（JR路線圖）</a></li>
                           <li>官網：<a href="https://www.animate.co.jp/shop/ikebukuro/" target="_blank" class="info">Animate</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091341_Gnwkz/jpg">
+                      <p>歷久不衰的經典作品《灌籃高手》，動畫片頭曲中櫻木與晴子在平交道前揮手的場景，就在江之電鐵鎌倉高校前站！背後海水波光粼粼的景色與影片如出一徹，往返的電車也在動畫裡活靈活現地完整還原，堪稱喜愛灌籃高手的粉絲們必須朝聖的首選景點！此外，江之島海岸線浪漫優美，周邊亦有許多景點可以慢慢走逛，值得花費一天的時間細細品味。</p>
+                      <ul>
                         <li>鎌倉高校前站（灌籃高手平交道）</li>
                         <ul>
                           <li>地址：日本神奈川縣鎌倉市腰越１丁目１（座標：35.306728, 139.500519）</li>
@@ -2539,18 +2437,23 @@
                             <li>搭乘JR橫須賀線、湘南新宿線到「鎌倉」站再轉乘江之電鐵至鐮倉高校前站。</li>
                             <li>搭乘小田急電鐵至藤澤站轉江之電鐵至鐮倉高校前站。</li>
                           </ol>
-                          <li>開放時間：10:00 - 17:00（每週一公休）</li>
-                          <li>電話：+81 42-482-4059</li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091344_jtuIf/jpg">
+                      <p>自從賣座日本動畫電影《你的名字》上映後，劇中至關重要的關鍵場景「系守湖」原型，即長野縣「諏訪湖」，成為吸引眾多觀光客前來一探究竟的爆紅景點。諏訪湖四周高山環繞，鄰近溫泉區， 夏季還會在湖畔施放美不勝收的煙火，冬天更有特殊的冰釣活動可體驗，電影裡看似深山的遠景，實際上距離東京新宿僅需兩小時車程即可抵達！</p>
+                      <ul>
                         <li>長野諏訪湖（《你的名字》系守湖）</li>
                         <ul>
                           <li>地址：日本 長野縣（座標：36.049024, 138.085592）</li>
                           <li>交通：乘坐 JR 中央本線特快至上諏訪站，徒步10分鐘。離東京新宿只要兩小時多的車程，交通相當便利。</li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091346_lQdCj/jpg">
+                      <p>Jump 的動漫可謂無人不知無人不曉，著名連載作品包括《航海王》、《火影忍者》、《七龍珠》和《死神》等。一旦來到以這些經典動漫為主題的室內樂園 J-World，除了豐富的遊樂設施，還有聯名餐廳、周邊專賣店和扭蛋專區等著粉絲來親自體驗！</p>
+                      <ul>
                         <li>J-World</li>
                         <ul>
                           <li>地址：日本東京都豊島区東池袋３丁目（座標：35.728839, 139.720047）</li>
-                          <li>電話：+81 3-5950-2181</li>
                           <li>營業時間：10:00～22:00</li>
                           <li>交通：</li>
                           <ol>
@@ -2558,43 +2461,45 @@
                             <li>東京地下鐵有樂町線「東池袋站」步行約3分鐘</li>
                             <li>都電荒川線「東池袋四丁目站」步行約4分鐘</li>
                           </ol>
-                          <li>門票：</li>
-                          <ul>
-                            <li>入場券 成人 800 / 小孩 600 円（入場不能玩遊樂設施，只能拍照購物）</li>
-                            <li>通票 成人 2600 / 小孩 2400 円</li>
-                            <li>夜間通票 成人 1800 / 小孩 1600 円 (17:00以後入場)</li>
-                          </ul>
                           <li>官網：<a href="https://bandainamco-am.co.jp/tp/j-world/index.html" target="_blank" class="info">J-World</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091349_wtacF/jpg">
+                      <p>電影《頭文字D》的魔鬼髮夾彎真實存在！擁有 48 個轉彎的伊呂坡山道，一路蜿蜒輾轉又刺激，是許多車手都曾來挑戰的經典場景。秋季來臨時，伊呂坡也以楓紅美景聞名，因此又有「紅葉坂」的另稱，甚至被視為日本最浪漫的道路之一。</p>
+                      <ul>
                         <li>伊呂坡山道（《頭文字D》）</li>
                         <ul>
                           <li>地址：日本栃木縣日光市內馬返連接中禪寺湖的山坡道 （座標：36.745964, 139.512342）</li>
                           <li>交通：國道120號 日光市連接奧日光</li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091352_TzNJd/jpg">
+                      <p>來到秋葉原，一步出車站就能看見令鋼彈迷熱血沸騰的鋼彈咖啡廳！不但有身著鋼彈駕駛員制服的店員為你服務，比出招牌敬禮動作，還有許多鋼彈模型供顧客拍照合影，並提供以鋼彈為主題的精緻餐點，吸引全球各地的鋼彈迷前來朝聖。</p>
+                      <ul>
                         <li>鋼彈咖啡廳</li>
                         <ul>
                           <li>地址：東京都千代田區神田花岡町1-1（座標：35.699139, 139.772974）</li>
-                          <li>電話：+81 3-3251-0078</li>
                           <li>營業時間：10:00～22:30</li>
                           <li>交通：「秋葉原」站徒步2分鐘</li>
                           <li>官網：<a href="http://g-cafe.jp/akiba/" target="_blank" class="info">鋼彈咖啡館</a></li>
                         </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7571/asia-japan-animate-fans-must-go" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/7571/asia-japan-animate-fans-must-go" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps4-3" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
+                <div id="clps4-4" class="anchor"></div>
                 <div class="panel panel-default">
                   <div class="panel-heading" style="background-image:url(https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091623_kiq9q/jpg);">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse4-4">
                       <div class="content">
-                        <ul>
+                        <!--<ul>
                           <li>獨旅</li>
                           <li>情侶/夫妻</li>
                           <li>朋友</li>
                           <div class="clearfix"></div>
-                        </ul>
+                        </ul>-->
                         <h3 class="for-pc">【日本】宅宅們的秋葉原朝聖之旅，動漫周邊、遊戲、電器街讓你逛到失心瘋！</h3>
                         <h3 class="for-mobile">【日本】秋葉原朝聖之旅：大逛動漫周邊、遊戲與電器街！</h3>
                         <p class="hide-content">秋葉原一直被視為御宅族天堂與動漫聖地，同時也因作為世界屈指可數的電器街而聞名，不但是時下年輕人聚集之處，每年更吸引無數世界各地的動漫迷、遊戲迷前來朝聖。</p>
@@ -2607,27 +2512,29 @@
                       <p class="description">秋葉原一直被視為御宅族天堂與動漫聖地，同時也因作為世界屈指可數的電器街而聞名，不但是時下年輕人聚集之處，每年更吸引無數世界各地的動漫迷、遊戲迷前來朝聖。</p>
                       <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091623_kiq9q/jpg">
                       <p>如果無法在主流的 Animate 商店找到想要的周邊商品，試著來 MANDARAKE 逛逛吧！高達八層樓的店鋪，是大型的二手動漫商品交易商場，一樓為收購處，除去一般商品，店裡還藏著許多早期絕版品或限量商品等你慢慢挖掘。</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091627_XAiec/jpg">
-                      <p>Yodobashi Akiba 是秋葉原電器街上規模最大的綜合電器購物中心，共九層樓，商品種類齊全，無論是哪種電器或家電，幾乎都能在這裡找到！</p>
-                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091631_ZK38U/jpg">
-                      <p>除了前述商場，秋葉原無線電會館（Radio Kaikan）、四樓為東京動漫中心的 UDX、擁有四間分店的 Sofmap 複合型商場、販售橫跨懷舊時代的紅白機與新科技商品的遊戲專賣店 Super potato，甚至是日本當紅偶像團體 AKB48 的活動據點，也全都是秋葉原地標之一。另外，還有與動漫聯名，極受年輕人歡迎的吃到飽居酒屋「きんくら酒場 金の蔵」、博多風龍拉麵店，和Pablo mini 半熟起司塔，值得前往品嚐體驗。作為非主流的次文化聚集地，秋葉原絕對堪稱東京最有特色的景點之一！</p>
                       <ul>
                         <li>MANDRAKE Complex</li>
                         <ul>
                           <li>地址：東京都千代田區外神田3丁目11-12（座標：35.700365, 139.770512）</li>
-                          <li>電話：+81 3-3252-7007</li>
                           <li>營業時間：12:00～20:00</li>
                           <li>交通：「秋葉原」站徒步5分鐘，「廣末町」站徒步5分鐘</li>
                           <li>官網：<a href="http://www.mandarake.co.jp/" target="_blank" class="info">MANDARAKE</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091627_XAiec/jpg">
+                      <p>Yodobashi Akiba 是秋葉原電器街上規模最大的綜合電器購物中心，共九層樓，商品種類齊全，無論是哪種電器或家電，幾乎都能在這裡找到！</p>
+                      <ul>
                         <li>Yodobashi Akiba</li>
                         <ul>
                           <li>地址：千代田區神田花岡町1-1（座標：35.698713, 139.774760）</li>
-                          <li>電話：+81 3-5209-1010</li>
                           <li>營業時間：9:30~22:00</li>
                           <li>交通：「秋葉原」站徒步2分鐘</li>
                           <li>官網：<a href="https://www.yodobashi.com/ec/store/0018/" target="_blank" class="info">Yodobashi Akiba</a></li>
                         </ul>
+                      </ul>
+                      <img src="https://image.kkday.com/image/get/s1.kkday.com/campaign_768/20181130091631_ZK38U/jpg">
+                      <p>除了前述商場，秋葉原無線電會館（Radio Kaikan）、四樓為東京動漫中心的 UDX、擁有四間分店的 Sofmap 複合型商場、販售橫跨懷舊時代的紅白機與新科技商品的遊戲專賣店 Super potato，甚至是日本當紅偶像團體 AKB48 的活動據點，也全都是秋葉原地標之一。另外，還有與動漫聯名，極受年輕人歡迎的吃到飽居酒屋「きんくら酒場 金の蔵」、博多風龍拉麵店，和Pablo mini 半熟起司塔，值得前往品嚐體驗。作為非主流的次文化聚集地，秋葉原絕對堪稱東京最有特色的景點之一！</p>
+                      <ul>
                         <li>無線電會館（Radio Kaikan）</li>
                         <ul>
                           <li>地址：東京都千代田區外神田1-15-16（座標：35.697911, 139.771962）</li>
@@ -2641,43 +2548,9 @@
                           <li>電話：03-5289-0989</li>
                           <li>交通：「秋葉原」站徒步4分鐘</li>
                         </ul>
-                        <li>Sofmap</li>
-                        <ul>
-                          <li>地址：</li>
-                          <ul>
-                            <li>（本館）東京都千代田區外神田4-1-1（座標：35.699700, 139.771598）</li>
-                            <li>（Amusement）東京都千代田區外神田1-10-8（座標：35.698906, 139.770997）</li>
-                            <li>（秋葉原☆sofmap）東京都千代田區外神田3-13-12（座標：35.700335, 139.771171）</li>
-                            <li>（回收綜合館）東京都千代田區外神田3-13-8（座標：35.700607, 139.771243）</li>
-                          </ul>
-                          <li>電話：</li>
-                          <ul>
-                            <li>（本館）03-3253-1111</li>
-                            <li>（Amusement）03-3253-3030</li>
-                            <li>（秋葉原☆sofmap）03-3253-9190</li>
-                            <li>（回收綜合館）03-3253-3399</li>
-                          </ul>
-                          <li>營業時間：11:00～20:00（本館平日）11:00～21:00（本館假日）10:00～21:00</li>
-                          <li>交通：「秋葉原」站皆徒步5分鐘內可到達</li>
-                        </ul>
-                        <li>Super potato</li>
-                        <ul>
-                          <li>地址：東京都千代田區外神田1丁目11番2號 北林大樓3・4・5層（座標：35.699362, 139.770729）</li>
-                          <li>電話：+81 3-5289-9933</li>
-                          <li>營業時間：11:00～20:00</li>
-                          <li>交通：「秋葉原」站徒步4分鐘</li>
-                          <li>官網：<a href="http://www.superpotato.com/" target="_blank" class="info">Super potato</a></li>
-                        </ul>
-                        <li>日本當紅偶像團體AKB48的活動據點，也是他們的起點，經常舉辦歌迷會、演唱會，現在已經成了秋葉原的地標，裡頭僅能容納250人，常常一票難求。</li>
-                        <ul>
-                          <li>地址：日本東京都千代田区外神田４丁目３−３ドン・キホーテ秋葉原 8F（座標：35.700755, 139.771820）</li>
-                          <li>電話：+81 3-5298-8648</li>
-                          <li>交通：「廣末町」站徒步2分鐘，「秋葉原」站徒步5分鐘</li>
-                          <li>官網：<a href="https://www.akb48.co.jp/theater/" target="_blank" class="info">AKB48</a></li>
-                        </ul>
                       </ul>
-                      <a href="https://blog.kkday.com/7448/asia-japan-tokyo-akihabara" target="_blank" class="more">閱讀更多 > </a>
-                      <!--<div class="arrow-up"></div>-->
+                      <a href="https://blog.kkday.com/7448/asia-japan-tokyo-akihabara" target="_blank" class="more"><span>閱讀更多 > </span></a>
+                      <a href="#clps4-4" class="arrow-up"></a>
                     </div>
                   </div>
                 </div>
